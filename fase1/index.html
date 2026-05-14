@@ -1,0 +1,1430 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Fase 1 - Avaliação de Qualidade</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fase-1-planejamento-da-avaliacao" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Avaliação de Qualidade" class="md-header__button md-logo" aria-label="Avaliação de Qualidade" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Avaliação de Qualidade
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fase 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Fase 1
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Avaliação de Qualidade" class="md-nav__button md-logo" aria-label="Avaliação de Qualidade" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Avaliação de Qualidade
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-requisitante-e-partes-interessadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Requisitante e partes interessadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-descricao-estruturada-do-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Descrição estruturada do software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Descrição estruturada do software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-informacoes-basicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Informações Básicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sobre-o-uso-do-unb-mural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Sobre o uso do Unb Mural
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-proposito-da-avaliacao-e-uso-pretendido-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Propósito da avaliação e uso pretendido dos resultados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-modelo-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Modelo de Qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Modelo de Qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adaptacao-do-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Adaptação do Modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-diagrama-adaptado-visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Diagrama Adaptado (visão geral)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-selecao-de-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Seleção de Características
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Seleção de Características">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-justificativa-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Justificativa de Priorização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-classificacao-de-subcaracteristicas-escala-1-a-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Classificação de Subcaracterísticas (Escala 1 a 5)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Classificação de Subcaracterísticas (Escala 1 a 5)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#confiabilidade-reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confiabilidade (Reliability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguranca-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segurança (Security)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-metodo-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Método de Priorização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-matriz-de-priorizacao-ponderada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Matriz de Priorização (Ponderada)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-escopo-da-avaliacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Escopo da Avaliação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Escopo da Avaliação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escopo-artefatos-e-profundidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escopo, Artefatos e Profundidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-sustentabilidade-ods-e-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Sustentabilidade (ODS e metas)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-identificacao-das-ods-e-submetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Identificação das ODS e submetas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-identificacao-dos-indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Identificação dos Indicadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73-alinhamento-com-a-avaliacao-de-qualidade-do-produto-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Alinhamento com a Avaliação de Qualidade do Produto de Software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-referencias-de-rastreabilidade-entregas-e-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Referências de rastreabilidade (entregas e auditoria)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tabela-de-contribuicao-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Tabela de contribuição da equipe
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-requisitante-e-partes-interessadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Requisitante e partes interessadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-descricao-estruturada-do-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Descrição estruturada do software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Descrição estruturada do software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-informacoes-basicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Informações Básicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sobre-o-uso-do-unb-mural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Sobre o uso do Unb Mural
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-proposito-da-avaliacao-e-uso-pretendido-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Propósito da avaliação e uso pretendido dos resultados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-modelo-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Modelo de Qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Modelo de Qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adaptacao-do-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Adaptação do Modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-diagrama-adaptado-visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Diagrama Adaptado (visão geral)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-selecao-de-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Seleção de Características
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Seleção de Características">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-justificativa-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Justificativa de Priorização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-classificacao-de-subcaracteristicas-escala-1-a-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Classificação de Subcaracterísticas (Escala 1 a 5)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Classificação de Subcaracterísticas (Escala 1 a 5)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#confiabilidade-reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confiabilidade (Reliability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguranca-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segurança (Security)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-metodo-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Método de Priorização
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-matriz-de-priorizacao-ponderada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Matriz de Priorização (Ponderada)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-escopo-da-avaliacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Escopo da Avaliação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Escopo da Avaliação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escopo-artefatos-e-profundidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escopo, Artefatos e Profundidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-sustentabilidade-ods-e-metas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Sustentabilidade (ODS e metas)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-identificacao-das-ods-e-submetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Identificação das ODS e submetas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-identificacao-dos-indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Identificação dos Indicadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73-alinhamento-com-a-avaliacao-de-qualidade-do-produto-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Alinhamento com a Avaliação de Qualidade do Produto de Software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-referencias-de-rastreabilidade-entregas-e-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Referências de rastreabilidade (entregas e auditoria)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tabela-de-contribuicao-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Tabela de contribuição da equipe
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fase-1-planejamento-da-avaliacao">Fase 1: Planejamento da Avaliação</h1>
+<p>Esta página unifica todos os tópicos da Fase 1, fornecendo uma visão completa e contínua do planejamento da avaliação de qualidade. Utilize o menu de navegação lateral para pular rapidamente para qualquer seção (âncoras).</p>
+<hr />
+<h2 id="1-requisitante-e-partes-interessadas">1. Requisitante e partes interessadas</h2>
+<p>[Inserir texto aqui]</p>
+<hr />
+<h2 id="2-descricao-estruturada-do-software">2. Descrição estruturada do software</h2>
+<p>O objetivo desta página é descrever como o produto de software que está sendo avaliado é estruturado e os pontos de relevâncias para o estudo proposto. </p>
+<h3 id="21-informacoes-basicas">2.1 Informações Básicas</h3>
+<ul>
+<li><strong>Nome do Produto:</strong> Mural UnB</li>
+<li><strong>Versão do Produto:</strong> 1.0.0</li>
+<li><strong>Data da Release da Versão:</strong> 02 de Dezembro de 2025 </li>
+<li><strong>Aplicação do Produto:</strong> Encotrar oportunidades dentro da UnB</li>
+<li><strong>Modúlos do Produto:</strong> Feed, Mural, Sobre e Documentação</li>
+<li><strong>Repositório do Código Principal:</strong> <a href="https://github.com/unb-mds/2025-2-Mural-UnB">GitHub</a> </li>
+<li><strong>Licença do Produto:</strong> MIT license</li>
+</ul>
+<h3 id="22-sobre-o-uso-do-unb-mural">2.2 Sobre o uso do Unb Mural</h3>
+<ul>
+<li><strong>Funções do Produto:</strong> Busca de eventos, projetos e empresas juniores e Priorização de feed com machine learning.</li>
+<li><strong>Público Alvo:</strong> Alunos da UnB</li>
+<li><strong>Dispositivos:</strong> É responsivo para Desktop, Notebook e Smartphones.</li>
+<li><strong>Conectividade:</strong> WEB-Online</li>
+</ul>
+<p><strong>Diagrama de Contexto</strong></p>
+<figure align="center">
+   <img src="../imagem/diagramadecontexto.png">
+   <figcaption>Autor: Carlos</figcaption>
+</figure>
+
+<hr />
+<h2 id="3-proposito-da-avaliacao-e-uso-pretendido-dos-resultados">3. Propósito da avaliação e uso pretendido dos resultados</h2>
+<p><strong>Propósito da avaliação:</strong>
+O principal propósito desta avaliação é essencialmente didático e pedagógico, focado na aplicação prática das técnicas de avaliação de qualidade de produto de software estabelecidas pelos modelos e normas da família SQuaRE. Por meio dessa execução, a equipe avaliadora busca desenvolver e aprimorar suas capacidades críticas e analíticas ao analisar um sistema real. A avaliação visa não apenas evidenciar os pontos fortes da arquitetura do sistema , mas também mapear e expor suas vulnerabilidades atuais.</p>
+<p><strong>Uso pretendido dos resultados:</strong>
+Os dados e diagnósticos obtidos com a avaliação serão utilizados em duas frentes principais. Primeiramente, servirão para que a própria equipe de avaliação consolide seu aprendizado prático em engenharia de software, adquirindo proficiência na condução de avaliações de qualidade formais. Em segundo lugar, os resultados fornecerão um diagnóstico claro e acionável para a equipe de desenvolvimento do Mural UnB, servindo como um roteiro de melhoria contínua para futuros colaboradores do projeto. A expectativa é que essas descobertas permitam reforçar as boas práticas já existentes e mitigar as falhas identificadas, fazendo com que o projeto vá além do seu fim puramente didático e contribua ativamente para a evolução do Mural UnB como uma ferramenta open source útil, segura e sustentável para a comunidade acadêmica da universidade.</p>
+<hr />
+<h2 id="4-modelo-de-qualidade">4. Modelo de Qualidade</h2>
+<p>O modelo adotado é o <strong>Modelo de Qualidade do Produto SQuaRE (ISO/IEC 25010)</strong>. O modelo de qualidade do produto originalmente categoriza as propriedades de qualidade do produto de software em oito características: adequação funcional, eficiência de desempenho, compatibilidade, usabilidade, confiabilidade, segurança, manutenibilidade e portabilidade. Cada característica é composta por um conjunto de subcaracterísticas relacionadas.</p>
+<p><img alt="diagrama" src="../imagem/DiagramaOriginal.png" /></p>
+<blockquote>
+<p>Figura: Diagrama Qualidade de Produto. Fonte: Norma 25010</p>
+</blockquote>
+<h3 id="41-adaptacao-do-modelo">4.1 Adaptação do Modelo</h3>
+<p>Adaptamos o modelo SQuaRE (ISO/IEC 25010) original para ignorar as visões de "Manufatura" (concentrada em processos internos de codificação) e pela ideia de focar estritamente na <strong>Visão do Produto</strong> e <strong>Visão do Usuário</strong>. Além de não selecionarmos usabilidade pela restrição da atividade. Essas escolhas são justificadas pelas necessidades dos principais stakeholders (estudantes, professores e administração), que dependem da veracidade absoluta e do acesso ininterrupto às informações acadêmicas oficiais.</p>
+<p>Então, selecionamos as características desejadas por meio da fórmula: <strong>Prioridade = Peso × (Impacto × Risco)</strong>. Isso permite focar nos riscos críticos da persona, evitando avaliações de subcaracterísticas de baixo valor para o nosso objetivo. Falaremos mais sobre a escolha e priorizações no próximo tópico.</p>
+<p>Assim, para esta avaliação foram selecionadas as seguintes características:</p>
+<p><strong>SQuaRE (ISO/IEC 25010)</strong></p>
+<ol>
+<li><strong>Confiabilidade (Reliability)</strong>: Define o grau em que o sistema executa funções específicas sob condições estabelecidas por um período de tempo.</li>
+<li><strong>Segurança (Security)</strong>: Fundamental para proteger os dados e as informações contra acessos e modificações não autorizadas.</li>
+</ol>
+<h3 id="42-diagrama-adaptado-visao-geral">4.2 Diagrama Adaptado (visão geral)</h3>
+<p>O diagrama abaixo foca na hierarquia das qualidades selecionadas para o Mural UnB:</p>
+<p><img alt="diagrama" src="../imagem/Diagrama.jpeg" /></p>
+<blockquote>
+<p>Figura: Diagrama Qualidade de Produto. Autor: Lucas</p>
+</blockquote>
+<hr />
+<h2 id="5-selecao-de-caracteristicas">5. Seleção de Características</h2>
+<p>Como visto acima, selecionamos Confiabilidade e Segurança.</p>
+<h3 id="51-justificativa-de-priorizacao">5.1 Justificativa de Priorização</h3>
+<p>A justificativa de priorização reside no fato de o Mural UnB lidar com avisos oficiais e horários. A <strong>Confiabilidade</strong> é prioritária para garantir que o serviço não fique indisponível durante períodos críticos (como a matrícula). Enquanto a <strong>Segurança</strong> é essencial para evitar que usuários não autorizados alterem informações públicas, o quê causaria desinformação na comunidade acadêmica.</p>
+<h3 id="52-classificacao-de-subcaracteristicas-escala-1-a-5">5.2 Classificação de Subcaracterísticas (Escala 1 a 5)</h3>
+<ol>
+<li><strong>Confiabilidade (Reliability)</strong>: <ul>
+<li>Subcaracterísticas: Maturidade, Disponibilidade, Tolerância a Falhas, Recuperabilidade.</li>
+</ul>
+</li>
+<li><strong>Segurança (Security)</strong>: <ul>
+<li>Subcaracterísticas: Confidencialidade, Integridade, Não-repúdio, Responsabilidade, Autenticidade.</li>
+</ul>
+</li>
+</ol>
+<h4 id="confiabilidade-reliability">Confiabilidade (Reliability)</h4>
+<p><strong>Definição</strong>: Mede o grau em que um sistema, componente ou processo executa funções específicas sob condições estabelecidas por um período de tempo determinado.</p>
+<p><strong>Classificação das Subcaracterísticas do modelo SQuaRE (ISO/IEC 25010):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Subcaracterística</th>
+<th style="text-align: center;">Ênfase (1-5)</th>
+<th style="text-align: left;">Definição Breve</th>
+<th style="text-align: left;">Justificativa Curta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Disponibilidade</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Grau em que o sistema está operacional e acessível.</td>
+<td style="text-align: left;">Vital para que o Mural UnB esteja acessível em períodos críticos de matrícula.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Maturidade</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Atendimento das necessidades de confiabilidade em operação normal.</td>
+<td style="text-align: left;">Relevante para estabilidade a longo prazo após a fase inicial de lançamento.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tolerância a Falhas</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Capacidade de manter a operação pretendida mesmo com falhas de HW/SW.</td>
+<td style="text-align: left;">Importante para evitar quedas totais por erros pontuais no backend.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Recuperabilidade</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Capacidade de recuperar dados e o estado operacional após interrupção.</td>
+<td style="text-align: left;">Essencial para garantir a persistência das notícias após quedas de servidor.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="seguranca-security">Segurança (Security)</h4>
+<p><strong>Definição</strong>: A segurança foca na proteção das informações e dados para garantir que apenas pessoas autorizadas acessem os dados.</p>
+<p><strong>Classificação das Subcaracterísticas do modelo SQuaRE (ISO/IEC 25010):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Subcaracterística</th>
+<th style="text-align: center;">Ênfase (1-5)</th>
+<th style="text-align: left;">Definição Breve</th>
+<th style="text-align: left;">Justificativa Curta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Integridade</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Prevenção de acesso ou modificação não autorizada de dados.</td>
+<td style="text-align: left;">Crítica para impedir que notícias falsas sejam publicadas por terceiros.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Autenticidade</strong></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Identidade de um sujeito ou recurso pode ser provada como tal.</td>
+<td style="text-align: left;">Garante que apenas administradores autorizados enviem feeds ao mural.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Confidencialidade</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Garante que os dados sejam acessíveis apenas por quem tem autorização.</td>
+<td style="text-align: left;">Menos prioritária, pois a maioria das notícias acadêmicas são públicas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Responsabilidade</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Ações de uma entidade podem ser rastreadas exclusivamente àquela entidade.</td>
+<td style="text-align: left;">Necessária para auditoria interna de quem publicou cada aviso.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Não-repúdio</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Prova de que um evento ou ação ocorreu, para que não seja negado posteriormente.</td>
+<td style="text-align: left;">Importante para validade jurídica de editais e avisos oficiais.</td>
+</tr>
+</tbody>
+</table>
+<p>No tocante aos Níveis de Profundidade, as Subcaracterísticas com nível 5 exigirão testes de estresse (Disponibilidade) e testes de invasão/SQL Injection (Integridade). As de Níveis 3 e 4 envolverão apenas análise documental e revisões de código. Este método avalia dois eixos fundamentais, quais sejam, o de impacto, que é a magnitude das consequências negativas para o Mural  UnB e seus usuários caso a subcaracterística falhe (exemplo: desinformação em massa) e o de risco (probabilidade), que é  a chance de uma ameaça explorar uma vulnerabilidade do sistema, considerando o ambiente de uso e histórico de falhas.</p>
+<h3 id="53-metodo-de-priorizacao">5.3 Método de Priorização</h3>
+<p>O método adotado é a Priorização Quantitativa Ponderada. Este método calcula a relevância de cada subcaracterística através da fórmula:</p>
+<pre><code>Prioridade = Peso da Característica X (Impacto X Risco)
+</code></pre>
+<p>O peso define a importância estratégica da característica para o negócio (Confiabilidade = 10; Segurança = 9). Enquanto o impacto (0-5) avalia a gravidade da falha para o usuário final. E o risco (0-5) avalia a probabilidade de ocorrência de falhas ou vulnerabilidades no contexto atual do sistema. Essa abordagem permite um critério de Go/No-Go fundamentado, focando os esforços de teste nos pontos de maior risco sistêmico.</p>
+<h3 id="54-matriz-de-priorizacao-ponderada">5.4 Matriz de Priorização (Ponderada)</h3>
+<p>A priorização utiliza uma escala de 0 a 5 para Impacto e Risco, multiplicada pelo peso da característica.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Subcaracterística</th>
+<th style="text-align: center;">Peso</th>
+<th style="text-align: center;">Impacto</th>
+<th style="text-align: center;">Risco</th>
+<th style="text-align: center;">Total (P×I×R)</th>
+<th style="text-align: left;">Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Integridade</strong></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">225</td>
+<td style="text-align: left;"><strong>Crítica</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Disponibilidade</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">200</td>
+<td style="text-align: left;"><strong>Alta</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Autenticidade</strong></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">144</td>
+<td style="text-align: left;"><strong>Alta</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Recuperabilidade</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: left;"><strong>Média</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Confidencialidade</strong></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: left;"><strong>Baixa</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-escopo-da-avaliacao">6. Escopo da Avaliação</h2>
+<p>A avaliação será limitada ao backend (API), que gerencia o feed de notícias e a persistência dos dados no banco de dados. Ao passo que a profundidade será o Nível 3 (Análise detalhada das subcaracterísticas por meio de métricas derivadas e propriedades mensuráveis). Ressalte-se que fora de escopo existe a interface do usuário (Front-end), performance em dispositivos móveis específicos e portabilidade para outros sistemas operacionais, porque o foco inicial é a estabilidade do núcleo da informação antes de validar a experiência estética.</p>
+<h4 id="escopo-artefatos-e-profundidade">Escopo, Artefatos e Profundidade</h4>
+<p><strong>Breve Escopo:</strong>
+A avaliação concentra-se nos módulos de backend e persistência do <strong>Mural UnB</strong>, especificamente a API que gerencia o feed de notícias e a lógica de autenticação de usuários. O objetivo é garantir a robustez técnica e a proteção contra falhas críticas que possam comprometer a disseminação de informações acadêmicas oficiais.</p>
+<p><strong>Tipos de Arquivo e Artefatos de Evidência:</strong>
+Para fundamentar a avaliação, são utilizados artefatos que comprovam o atendimento aos requisitos:</p>
+<ul>
+<li><strong>Documentação Técnica</strong>: Arquivos em <strong>.pdf</strong> e <strong>.md</strong> contendo diagramas BPMN, tabelas 5W2H e diagramas de classe UML.</li>
+<li><strong>Código-Fonte e Scripts (.cpp, .py)</strong>: Scripts <strong>Python</strong> de comunicação e arquivos C++ para algoritmos de processamento. Algoritmos de ordenação de notícias e scripts de comunicação serial para hardware integrado (Raspberry Pi).</li>
+<li><strong>Planejamento de Testes (.xlsx)</strong>: Planilhas de medição baseadas no método <strong>GQM (Goal Question Metric)</strong> e Abstraction Sheets, Matrizes de Rastreabilidade.</li>
+<li><strong>Registros de Execução</strong>: Logs de monitoramento de servidor e relatórios de vulnerabilidades.</li>
+</ul>
+<p><strong>Níveis de Profundidade da Avaliação:</strong> A profundidade segue a estrutura de variáveis identificadoras da qualidade proposta pela SQuaRE:</p>
+<ul>
+<li><strong>Nível 1 (Identificação)</strong>: Identificação do conjunto de propriedades, juntas, que cobrem a subcaracterística (ex: contagem de bugs por linha de código).</li>
+<li><strong>Nível 2 (Medição)</strong>: Obtenção de medidas de qualidade específicas para cada propriedade identificada por meio de testes e métricas estáticas.</li>
+<li><strong>Nível 3 (Integração)</strong>: Combinação computacional das medidas anteriores para chegar a uma medida de qualidade derivada correspondente à subcaracterística avaliada (ex: índice final de disponibilidade).</li>
+</ul>
+<hr />
+<h2 id="7-sustentabilidade-ods-e-metas">7. Sustentabilidade (ODS e metas)</h2>
+<h2 id="71-identificacao-das-ods-e-submetas">7.1 Identificação das ODS e submetas</h2>
+<p>Através do objetivo e premissa geral do software <strong>Mural UnB</strong> estabelecido no próprio README do projeto no GitHub pelos mantenedores: </p>
+<p>“O Mural UnB é uma plataforma digital projetada para centralizar e recomendar oportunidades acadêmicas e profissionais dentro da Universidade de Brasília (UnB). </p>
+<p>O objetivo é criar uma experiência personalizada, onde os estudantes possam facilmente descobrir oportunidades alinhadas aos seus interesses e histórico acadêmico. </p>
+<p>Ao analisar o perfil do usuário, a plataforma recomenda as opções mais relevantes e envia notificações sobre novas vagas. Inclui oportunidades como: </p>
+<ul>
+<li>Empresas juniores </li>
+<li>Laboratórios de pesquisa </li>
+<li>Equipes de Competição </li>
+</ul>
+<p>Em resumo, o Mural UnB funciona como um mural virtual, que vai além de apenas listar oportunidades — ele ajuda os estudantes a se conectarem com as oportunidades certas, no momento certo.”</p>
+<p>podemos paralelizar os seguintes <strong>Objetivos de Desenvolvimentos Sustentável (ODS)</strong> especificados pela <strong>Organização das Nações Unidas (ONU)</strong> que impactam diretamente a sociedade:</p>
+<ul>
+<li>
+<p>ODS 4: Assegurar a educação inclusiva e equitativa e de qualidade, e promover oportunidades de aprendizagem ao longo da vida para todas e todos.</p>
+</li>
+<li>
+<p>Através da visualização de oportunidades profissionais e de educação de qualidade visando desenvolvimento de habilidades técnicas a todos seus usuários, o software se alinha justamente as seguintes submetas do ODS 4:</p>
+<ul>
+<li>
+<p>ODS 4.3 - Até 2030, assegurar a igualdade de acesso para todos os homens e mulheres à educação técnica, profissional e superior de qualidade, a preços acessíveis, incluindo universidade.</p>
+</li>
+<li>
+<p>ODS 4.4 - Até 2030, aumentar substancialmente o número de jovens e adultos que tenham habilidades relevantes, inclusive competências técnicas e profissionais, para emprego, trabalho decente e empreendedorismo.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ODS 8: Promover o crescimento econômico sustentado, inclusivo e sustentável, emprego pleno e produtivo e trabalho decente para todas e todos.</p>
+</li>
+<li>
+<p>Através da visualização de oportunidades profissionais o software cumpre com a seguinte submeta do ODS 8:</p>
+<ul>
+<li>ODS 8.6 - Até 2020, reduzir substancialmente a proporção de jovens sem emprego, educação ou formação.</li>
+</ul>
+</li>
+<li>
+<p>ODS 9: Construir infraestruturas resilientes, promover a industrialização inclusiva e sustentável, e fomentar a inovação</p>
+</li>
+<li>
+<p>O principal conceito do Mural UnB é fomentar a inovação através de oportunidades acadêmicas como por exemplo através da participação de laboratórios de pesquisa, portanto ele se enquadra nas seguintes submetas do ODS 9:</p>
+<ul>
+<li>
+<p>ODS 9.5 – Fortalecer a pesquisa científica, melhorar as capacidades tecnológicas de setores industriais em todos os países, particularmente nos países em desenvolvimento, inclusive, até 2030, incentivando a inovação e aumentando substancialmente o número de trabalhadores de pesquisa e desenvolvimento por milhão de pessoas e os gastos público e privado em pesquisa e desenvolvimento.</p>
+</li>
+<li>
+<p>ODS 9.b – Apoiar o desenvolvimento tecnológico, a pesquisa e a inovação nacionais nos países em desenvolvimento, inclusive garantindo um ambiente político propício para, entre outras coisas, diversificação industrial e agregação de valor às commodities.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="71-identificacao-dos-indicadores">7.1 Identificação dos Indicadores</h2>
+<p>Com isso conseguimos identificar que através da proposta do objetivo geral e da premissa citada o software tem como meta de cumprimento às submetas de ODS identificadas que contribuem para o crescimento dos seguintes indicadores: </p>
+<ul>
+<li>
+<p>ODS 4</p>
+</li>
+<li>
+<p>Indicador 4.3.1 - Taxa de participação de jovens e adultos na educação formal e não formal, nos últimos doze meses, por sexo. </p>
+</li>
+<li>
+<p>Indicador 4.4.1 - Proporção de jovens e adultos com habilidades em tecnologias de informação e comunicação (TICs), por tipo de habilidade.</p>
+</li>
+<li>
+<p>ODS 8</p>
+</li>
+<li>
+<p>Indicador 8.6.1 - Redução no percentual de pessoas de 15 a 24 anos não ocupadas, não estudantes e que não estão em treinamento para um trabalho. </p>
+</li>
+<li>
+<p>ODS 9</p>
+</li>
+<li>
+<p>Indicador 9.5.1 - Dispêndio em P&amp;D em proporção do PIB. </p>
+</li>
+<li>
+<p>Indicador 9.5.2 - Pesquisadores (em equivalência de tempo integral) por milhão de habitantes. </p>
+</li>
+<li>
+<p>Indicador 9.b.1 - Proporção do valor adicionado nas indústrias de média e alta intensidade tecnológica no valor adicionado total.</p>
+</li>
+</ul>
+<h2 id="73-alinhamento-com-a-avaliacao-de-qualidade-do-produto-de-software">7.3 Alinhamento com a Avaliação de Qualidade do Produto de Software</h2>
+<p>Portanto a avaliação de qualidade do Mural UnB que vamos orquestrar com foco nas características de confiabilidade e segurança não tem como objetivo apenas medir essas características sem pretenção alguma, mas sim verificar se através das métricas obtidas o software impacta a sociedade positivamente através de uma ferramenta que de fato possui qualidade nos aspectos observados, sendo esses os aspectos mais relevantes para o contexto do software conforme identificado na sessão “<strong>6. Seleção de Características</strong>”.</p>
+<hr />
+<h2 id="8-referencias-de-rastreabilidade-entregas-e-auditoria">8. Referências de rastreabilidade (entregas e auditoria)</h2>
+<p>Links importantes para validação do professor.</p>
+<ul>
+<li><strong>Link da GitPage:</strong> [Inserir link]</li>
+<li><strong>Link do Repositório Git:</strong> [Inserir link]</li>
+<li><strong>Link da Release (EU1):</strong> [Inserir link da tag/release]</li>
+<li><strong>Link para Dados Brutos/Gravações:</strong> [Inserir link do repositório onde estão as entrevistas/dados auditáveis, se aplicável]</li>
+<li><strong>Repositório GitHub Mural UnB:</strong> UNIVERSIDADE DE BRASÍLIA. 2025-2-Mural-UnB. GitHub, 2024. Disponível em: https://github.com/unb-mds/2025-2-Mural-UnB. Acesso em: 13 maio 2026.</li>
+<li><strong>ODS 4 (Educação): IPEA. Instituto de Pesquisa Econômica Aplicada.</strong> ODS 4 - Educação de Qualidade: indicadores para o Brasil. Brasília: IPEA, [202-]. Disponível em: https://www.ipea.gov.br/ods/ods4_card.html. Acesso em: 13 maio 2026.</li>
+<li><strong>ODS 8 (Trabalho): IPEA. Instituto de Pesquisa Econômica Aplicada.</strong> ODS 8 - Trabalho Decente e Crescimento Econômico: indicadores para o Brasil. Brasília: IPEA, [202-]. Disponível em: https://www.ipea.gov.br/ods/ods8_card.html. Acesso em: 13 maio 2026.</li>
+<li><strong>ODS 9 (Indústria/Inovação): IPEA. Instituto de Pesquisa Econômica Aplicada.</strong> ODS 9 - Indústria, Inovação e Infraestrutura: indicadores para o Brasil. Brasília: IPEA, [202-]. Disponível em: https://www.ipea.gov.br/ods/ods9_card.html. Acesso em: 13 maio 2026.</li>
+</ul>
+<hr />
+<h2 id="9-tabela-de-contribuicao-da-equipe">9. Tabela de contribuição da equipe</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nome / ID do integrante</th>
+<th style="text-align: left;">Papel / atividades realizadas na fase 1</th>
+<th style="text-align: left;">Esforço/participação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+<tr>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">XXX</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
