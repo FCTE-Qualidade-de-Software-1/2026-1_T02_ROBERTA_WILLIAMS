@@ -261,10 +261,10 @@ Portanto a avaliação de qualidade do Mural UnB que vamos orquestrar com foco n
 ## 8. Referências de rastreabilidade (entregas e auditoria)
 Links importantes para validação do professor.
 
-- **Link da GitPage:** [Inserir link]
-- **Link do Repositório Git:** [Inserir link]
-- **Link da Release (EU1):** [Inserir link da tag/release]
-- **Link para Dados Brutos/Gravações:** [Inserir link do repositório onde estão as entrevistas/dados auditáveis, se aplicável]
+- **Link da GitPage:** [GitPages - Roberta Williams](https://fcte-qualidade-de-software-1.github.io/2026-1_T02_ROBERTA_WILLIAMS/)
+- **Link do Repositório Git:** [Repositório - Roberta Williams](https://github.com/FCTE-Qualidade-de-Software-1/2026-1_T02_ROBERTA_WILLIAMS/)
+- **Link da Release (EU1):** [Release - Roberta Williams](https://github.com/FCTE-Qualidade-de-Software-1/2026-1_T02_ROBERTA_WILLIAMS/tree/EU1)
+- **Link para Dados Brutos/Gravações:** Sem dados brutos/gravações.
 - **Repositório GitHub Mural UnB:** UNIVERSIDADE DE BRASÍLIA. 2025-2-Mural-UnB. GitHub, 2024. Disponível em: https://github.com/unb-mds/2025-2-Mural-UnB. Acesso em: 13 maio 2026.
 - **ODS 4 (Educação): IPEA. Instituto de Pesquisa Econômica Aplicada.** ODS 4 - Educação de Qualidade: indicadores para o Brasil. Brasília: IPEA, [202-]. Disponível em: https://www.ipea.gov.br/ods/ods4_card.html. Acesso em: 13 maio 2026.
 - **ODS 8 (Trabalho): IPEA. Instituto de Pesquisa Econômica Aplicada.** ODS 8 - Trabalho Decente e Crescimento Econômico: indicadores para o Brasil. Brasília: IPEA, [202-]. Disponível em: https://www.ipea.gov.br/ods/ods8_card.html. Acesso em: 13 maio 2026.
