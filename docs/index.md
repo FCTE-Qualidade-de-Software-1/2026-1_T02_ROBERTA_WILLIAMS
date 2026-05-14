@@ -12,4 +12,4 @@ Atualmente, estamos trabalhando na estruturação do planejamento, escopo, carac
 
 Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a barra de navegação no topo:
 
-[Ir para a Fase 1: Planejamento da Avaliação](fase1/index.md){ .md-button .md-button--primary }
+[Ir para a Fase 1: Planejamento da Avaliação](fase1/index.md)
