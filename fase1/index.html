@@ -986,7 +986,49 @@
 <p>Esta página unifica todos os tópicos da Fase 1, fornecendo uma visão completa e contínua do planejamento da avaliação de qualidade. Utilize o menu de navegação lateral para pular rapidamente para qualquer seção (âncoras).</p>
 <hr />
 <h2 id="1-requisitante-e-partes-interessadas">1. Requisitante e partes interessadas</h2>
-<p>[Inserir texto aqui]</p>
+<p>O <strong>Mural UnB</strong> é uma plataforma digital de código aberto, desenvolvida por estudantes da Universidade de Brasília (UnB) no contexto da disciplina de <strong>Métodos de Desenvolvimento de Software (MDS)</strong> e mantida pela organização <a href="https://github.com/unb-mds/2025-2-Mural-UnB">unb-mds</a> no GitHub. Seu objetivo é centralizar e recomendar oportunidades acadêmicas e profissionais (empresas juniores, laboratórios de pesquisa e equipes de competição) para alunos da universidade.</p>
+<p>Por se tratar de um projeto open source de natureza acadêmica, não existe um requisitante único que determine, de forma unilateral, as especificações do produto. As demandas emergem da articulação entre múltiplos atores: a equipe de desenvolvimento, a comunidade discente da UnB, as entidades estudantis que oferecem as oportunidades e, no contexto desta avaliação, a equipe acadêmica responsável pela análise de qualidade do software. A identificação dos stakeholders descrita a seguir relaciona suas necessidades diretamente com as características priorizadas neste estudo <strong>Confiabilidade</strong> e <strong>Segurança</strong> discutidas em detalhe nas seções 4 e 5.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Papel / Stakeholder</th>
+<th style="text-align: left;">Necessidades Principais</th>
+<th style="text-align: left;">Influência na Avaliação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Requisitante Principal: Equipe de Avaliação (estudantes da disciplina de Qualidade de Software)</strong></td>
+<td style="text-align: left;">Aplicar de forma prática os conhecimentos teóricos da família de normas SQuaRE, desenvolver capacidade analítica sobre sistemas reais e produzir um diagnóstico fundamentado de qualidade.</td>
+<td style="text-align: left;">Direciona o escopo da avaliação para <strong>Confiabilidade</strong> e <strong>Segurança</strong>, define a profundidade dos testes e estrutura a metodologia de priorização ponderada utilizada neste relatório.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Equipe de Desenvolvimento do Mural UnB</strong></td>
+<td style="text-align: left;">Receber feedback técnico sobre vulnerabilidades, estabilidade do backend e robustez da API; obter um roteiro acionável de melhoria contínua do produto.</td>
+<td style="text-align: left;">Fornece os artefatos avaliáveis (código-fonte, documentação e pipelines de dados) e é o principal consumidor dos resultados; suas escolhas arquiteturais influenciam diretamente o que pode ser medido em termos de <strong>Maturidade</strong>, <strong>Tolerância a Falhas</strong> e <strong>Integridade</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Usuários Finais (estudantes da UnB)</strong></td>
+<td style="text-align: left;">Acesso estável a oportunidades acadêmicas e profissionais, com informação verídica e atual, especialmente em períodos críticos como matrícula e processos seletivos.</td>
+<td style="text-align: left;">Demandam <strong>Disponibilidade</strong> e <strong>Integridade</strong>, justificando a priorização crítica dessas subcaracterísticas na matriz de avaliação (seção 5.4).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Entidades Provedoras de Oportunidades (Empresas Juniores, Laboratórios de Pesquisa e Equipes de Competição da FCTE/UnB)</strong></td>
+<td style="text-align: left;">Garantia de que as informações de suas oportunidades sejam exibidas corretamente, sem adulteração, e cheguem ao público-alvo correto via sistema de recomendação.</td>
+<td style="text-align: left;">Reforçam a importância da <strong>Autenticidade</strong> e da <strong>Integridade</strong> dos dados publicados, impactando a escolha de testes contra injeção e modificação não autorizada.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Professora e Monitores da disciplina de Qualidade de Software</strong></td>
+<td style="text-align: left;">Avaliar a aplicação estruturada da metodologia SQuaRE e a coerência entre stakeholders, características selecionadas e métricas adotadas.</td>
+<td style="text-align: left;">Definem os critérios de aceitação do artefato de avaliação e validam a consistência entre as necessidades mapeadas e o modelo de qualidade adaptado.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Comunidade Open Source (organização unb-mds e contribuidores externos no GitHub)</strong></td>
+<td style="text-align: left;">Código auditável, documentação clara e diretrizes de contribuição que viabilizem manutenção e evolução do projeto após o término do ciclo letivo.</td>
+<td style="text-align: left;">Reforça a relevância da <strong>Recuperabilidade</strong> e da <strong>Responsabilidade</strong> (rastreabilidade de autoria), influenciando a avaliação documental e a revisão de código.</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="2-descricao-estruturada-do-software">2. Descrição estruturada do software</h2>
 <p>O objetivo desta página é descrever como o produto de software que está sendo avaliado é estruturado e os pontos de relevâncias para o estudo proposto. </p>
@@ -1334,34 +1376,34 @@ Para fundamentar a avaliação, são utilizados artefatos que comprovam o atendi
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Lucas Ricarte</td>
+<td style="text-align: left;">Escolha das duas características com base em critério de priorização e descrição dos critérios utilizados.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Caio Soares</td>
+<td style="text-align: left;">Propósito da avaliação e uso pretendido dos resultados.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Guilherme Flyan</td>
+<td style="text-align: left;">Declaração do escopo e profundidade da avaliação, ODS relacionados e metas/justificativas de vínculo.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Carlos Henrique</td>
+<td style="text-align: left;">Descrição estruturada do software e classificação do produto.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Yogi Nam</td>
+<td style="text-align: left;">Modelo de qualidade com descrição e representação.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 <tr>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">XXX</td>
+<td style="text-align: left;">Isaac Batista</td>
+<td style="text-align: left;">Mapeamento dos requisitantes, stakeholders e partes interessadas.</td>
+<td style="text-align: left;">16.66</td>
 </tr>
 </tbody>
 </table>
