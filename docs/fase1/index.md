@@ -188,7 +188,7 @@ Para fundamentar a avaliação, são utilizados artefatos que comprovam o atendi
 
 ## 7. Sustentabilidade (ODS e metas)
 
-## 7.1 Identificação das ODS e submetas
+### 7.1 Identificação das ODS e submetas
 
 Através do objetivo e premissa geral do software **Mural UnB** estabelecido no próprio README do projeto no GitHub pelos mantenedores: 
 
@@ -230,7 +230,7 @@ podemos paralelizar os seguintes **Objetivos de Desenvolvimentos Sustentável (O
 
       * ODS 9.b – Apoiar o desenvolvimento tecnológico, a pesquisa e a inovação nacionais nos países em desenvolvimento, inclusive garantindo um ambiente político propício para, entre outras coisas, diversificação industrial e agregação de valor às commodities.
 
-## 7.1 Identificação dos Indicadores
+### 7.2 Identificação dos Indicadores
 
 Com isso conseguimos identificar que através da proposta do objetivo geral e da premissa citada o software tem como meta de cumprimento às submetas de ODS identificadas que contribuem para o crescimento dos seguintes indicadores: 
 
@@ -252,7 +252,7 @@ Com isso conseguimos identificar que através da proposta do objetivo geral e da
 
    * Indicador 9.b.1 - Proporção do valor adicionado nas indústrias de média e alta intensidade tecnológica no valor adicionado total.
  
-## 7.3 Alinhamento com a Avaliação de Qualidade do Produto de Software
+### 7.3 Alinhamento com a Avaliação de Qualidade do Produto de Software
 
 Portanto a avaliação de qualidade do Mural UnB que vamos orquestrar com foco nas características de confiabilidade e segurança não tem como objetivo apenas medir essas características sem pretenção alguma, mas sim verificar se através das métricas obtidas o software impacta a sociedade positivamente através de uma ferramenta que de fato possui qualidade nos aspectos observados, sendo esses os aspectos mais relevantes para o contexto do software conforme identificado na sessão “**6. Seleção de Características**”.
 
