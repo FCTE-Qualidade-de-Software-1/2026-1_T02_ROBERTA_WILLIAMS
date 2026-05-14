@@ -5,7 +5,19 @@ Esta página unifica todos os tópicos da Fase 1, fornecendo uma visão completa
 ---
 
 ## 1. Requisitante e partes interessadas
-[Inserir texto aqui]
+
+O **Mural UnB** é uma plataforma digital de código aberto, desenvolvida por estudantes da Universidade de Brasília (UnB) no contexto da disciplina de **Métodos de Desenvolvimento de Software (MDS)** e mantida pela organização [unb-mds](https://github.com/unb-mds/2025-2-Mural-UnB) no GitHub. Seu objetivo é centralizar e recomendar oportunidades acadêmicas e profissionais (empresas juniores, laboratórios de pesquisa e equipes de competição) para alunos da universidade.
+
+Por se tratar de um projeto open source de natureza acadêmica, não existe um requisitante único que determine, de forma unilateral, as especificações do produto. As demandas emergem da articulação entre múltiplos atores: a equipe de desenvolvimento, a comunidade discente da UnB, as entidades estudantis que oferecem as oportunidades e, no contexto desta avaliação, a equipe acadêmica responsável pela análise de qualidade do software. A identificação dos stakeholders descrita a seguir relaciona suas necessidades diretamente com as características priorizadas neste estudo **Confiabilidade** e **Segurança** discutidas em detalhe nas seções 4 e 5.
+
+| Papel / Stakeholder | Necessidades Principais | Influência na Avaliação |
+| :--- | :--- | :--- |
+| **Requisitante Principal: Equipe de Avaliação (estudantes da disciplina de Qualidade de Software)** | Aplicar de forma prática os conhecimentos teóricos da família de normas SQuaRE, desenvolver capacidade analítica sobre sistemas reais e produzir um diagnóstico fundamentado de qualidade. | Direciona o escopo da avaliação para **Confiabilidade** e **Segurança**, define a profundidade dos testes e estrutura a metodologia de priorização ponderada utilizada neste relatório. |
+| **Equipe de Desenvolvimento do Mural UnB** | Receber feedback técnico sobre vulnerabilidades, estabilidade do backend e robustez da API; obter um roteiro acionável de melhoria contínua do produto. | Fornece os artefatos avaliáveis (código-fonte, documentação e pipelines de dados) e é o principal consumidor dos resultados; suas escolhas arquiteturais influenciam diretamente o que pode ser medido em termos de **Maturidade**, **Tolerância a Falhas** e **Integridade**. |
+| **Usuários Finais (estudantes da UnB)** | Acesso estável a oportunidades acadêmicas e profissionais, com informação verídica e atual, especialmente em períodos críticos como matrícula e processos seletivos. | Demandam **Disponibilidade** e **Integridade**, justificando a priorização crítica dessas subcaracterísticas na matriz de avaliação (seção 5.4). |
+| **Entidades Provedoras de Oportunidades (Empresas Juniores, Laboratórios de Pesquisa e Equipes de Competição da FCTE/UnB)** | Garantia de que as informações de suas oportunidades sejam exibidas corretamente, sem adulteração, e cheguem ao público-alvo correto via sistema de recomendação. | Reforçam a importância da **Autenticidade** e da **Integridade** dos dados publicados, impactando a escolha de testes contra injeção e modificação não autorizada. |
+| **Professora e Monitores da disciplina de Qualidade de Software** | Avaliar a aplicação estruturada da metodologia SQuaRE e a coerência entre stakeholders, características selecionadas e métricas adotadas. | Definem os critérios de aceitação do artefato de avaliação e validam a consistência entre as necessidades mapeadas e o modelo de qualidade adaptado. |
+| **Comunidade Open Source (organização unb-mds e contribuidores externos no GitHub)** | Código auditável, documentação clara e diretrizes de contribuição que viabilizem manutenção e evolução do projeto após o término do ciclo letivo. | Reforça a relevância da **Recuperabilidade** e da **Responsabilidade** (rastreabilidade de autoria), influenciando a avaliação documental e a revisão de código. |
 
 ---
 
@@ -264,9 +276,9 @@ Links importantes para validação do professor.
 
 | Nome / ID do integrante | Papel / atividades realizadas na fase 1 | Esforço/participação |
 | :--- | :--- | :--- |
-| XXX | XXX | XXX |
-| XXX | XXX | XXX |
-| XXX | XXX | XXX |
-| XXX | XXX | XXX |
-| XXX | XXX | XXX |
-| XXX | XXX | XXX |
+| Lucas Ricarte | Escolha das duas características com base em critério de priorização e descrição dos critérios utilizados. | 16.66 |
+| Caio Soares | Propósito da avaliação e uso pretendido dos resultados. | 16.66 |
+| Guilherme Flyan | Declaração do escopo e profundidade da avaliação, ODS relacionados e metas/justificativas de vínculo. | 16.66 |
+| Carlos Henrique | Descrição estruturada do software e classificação do produto. | 16.66 |
+| Yogi Nam | Modelo de qualidade com descrição e representação. | 16.66 |
+| Isaac Batista | Mapeamento dos requisitantes, stakeholders e partes interessadas. | 16.66 |
