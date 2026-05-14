@@ -1,0 +1,30 @@
+site_name: Avaliação de Qualidade
+
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    # Modo Claro
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+    # Modo Escuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - content.code.copy
+
+nav:
+  - Início: index.md
+  - Fase 1: fase1/index.md
