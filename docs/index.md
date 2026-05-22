@@ -29,6 +29,10 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
       <img src="https://github.com/Lucas-Ricarte.png?size=100" width=100><br>
       <b><a href="https://github.com/Lucas-Ricarte">Lucas Machado Peres Ricarte</a></b><br>
     </td>
+    <td align="center">
+      <img src="https://github.com/oyogi.png?size=100" width=100><br>
+      <b><a href="https://github.com/oyogi">Yogi Nam de Souza Barbosa</a></b><br>
+    </td>
   </tr>
 </table>
 
@@ -37,3 +41,4 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
 | ID | Descrição | Autor | Data |
 |:--:|:---------|:------|:----:|
 | 01 | Reformulação da página inicial | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
+| 02 | Adiciona integrante | [Yogi](https://github.com/oyogi) | 21/05/2025 |
