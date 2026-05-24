@@ -282,3 +282,11 @@ Links importantes para validação do professor.
 | Carlos Henrique | Descrição estruturada do software e classificação do produto. | 16.66 |
 | Yogi Nam | Modelo de qualidade com descrição e representação. | 16.66 |
 | Isaac Batista | Mapeamento dos requisitantes, stakeholders e partes interessadas. | 16.66 |
+
+## 10. Declaração de uso de ia
+
+| Ferramenta           | Tarefa                                                                                 | Revisão Humana                                                                                                                                                         |
+| :------------------- | :------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Gemini 3 Flash**   | Estruturação inicial do MkDocs e sugestão de organização de pastas.                    | A equipe revisou a estrutura recomendada para garantir que todos os critérios de avaliação fossem cumpridos.                                                           |
+|
+| **Gemini 3 Flash** | auxilio na elaboração dos tópicos "Modelo de Qualidade" e "Seleção de características". | O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB. |
