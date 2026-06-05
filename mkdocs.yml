@@ -28,3 +28,4 @@ theme:
 nav:
   - Início: index.md
   - Fase 1: fase1/index.md
+  - Fase 2: fase2/index.md
