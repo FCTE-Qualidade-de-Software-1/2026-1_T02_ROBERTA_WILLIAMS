@@ -28,4 +28,19 @@ theme:
 nav:
   - Início: index.md
   - Fase 1: fase1/index.md
-  - Fase 2: fase2/index.md
+  - Fase 2:
+      - Segurança: fase2/index.md
+      - Confiabilidade: fase2/confiabilidade.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
