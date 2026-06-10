@@ -917,6 +917,12 @@
 <td>Yogi</td>
 <td>07/06/2026</td>
 </tr>
+<tr>
+<td>1.4</td>
+<td>Inserção de perguntas, hipóteses e métricas para o GQM</td>
+<td>Carlos</td>
+<td>09/06/2026</td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -960,41 +966,63 @@
 <h3 id="21-foco-em-disponibilidade">2.1. Foco em Disponibilidade</h3>
 <ul>
 <li><strong>Questão (Q1):</strong> O frontend hospedado no GitHub Pages mantém-se operante e gerencia interrupções no carregamento dos dados JSON sem causar falha fatal (tela branca) para o usuário?</li>
-<li><strong>Hipótese (H1):</strong> O serviço do GitHub Pages garantirá tempo de atividade superior a 99%. Falhas provocadas no carregamento assíncrono dos arquivos <code>.json</code> não quebrarão a interface por completo, assumindo que a aplicação React possui componentes nativos de tratamento visual de erros.</li>
+<li>
+<p><strong>Hipótese (H1):</strong> O serviço do GitHub Pages garantirá tempo de atividade superior a 99%. Falhas provocadas no carregamento assíncrono dos arquivos <code>.json</code> não quebrarão a interface por completo, assumindo que a aplicação React possui componentes nativos de tratamento visual de erros.</p>
+</li>
+<li>
+<p><strong>Questão (Q2):</strong> O sistema é capaz de manter a operação estável e acessível mesmo sob picos de acesso, como em períodos de alta demanda?</p>
+</li>
+<li>
+<p><strong>Hipótese (H2):</strong> Espera-se que a infraestrutura da API suporte uma carga de usuários simultâneos condizente com o volume de estudantes da UnB, mantendo o tempo de resposta dentro de limites aceitáveis e a taxa de sucesso das requisições próxima de 100%.</p>
+</li>
 </ul>
 <h3 id="22-foco-em-recuperabilidade">2.2. Foco em Recuperabilidade</h3>
 <ul>
-<li><strong>Questão (Q2):</strong> O pipeline automatizado (ETL) protege os arquivos JSON em produção contra corrupção e permite o rápido restabelecimento em caso de erro nos scripts Python?</li>
-<li><strong>Hipótese (H2):</strong> Como os <em>workflows</em> atuais (ex: <code>1_ejs_extrair_dados.yml</code>) utilizam <code>continue-on-error: true</code> e não possuem tratamento estrito de saída (<code>Exit 1</code>) em todos os passos, injetar erros críticos no Python resultará no apagamento acidental ou sobrescrita nula do JSON de produção. O tempo médio de recuperação (MTTR) histórico de falhas em <em>workflows</em> será inferior a 24 horas.</li>
+<li><strong>Questão (Q3):</strong> O pipeline automatizado (ETL) protege os arquivos JSON em produção contra corrupção e permite o rápido restabelecimento em caso de erro nos scripts Python?</li>
+<li>
+<p><strong>Hipótese (H3):</strong> Como os <em>workflows</em> atuais (ex: <code>1_ejs_extrair_dados.yml</code>) utilizam <code>continue-on-error: true</code> e não possuem tratamento estrito de saída (<code>Exit 1</code>) em todos os passos, injetar erros críticos no Python resultará no apagamento acidental ou sobrescrita nula do JSON de produção. O tempo médio de recuperação (MTTR) histórico de falhas em <em>workflows</em> será inferior a 24 horas.</p>
+</li>
+<li>
+<p><strong>Questão (Q4):</strong> O sistema é capaz de restaurar suas funções e consistência de dados automaticamente ou com intervenção mínima após uma falha ou interrupção no serviço?</p>
+</li>
+<li><strong>Hipótese (H4):</strong> Espera-se que, em caso de queda do servidor ou erro crítico no banco de dados, o sistema consiga retomar as operações sem perda de dados significativos das oportunidades publicadas, e que o tempo necessário para o serviço voltar a ficar online seja reduzido</li>
 </ul>
 <hr />
 <h2 id="3-nivel-quantitativo-selecao-de-metricas">3. Nível Quantitativo: Seleção de Métricas</h2>
-<p>Para testar as hipóteses da Seção 2, as métricas abaixo foram projetadas para observação externa via <em>forks</em>.</p>
+<p>Para evitar problemas de renderização e garantir a compatibilidade em qualquer visualizador de Markdown, as fórmulas foram convertidas para notação textual direta.</p>
 <h3 id="31-metricas-de-disponibilidade">3.1. Métricas de Disponibilidade</h3>
 <ul>
 <li><strong>M1.1 - Uptime do GitHub Pages:</strong> Mede a estabilidade primária do servidor.</li>
 <li>
-<p><strong>Fórmula:</strong>
-  <span class="arithmatex">\(Uptime = \left( \frac{\text{Horas sem erros HTTP 4xx/5xx}}{\text{Total de horas monitoradas}} \right) \times 100\)</span></p>
+<p><strong>Fórmula:</strong> <code>Uptime = (Horas sem erros HTTP 4xx/5xx / Total de horas monitoradas) * 100</code></p>
 </li>
 <li>
-<p><strong>M1.2 - Taxa de Resiliência da Interface Front-end:</strong> Avalia a tolerância a falhas assíncronas do React.</p>
+<p><strong>M1.2 - Taxa de Sucesso de Requisições:</strong> Mede a estabilidade sob pressão.</p>
 </li>
-<li><strong>Fórmula:</strong>
-  <span class="arithmatex">\(Resiliencia = \left( \frac{\text{Simulações que não resultaram em quebra de DOM}}{\text{Total de simulações de falha de rede}} \right) \times 100\)</span></li>
+<li>
+<p><strong>Fórmula:</strong> <code>Taxa de Sucesso = (Requisições bem-sucedidas HTTP 2xx / Total de requisições enviadas sob carga) * 100</code></p>
+</li>
+<li>
+<p><strong>M1.3 - Taxa de Resiliência da Interface Front-end:</strong> Avalia a tolerância a falhas assíncronas do React.</p>
+</li>
+<li><strong>Fórmula:</strong> <code>Resiliencia = (Simulações que não resultaram em quebra de DOM / Total de simulações de falha de rede) * 100</code></li>
 </ul>
 <h3 id="32-metricas-de-recuperabilidade">3.2. Métricas de Recuperabilidade</h3>
 <ul>
 <li><strong>M2.1 - Taxa de Integridade Pós-Falha do Pipeline:</strong> Valida se o GitHub Actions permite commits destrutivos.</li>
 <li>
-<p><strong>Fórmula:</strong>
-  <span class="arithmatex">\(Integridade = \left( \frac{\text{Workflows abortados sem sobrescrever o JSON}}{\text{Total de falhas injetadas no ambiente de teste}} \right) \times 100\)</span></p>
+<p><strong>Fórmula:</strong> <code>Integridade = (Workflows abortados sem sobrescrever o JSON / Total de falhas injetadas no ambiente de teste) * 100</code></p>
 </li>
 <li>
 <p><strong>M2.2 - Tempo Médio de Recuperação (MTTR):</strong> Cronometra a agilidade de correção.</p>
 </li>
-<li><strong>Fórmula:</strong>
-  <span class="arithmatex">\(MTTR = \frac{\text{Soma total em horas para correção de workflows quebrados}}{\text{Total de quebras registradas no histórico}}\)</span></li>
+<li>
+<p><strong>Fórmula:</strong> <code>MTTR = Soma total em horas para correção de workflows quebrados / Total de quebras registradas no histórico</code></p>
+</li>
+<li>
+<p><strong>M2.3 - Taxa de Persistência Pós-Falha:</strong> Avalia a segurança e integridade dos registros após falha.</p>
+</li>
+<li><strong>Fórmula:</strong> <code>Persistencia = (Total de registros íntegros após recuperação / Total de registros antes da falha) * 100</code></li>
 </ul>
 <hr />
 <h2 id="4-hierarquia-gqm">4. Hierarquia GQM</h2>
@@ -1031,41 +1059,55 @@
 <table>
 <thead>
 <tr>
-<th>Métrica</th>
-<th>Inadequado</th>
-<th>Satisfatório</th>
-<th>Excelente</th>
-<th>Critério de Julgamento / Recomendação</th>
+<th style="text-align: left;">Métrica</th>
+<th style="text-align: left;">Inadequado</th>
+<th style="text-align: left;">Satisfatório</th>
+<th style="text-align: left;">Excelente</th>
+<th style="text-align: left;">Critério de Julgamento / Recomendação</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>M1.1</strong></td>
-<td>&lt; 95%</td>
-<td>95% - 98,9%</td>
-<td><strong>≥ 99%</strong></td>
-<td>Recomendação: Migrar para Vercel se &lt; 99%.</td>
+<td style="text-align: left;"><strong>M1.1</strong></td>
+<td style="text-align: left;">&lt; 95%</td>
+<td style="text-align: left;">95% - 98,9%</td>
+<td style="text-align: left;"><strong>≥ 99%</strong></td>
+<td style="text-align: left;">Recomendação: Migrar para Vercel se &lt; 99%.</td>
 </tr>
 <tr>
-<td><strong>M1.2</strong></td>
-<td>&lt; 100%</td>
-<td>N/A</td>
-<td><strong>100%</strong></td>
-<td>Recomendação: Adicionar Error Boundaries no React.</td>
+<td style="text-align: left;"><strong>M1.2</strong></td>
+<td style="text-align: left;">&lt; 98%</td>
+<td style="text-align: left;">98% - 99,9%</td>
+<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Recomendação: Otimizar requisições do frontend.</td>
 </tr>
 <tr>
-<td><strong>M2.1</strong></td>
-<td>&lt; 100%</td>
-<td>N/A</td>
-<td><strong>100%</strong></td>
-<td>Recomendação: Remover <code>continue-on-error</code> dos YAMLs.</td>
+<td style="text-align: left;"><strong>M1.3</strong></td>
+<td style="text-align: left;">&lt; 100%</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Recomendação: Adicionar Error Boundaries no React.</td>
 </tr>
 <tr>
-<td><strong>M2.2</strong></td>
-<td>&gt; 48h</td>
-<td>12h - 48h</td>
-<td><strong>&lt; 12h</strong></td>
-<td>Recomendação: Melhorar logs no Python.</td>
+<td style="text-align: left;"><strong>M2.1</strong></td>
+<td style="text-align: left;">&lt; 100%</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Recomendação: Remover <code>continue-on-error</code> dos YAMLs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M2.2</strong></td>
+<td style="text-align: left;">&gt; 48h</td>
+<td style="text-align: left;">12h - 48h</td>
+<td style="text-align: left;"><strong>&lt; 12h</strong></td>
+<td style="text-align: left;">Recomendação: Melhorar logs no Python.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M2.3</strong></td>
+<td style="text-align: left;">&lt; 100%</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Recomendação: Implementar backup automatizado do JSON.</td>
 </tr>
 </tbody>
 </table>
