@@ -31,6 +31,8 @@ nav:
   - Fase 2:
       - Segurança: fase2/index.md
       - Confiabilidade: fase2/confiabilidade.md
+  - Fase 3:
+    - Confiabilidade: fase3/confiabilidade.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
