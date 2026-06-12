@@ -160,7 +160,7 @@ O plano estabelece as regras, as ferramentas e a frequência das revisões da AP
 | **M3** | Teste de Injeção na Renderização | Cópia local do `oportunidades.json` executada com `npm run dev`; injeção de payloads (`<script>`, `<img onerror>`, `javascript:` em `website`/`instagram`) e classificação de cada um entre neutralizado e ativo. | Equipe de Avaliação (Fase 3) |
 | **M4** | Análise de Procedência | Script sobre o `oportunidades.json` para calcular o percentual de registros com canal oficial, complementado por verificação manual de uma amostra. | Equipe de Avaliação (Fase 3) |
 
-### 6. Quadro Consolidado (Resultados) da Segurança: Integridade
+## 6. Quadro Consolidado (Resultados) da Segurança: Integridade
 
 Abaixo estão os resultados representativos dos testes de Integridade, baseados no plano de coleta para atestar a prevenção contra modificações não autorizadas.
 
@@ -170,7 +170,7 @@ Abaixo estão os resultados representativos dos testes de Integridade, baseados 
 | **M1.2** | Quantidade de Endpoints Críticos Vulneráveis (QEC-V) | 0 endpoints | 0 endpoints (Mecanismo de JWT funcional em todas as rotas de edição) | Excelente 🟢 |
 | **M3** | Taxa de Neutralização de Conteúdo Malicioso (TNCM) | 100% | A coletar na Fase 3 (teste de injeção local) | Pendente ⚪ |
 
-### 7. Quadro Consolidado (Resultados) da Segurança: Autenticidade
+## 7. Quadro Consolidado (Resultados) da Segurança: Autenticidade
 
 Resultados voltados à capacidade do sistema em garantir a identidade institucional de entidades provedoras no momento do login e cadastro.
 
@@ -180,7 +180,7 @@ Resultados voltados à capacidade do sistema em garantir a identidade institucio
 | **M2.2** | Proporção de Autenticação em Duas Etapas para Publicadores (P-2FA) | 50% a 100% | 0% (Nenhuma conta de publicador possui camada extra) | Inadequado 🔴 (Ação: Planejar integração via e-mail) |
 | **M4** | Taxa de Procedência Verificável (TPV) | ≥ 95% | Preliminar ≈ 85% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - confirmar amostra na Fase 3 | Satisfatório 🟡 (Ação: padronizar contato institucional) |
 
-### 8. Rastreabilidade da Fase 1 para a Fase 2
+## 8. Rastreabilidade da Fase 1 para a Fase 2
 
 A tabela demonstra que as prioridades e o contexto de proteção definidos no planejamento (Fase 1) foram convertidos exatamente nas métricas estipuladas nos níveis operacionais e quantitativos (Q1, Q2, M1 e M2).
 
@@ -193,11 +193,11 @@ A tabela demonstra que as prioridades e o contexto de proteção definidos no pl
 | Segurança / Integridade | Impedir a injeção de conteúdo malicioso, vindo das fontes externas raspadas, no conteúdo público exibido. | Analisar o pipeline e o frontend para diagnosticar vulnerabilidades de injeção (XSS). | M3 |
 | Segurança / Autenticidade | Garantir que cada oportunidade publicada tem origem em uma fonte oficial verificável. | Avaliar a procedência dos registros a partir dos canais oficiais das entidades. | M4 |
 
-### 9. Justificativa das Métricas
+## 9. Justificativa das Métricas
 
 As métricas implementadas diminuem riscos diretos de Segurança da Informação. As medições **M1.1** e **M1.2** asseguram a **Integridade** ao bloquear alterações nos dados por usuários sem privilégios e ao exigir Tokens JWT em rotas essenciais. Simultaneamente métricas **M2.1** e **M2.2** resguardam a **Autenticidade**, exigindo uso de e-mails acadêmicos oficiais e etapas adicionais de validação de identidade.
 
-### 10. Glossário
+## 10. Glossário
 
 O glossário abaixo foi incluído para auxiliar na compreensão dos termos técnicos desta fase avaliativa:
 
@@ -209,9 +209,16 @@ O glossário abaixo foi incluído para auxiliar na compreensão dos termos técn
 * **Regex (Expressão Regular):** Padrão lógico de caracteres utilizado para realizar a validação de formatação, como a exigência exclusiva de domínios institucionais (@unb.br).
 * **2FA (Two-Factor Authentication):** Mecanismo de autenticação em duas etapas que mensura a camada extra de confirmação de identidade no login.
 
-### Histórico de Versões
+## Histórico de Versões
 
 | ID | Descrição | Autor | Data |
 |:--:|:---------|:------|:----:|
 | 01 | Criação da página da fase 2 | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
 | 02 | Incremento do GQM de Segurança com questões, hipóteses e métricas| Isaac | 11/06/2026 |
+
+## Declaração do uso de ia
+
+
+| Ferramenta | Tarefa | Revisão Humana |
+|:--:|:---------|:------|
+| Gemini 3.1 Pro | Auxílio na elaboração da fase 2, no tocante ao objetivo, questões, hipóteses e métricas. | O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB. |

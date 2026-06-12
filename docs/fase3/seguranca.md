@@ -125,7 +125,7 @@ O método de avaliação é baseado em testes dinâmicos de API e auditoria est�
   2. Printar o resultado da Query.
   3. Calcular na planilha a porcentagem de adoção do 2FA.
 
-**5. Armazenamento e Estrutura dos Dados (Evidências)**
+## 5. Armazenamento e Estrutura dos Dados (Evidências)
 
 * **Ficha de Registro (Google Sheets):** Todos os dados numéricos brutos (contagem de requisições, status codes, percentuais) serão lançados na planilha padronizada criada na Fase 2.
 * **Gestão de Evidências:** A pasta /evidencias\_fase4/ no repositório GitHub deverá conter:
@@ -152,8 +152,14 @@ Abaixo, o roteiro alinha as preparações e as execuções práticas, consideran
 | **20/06/2026** | Fase 4 | Consolidação das planilhas, cálculo das métricas e elaboração do julgamento cruzado com a Fase 2. | Equipe | Planilha final e redação do Relatório F4. |
 | **24/06/2026** | Fase 4 | Revisão ortográfica, validação de links na GitPage e entrega (EU3). | Equipe | Release final no GitHub/Moodle. |
 
-**Histórico de Versão**
+## Histórico de Versão
 
 | **Versão** | **Data** | **Descrição** | **Autor** | **data** |
 | --- | --- | --- | --- | --- |
 | 1.0 | 10/06/2026 | Criação inicial do Plano de Avaliação (Fase 3) alinhado ao GQM. | Lucas | 12/06/2026 |
+
+## Declaração do uso de ia
+
+| Ferramenta | Tarefa | Revisão Humana |
+|:--:|:---------|:------|
+| Gemini 3.1 Pro | Contribuiu para estruturar o plano de avaliação, além de estruturar o git page.  | O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB. |
