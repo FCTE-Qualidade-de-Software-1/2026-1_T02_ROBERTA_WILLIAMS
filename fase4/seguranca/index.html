@@ -1,0 +1,903 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Seguranca - Avaliação de Qualidade</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Avaliação de Qualidade" class="md-header__button md-logo" aria-label="Avaliação de Qualidade" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Avaliação de Qualidade
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Seguranca
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../fase1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Fase 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../fase2/" class="md-tabs__link">
+          
+  
+  
+  Fase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../fase3/confiabilidade/" class="md-tabs__link">
+          
+  
+  
+  Fase 3
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Avaliação de Qualidade" class="md-nav__button md-logo" aria-label="Avaliação de Qualidade" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Avaliação de Qualidade
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fase2/confiabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Confiabilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fase 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fase 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fase3/confiabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Confiabilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Seguranca</h1>
+
+<p><strong>Fase 04 - Execução e Resultados da Avaliação</strong></p>
+<p><strong>1. Contexto e Objetivo</strong></p>
+<p>Conforme o Plano de Avaliação estabelecido na Fase 3, o presente documento consolida os resultados da avaliação do produto de software <strong>Mural UnB (Versão 1.0.0, backend/API).</strong> O propósito desta fase é apresentar as métricas coletadas em ambiente isolado (Docker/Localhost), compará-las com as pontuações estabelecidas pelo método GQM (Fase 2) e emitir um parecer conclusivo sobre a <strong>Segurança da Informação,</strong> com ênfase nas subcaracterísticas de <strong>Integridade</strong> e <strong>Autenticidade</strong>.</p>
+<p>As informações levantadas têm o intuito de viabilizar a meta estipulada na Fase 1: apresentar um diagnóstico prático e embasado, capaz de consolidar o Mural UnB, assegurando que o sistema ofereça um ambiente transparente e de alta credibilidade para todos os usuários da comunidade acadêmica, bem como protegido contra manipulações de dados e invasões.</p>
+<ul>
+<li>
+<ul>
+<li><strong>Ambiente de Teste:</strong> Localhost (Docker Compose - API e PostgreSQL) com script de <em>seed</em> (Massa de Dados).</li>
+</ul>
+</li>
+<li><strong>Período de Execução:</strong> 17/06/2026 a 20/06/2026.</li>
+</ul>
+<p><strong>2. Processamento e Transformação de Dados em Métricas</strong></p>
+<p>Com efeito, seguindo os Passos 1 a 4 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida (testes dinâmicos de API via Postman e auditoria estática via cliente DBeaver).</p>
+<p><strong>2.1. Medição 1: Segurança - Integridade (Q1)</strong></p>
+<p>A integridade avalia se o sistema previne modificações de editais, de vagas e de oportunidades por usuários sem os devidos privilégios.</p>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Métrica (Descrição)</strong></th>
+<th><strong>Fórmula Aplicada</strong></th>
+<th><strong>Resultado Obtido</strong></th>
+<th><strong>Limiar de Julgamento (Fase 2)</strong></th>
+<th><strong>Status</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M1.1</strong></td>
+<td><strong>Taxa de Bloqueio de Modificação Não Autorizada (TBM-NAut)</strong></td>
+<td>(10 bloqueadas / 10 tentativas forjadas) * 100</td>
+<td><strong>100%</strong></td>
+<td>100% <span class="arithmatex">\(\implies\)</span> Excelente</td>
+<td><strong>EXCELENTE</strong> 🟢</td>
+</tr>
+<tr>
+<td><strong>M1.2</strong></td>
+<td><strong>Quantidade de Endpoints Críticos Vulneráveis (QEC-V)</strong></td>
+<td>Contagem absoluta de rotas abertas sem Token JWT.</td>
+<td><strong>0 endpoints</strong> vulneráveis</td>
+<td>0 <span class="arithmatex">\(\implies\)</span> Excelente</td>
+<td><strong>EXCELENTE</strong> 🟢</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> Durante a execução do <strong>Passo 1</strong>, o <em>Usuário B (Estudante)</em> tentou realizar 10 requisições (PUT/DELETE) nas vagas criadas pelo <em>Usuário A (Administrador)</em>. Todas as requisições retornaram o status 403 Forbidden ou 401 Unauthorized. No <strong>Passo 2</strong>, a injeção de requisições sem o cabeçalho de autorização resultou em bloqueio sumário em todas as rotas mapeadas. A integridade estrutural da API demonstrou-se altamente confiável.</p>
+<p><strong>2.2. Medição 2: Segurança - Autenticidade (Q2)</strong></p>
+<p>Para mitigar vulnerabilidades, a autenticidade certifica a identidade institucional no momento do cadastro e rege o controle de acesso de contas altamente privilegiadas.</p>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Métrica (Descrição)</strong></th>
+<th><strong>Fórmula Aplicada</strong></th>
+<th><strong>Resultado Obtido</strong></th>
+<th><strong>Limiar de Julgamento (Fase 2)</strong></th>
+<th><strong>Status</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M2.1</strong></td>
+<td><strong>Efetividade da Verificação de Domínio Institucional (EVD-Inst)</strong></td>
+<td>(2 bloqueios falsos / 2 tentativas falsas) * 100</td>
+<td><strong>100%</strong></td>
+<td>100% <span class="arithmatex">\(\implies\)</span> Excelente</td>
+<td><strong>EXCELENTE</strong> 🟢</td>
+</tr>
+<tr>
+<td><strong>M2.2</strong></td>
+<td><strong>Proporção de Autenticação em Duas Etapas para Publicadores (P-2FA)</strong></td>
+<td>(0 contas 2FA / 3 contas admin) * 100</td>
+<td><strong>0%</strong></td>
+<td>&lt; 1% <span class="arithmatex">\(\implies\)</span> Inadequado</td>
+<td><strong>INADEQUADO</strong> 🔴</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> Na execução do <strong>Passo 3</strong>, o envio de <em>payloads</em> de cadastro de publicadores contendo e-mails @<a href="http://gmail.com/">gmail.com</a> e @<a href="http://outlook.com/">outlook.com</a> retornou consistentemente o erro 422 Unprocessable Entity (validação Regex funcional). Contudo, a execução do <strong>Passo 4</strong> via <em>Query</em> SQL revelou que nenhuma das contas com privilégio de publicação (role='publisher') possuía a camada de segurança is_2fa_enabled=true ativa, o que representa uma vulnerabilidade crítica de autenticação em contas sensíveis.</p>
+<p><strong>3. Rastreabilidade e Evidências Documentadas (Arquivos de Coleta)</strong></p>
+<p>A transparência da execução desta avaliação é garantida pela disponibilização integral dos dados brutos e sua correlação direta com as métricas apresentadas. Todos os artefatos estão versionados e organizados no repositório GitHub do projeto sob o diretório <strong>docs/evidencias_fase4/</strong>.</p>
+<p><strong>Conteúdo do Diretório de Evidências</strong></p>
+<ul>
+<li>
+<ol>
+<li><strong>tabela_resultados_mural_unb.xlsx</strong>: Planilha contendo o registro de todos os disparos, os status HTTP retornados e o processamento matemático das métricas M1.1 a M2.2.</li>
+</ol>
+</li>
+<li><strong>postman_collection_mural_unb.json</strong>: Arquivo de exportação contendo a coleção estruturada (Headers, Body e Rotas) utilizada nos testes dinâmicos da API para permitir a auditoria de reprodutibilidade.</li>
+<li><strong>postman_collection_results.csv</strong>: Log gerado pelo Postman Runner, registrando o <em>timestamp</em>, a latência e o status final de cada requisição automatizada dos Passos 1, 2 e 3.</li>
+<li><strong>Pasta de Screenshots Rastreáveis:</strong><ul>
+<li>M1.1_TentativaDelete_UserB.png: Captura de tela evidenciando o retorno 403 Forbidden no bloqueio do payload de deleção.</li>
+<li>M1.2_EndpointVulneravel_Bloqueado.png: Captura da aba <em>Headers</em> vazia (sem JWT) e a recusa imediata da API (401 Unauthorized).</li>
+<li>M2.1_Erro_Dominio_Invalido.png: Print da resposta da API rejeitando o cadastro com domínio não institucional.</li>
+<li>M2.2_Query_2FA.png: Print do console DBeaver evidenciando o código da consulta SQL e a contagem nula (0) no retorno do banco de dados.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Vídeo de Execução Contínua</strong></p>
+<p>Para fins de validação e auditoria, o procedimento de testes foi registrado em formato contínuo (Passos 1 ao 4) por meio do OBS Studio, sem pausas.</p>
+<ul>
+<li>
+<ol>
+<li><strong>Link da Execução Prática (Não Listado):</strong> [Link do YouTube (Placeholder: <a href="https://www.google.com/search?q=https://youtu.be/MuralUnB_TestesFase4">https://youtu.be/MuralUnB_TestesFase4</a>)]</li>
+</ol>
+</li>
+</ul>
+<p><strong>4. Julgamento das Questões e Objetivos (Modelo GQM)</strong></p>
+<p>A presente seção mobiliza as métricas computadas com intuído de responder às indagações formuladas na Fase 2, analisando, assim, a concretização do objetivo primário.</p>
+<ul>
+<li>
+<ol>
+<li><strong>Q1: O sistema previne de forma adequada que os dados e registros das oportunidades sejam modificados ou excluídos por usuários sem privilégios?</strong></li>
+<li><strong>Resposta:</strong> <strong>Sim.</strong> Comprovado pelas métricas M1.1 e M1.2 (ambas em nível <strong>Excelente</strong>). Os middlewares de autorização do sistema interceptaram perfeitamente os <em>tokens</em> de baixo privilégio e as requisições anônimas. A <em>Hipótese H1</em> foi completamente validada.</li>
+</ol>
+</li>
+<li><strong>Q2: O sistema comprova de forma robusta a identidade do usuário no momento do login e cadastro?</strong><ul>
+<li><strong>Resposta:</strong> <strong>Parcialmente.</strong> Embora o sistema possua uma trava eficiente de <em>Regex</em> que restringe cadastros apenas para domínios @<a href="http://unb.br/">unb.br</a> ou @<a href="http://aluno.unb.br/">aluno.unb.br</a> (validando M2.1), a barreira falha gravemente no critério de Autenticação em Duas Etapas (M2.2 = 0%), reprovando a expectativa da <em>Hipótese H2</em> de que contas de alto escalão tivessem mecanismos de defesa complexos contra roubo de senhas ou força-bruta.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Julgamento do Objetivo GQM:</strong> O escopo de avaliação de <em>vulnerabilidades de Integridade e Autenticidade</em> foi <strong>alcançado metodologicamente</strong>. O sistema provou possuir uma <strong>base sólida de Integridade</strong> contra manipulação de dados, porém apresentou uma lacuna arquitetural severa no que tange aos mecanismos de <strong>Autenticidade.</strong></p>
+<p><strong>5. Julgamento Final e Plano de Ação (Recomendações Concretas)</strong></p>
+<p>O propósito estabelecido na Fase 1, qual seja, o de garantir uma disseminação estável e autêntica de oportunidades acadêmicas, foi imediatamente atendido pelo Mural UnB, visto que o cerne da informação está adequadamente protegido contra injeções de perfil comum. Assim, um estudante comum não possui meios técnicos viáveis para adulterar ou apagar uma oportunidade divulgada por um laboratório de pesquisa ou empresa júnior.</p>
+<p>No entanto, sistemas de amplo impacto comunitário devem adotar defesa em profundidade, segundo as expectativas preconizadas pela Engenharia de Software. Sem a confirmação adicional da autenticação em duas etapas (2 FA), o ambiente fica extremamente vulnerável; caso uma senha de administrador seja vazada, o invasor assume controle total do sistema.</p>
+<p>Apoiadas na matriz de avaliação, as conclusões apontam para as seguintes <strong>ações concretas e imediatas a serem aplicadas pela equipe de desenvolvimento</strong>:</p>
+<ul>
+<li>
+<ol>
+<li><strong>Implementar feature de Autenticação em Duas Etapas (2FA):</strong> Criar um mecanismo de autenticação de dois fatores (2FA) com a <em>role</em> de publicador/administrador. O fluxo obrigará o envio de um código de segurança via e-mail do servidor oficial (SMTP UnB), no primeiro acesso realizado a partir de um novo dispositivo. Esta ação é necessária para corrigir a falha na M2.2.</li>
+</ol>
+</li>
+<li><strong>Manter e Documentar a Validação Regex:</strong> A validação que barra domínios externos (M2.1) está funcionando perfeitamente. Necessita-se, desse modo, converter essa regra de negócio em um teste de unidade no repositório (test_email_domain_validation.py), para proteger o código contra regressões futuras.</li>
+<li><strong>Automatizar a inspeção de Headers JWT:</strong> Integrar o artefato gerado na avaliação (postman_collection_mural_unb.json) ao <em>Pipeline</em> de CI/CD do GitHub Actions. A medida garantirá validações contínuas, assegurando que nenhuma nova rota de manipulação de dados seja implantada em produção sem exigir autorização prévia (Ação referente à consolidação definitiva da M1.2).</li>
+</ul>
+<p><strong>6. Cronograma Realizado</strong></p>
+<p>A passagem do planejamento para a prática decorreu exatamente dentro da janela alinhada na Fase 3:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Data</strong></th>
+<th><strong>Fase</strong></th>
+<th><strong>Atividade Realizada</strong></th>
+<th><strong>Responsáveis</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17/06/2026</td>
+<td>Fase 4</td>
+<td>Sessão 1: Setup Docker e execução de M1.1 e M1.2.</td>
+<td>Carlos, Yogi, Isaac</td>
+</tr>
+<tr>
+<td>18/06/2026</td>
+<td>Fase 4</td>
+<td>Sessão 2: Execução de M2.1 via API e auditoria em SQL (M2.2).</td>
+<td>Lucas, Caio, Guilherme</td>
+</tr>
+<tr>
+<td>20/06/2026</td>
+<td>Fase 4</td>
+<td>Processamento dos dados no Google Sheets e elaboração deste Relatório.</td>
+<td>Equipe Completa</td>
+</tr>
+<tr>
+<td>24/06/2026</td>
+<td>Fase 4</td>
+<td>Commits no GitHub (diretório docs/evidencias_fase4/) e entrega EU3.</td>
+<td>Equipe Completa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. Tabela de Contribuição da Equipe</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Nome do Integrante</strong></th>
+<th><strong>Papel / Atividades Realizadas na Fase 4</strong></th>
+<th><strong>Esforço/Participação (%)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lucas Ricarte</td>
+<td>Execução dos testes dinâmicos (Postman) para métrica M2.1.</td>
+<td>16.66%</td>
+</tr>
+<tr>
+<td>Caio Soares</td>
+<td>Consolidação das métricas numéricas na tabela_resultados_mural_unb.xlsx.</td>
+<td>16.66%</td>
+</tr>
+<tr>
+<td>Guilherme Flyan</td>
+<td>Auditoria estática de Banco de Dados para verificação de chaves e métrica M2.2.</td>
+<td>16.66%</td>
+</tr>
+<tr>
+<td>Carlos Henrique</td>
+<td>Configuração do ambiente local (Docker) e injeção do script de <em>seed</em>.</td>
+<td>16.66%</td>
+</tr>
+<tr>
+<td>Yogi Nam</td>
+<td>Elaboração do Relatório Final (análise GQM, coerência com a Fase 1 e plano de ação).</td>
+<td>16.66%</td>
+</tr>
+<tr>
+<td>Isaac Batista</td>
+<td>Execução dos ataques controlados na API (M1.1 e M1.2), capturas de tela e gravação.</td>
+<td>16.66%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>8. Histórico de Versão</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Versão</strong></th>
+<th><strong>Data</strong></th>
+<th><strong>Descrição</strong></th>
+<th><strong>Autor</strong></th>
+<th><strong>Revisor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>20/06/2026</td>
+<td>Criação do documento Fase 4 contendo a transformação dos dados, respostas ao GQM e definição do Plano de Ação para os desenvolvedores.</td>
+<td>Yogi Nam</td>
+<td>Carlos Henrique</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>24/06/2026</td>
+<td>Consolidação final e checagem de rastreabilidade (diretório evidencias_fase4).</td>
+<td>Isaac Batista</td>
+<td>Lucas Ricarte</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
