@@ -567,6 +567,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#metrica-3-m3-referente-a-q3-integridade-injecao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 3 (M3) - Referente à Q3 (Integridade - Injeção de Conteúdo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-4-m4-referente-a-q4-autenticidade-procedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -899,6 +921,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#metrica-3-m3-referente-a-q3-integridade-injecao-de-conteudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 3 (M3) - Referente à Q3 (Integridade - Injeção de Conteúdo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-4-m4-referente-a-q4-autenticidade-procedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1063,6 +1107,12 @@
 <li>
 <p><strong>Hipótese (H1)</strong>: Espera-se que o controle de autorização do sistema seja robusto o suficiente para bloquear a totalidade (100%) das tentativas de manipulação ou alteração de recursos realizadas por perfis sem permissão. Desse modo, o sistema realiza a validação rigorosa dos tokens de sessão no backend antes de processar requisições de alteração (PUT, PATCH, DELETE). Acredita-se que requisições forjadas por contas de perfil padrão (estudantes comuns) serão bloqueadas e retornarão erro de autorização. </p>
 </li>
+<li>
+<p><strong>Questão (Q3 - complementar, arquitetura real):</strong> Considerando que o Mural UnB é uma aplicação <em>serverless</em> (sem <em>backend</em> ou <em>login</em>), cujos dados são arquivos JSON publicados por um pipeline de <em>scraping</em>, o sistema impede que conteúdo malicioso vindo das fontes externas raspadas (<em>scripts</em>, HTML, <em>links</em> adulterados) seja injetado no <code>oportunidades.json</code> e renderizado de forma ativa na interface React?</p>
+</li>
+<li>
+<p><strong>Hipótese (H3):</strong> Espera-se que o escape automático do React - sem uso de <code>dangerouslySetInnerHTML</code> no código - neutralize a totalidade dos payloads injetados em campos de texto (<code>descricao</code>, <code>Sobre</code>, <code>nome</code>). Contudo, como o componente <code>SocialFooter</code> insere os campos de canal diretamente em <code>href={website}</code> / <code>href={instagram}</code> sem sanitização, payloads de URI (<code>javascript:</code>) nesses campos não serão bloqueados, resultando em taxa de neutralização global inferior a 100% e evidenciando um vetor de injeção via <em>links</em>.</p>
+</li>
 </ul>
 <h2 id="22-subcaracteristica-autenticidade">2.2. Subcaracterística: Autenticidade</h2>
 <p>A autenticidade garante que a identidade de um sujeito ou recurso possa ser comprovada. Para o Mural UnB, isso resulta em segurança de que a entidade que publica uma vaga é, de fato, a entidade real da universidade. </p>
@@ -1072,6 +1122,12 @@
 </li>
 <li>
 <p><strong>Hipótese (H2)</strong>: O sistema exige validação rigorosa da identidade institucional, provavelmente restringindo o cadastro ou a elevação de privilégios mediante a confirmação de um endereço de e-mail com domínio oficial da universidade (@unb.br ou @aluno.unb.br). Outrossim, espera-se que as barreiras de autenticação rejeitem 100% das tentativas de acessos com senhas incorretas, injeções ou usuários inexistentes. </p>
+</li>
+<li>
+<p><strong>Questão (Q4 - complementar, arquitetura real):</strong> Como não há autenticação de usuários, mas a autenticidade de recurso permanece essencial, é possível verificar que toda oportunidade publicada tem origem em uma fonte oficial autorizada (canal institucional da empresa júnior ou do laboratório) e não em uma fonte forjada ou não verificável?</p>
+</li>
+<li>
+<p><strong>Hipótese (H4):</strong> Espera-se que a procedência seja majoritariamente verificável - as 49 empresas juniores possuem canal oficial (<code>Site</code> e <code>Instagram</code>) preenchido em 100% dos registros -, porém não integralmente, pois aproximadamente 35% dos laboratórios apresentam <code>contato</code> fora do domínio institucional <code>@unb.br</code>, reduzindo a taxa global de procedência verificável para uma faixa estimada de ~85%.</p>
 </li>
 </ul>
 <h2 id="3-nivel-quantitativo-selecao-de-metricas-e-niveis-de-pontuacao">3. Nível Quantitativo: Seleção de Métricas e Níveis de Pontuação</h2>
@@ -1156,6 +1212,61 @@
 <p><strong>Fórmula</strong>: (Nº de contas com privilégio de publicação que possuem verificação em duas etapas ativa / Nº total de contas com privilégio de publicação) x 100 </p>
 </li>
 </ul>
+<h3 id="metrica-3-m3-referente-a-q3-integridade-injecao-de-conteudo">Métrica 3 (M3) - Referente à Q3 (Integridade - Injeção de Conteúdo)</h3>
+<ul>
+<li>
+<p><strong>Nome</strong>: Taxa de Neutralização de Conteúdo Malicioso (TNCM).</p>
+</li>
+<li>
+<p><strong>Fórmula</strong>: (Nº de payloads neutralizados na renderização / Nº total de payloads injetados no JSON de teste) x 100</p>
+</li>
+<li>
+<p><strong>Procedimento de coleta</strong>: Em uma cópia local do <code>oportunidades.json</code> executada com <code>npm run dev</code>, injetar um conjunto controlado de payloads distribuídos entre campos de texto (<code>descricao</code>, <code>Sobre</code>, <code>nome</code>) e campos de canal (<code>website</code>, <code>instagram</code>). Classificar cada payload como neutralizado (renderizado como texto inerte ou link inofensivo) ou ativo (executa script, navega para <code>javascript:</code> ou injeta HTML).</p>
+</li>
+<li>
+<p><strong>Níveis de Pontuação e Critérios de Julgamento</strong>:</p>
+<ul>
+<li>
+<p><strong>Excelente (100%)</strong>: Nenhum payload é renderizado de forma ativa. Julgamento: A integridade do conteúdo exibido é confiável.</p>
+</li>
+<li>
+<p><strong>Aceitável (90% a 99%)</strong>: Falha restrita ao <code>href</code> dos campos de canal (exige clique do usuário). Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no <code>SocialFooter</code>, aceitando apenas <code>http</code>/<code>https</code>.</p>
+</li>
+<li>
+<p><strong>Insatisfatório (&lt; 90% ou qualquer execução em campo de texto)</strong>: Execução automática de payload (XSS direto). Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="metrica-4-m4-referente-a-q4-autenticidade-procedencia">Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)</h3>
+<ul>
+<li>
+<p><strong>Nome</strong>: Taxa de Procedência Verificável (TPV).</p>
+</li>
+<li>
+<p><strong>Fórmula</strong>: (Nº de registros com fonte/canal oficial verificável / Nº total de registros) x 100</p>
+</li>
+<li>
+<p><strong>Critério de "verificável"</strong>: empresa júnior com <code>Site</code> ou <code>Instagram</code> correspondente à entidade; laboratório com <code>contato</code> em domínio institucional <code>@unb.br</code>.</p>
+</li>
+<li>
+<p><strong>Procedimento de coleta</strong>: (1) núcleo automático - script sobre o <code>oportunidades.json</code> que calcula o percentual de registros com sinal oficial; (2) verificação amostral - confirmação manual, em uma amostra, de que o canal resolve para a entidade real.</p>
+</li>
+<li>
+<p><strong>Níveis de Pontuação e Critérios de Julgamento</strong>:</p>
+<ul>
+<li>
+<p><strong>Excelente (≥ 95%)</strong>: Quase todos os registros são rastreáveis a uma fonte oficial. Julgamento: Procedência confiável.</p>
+</li>
+<li>
+<p><strong>Satisfatório (80% a 94%)</strong>: Maioria verificável, com lacuna pontual (laboratórios com contato externo). Julgamento: Aceitável; padronizar o contato institucional.</p>
+</li>
+<li>
+<p><strong>Insatisfatório (&lt; 80%)</strong>: Procedência insuficiente. Julgamento: Risco de conteúdo de fonte não confirmada; adicionar campo <code>fonte</code>/<code>url_origem</code> no ETL.</p>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="4-niveis-de-pontuacao-e-criterios-de-julgamento">4. Níveis de Pontuação e Critérios de Julgamento</h2>
 <p>Para garantir o rigor analítico e a interpretação inequívoca dos resultados, os critérios de julgamento foram estabelecidos abaixo.</p>
 <table>
@@ -1197,6 +1308,20 @@
 <td style="text-align: left;"><strong>50% a 100%</strong></td>
 <td style="text-align: left;">Planejar a integração de envio de código via e-mail institucional no login.</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong>M3 (TNCM)</strong></td>
+<td style="text-align: left;">&lt; 90% ou execução em campo de texto</td>
+<td style="text-align: left;">90% a 99% (falha restrita ao <code>href</code>)</td>
+<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Validar o esquema da URL no <code>SocialFooter</code> (aceitar só <code>http</code>/<code>https</code>) e sanitizar as entradas do pipeline.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M4 (TPV)</strong></td>
+<td style="text-align: left;">&lt; 80%</td>
+<td style="text-align: left;">80% a 94%</td>
+<td style="text-align: left;"><strong>≥ 95%</strong></td>
+<td style="text-align: left;">Padronizar o contato institucional dos laboratórios e adicionar campo <code>fonte</code>/<code>url_origem</code> no ETL.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="5-plano-de-coleta-de-dados">5. Plano de Coleta de Dados</h2>
@@ -1235,6 +1360,18 @@
 <td style="text-align: left;">Inspeção na base de dados ou painel administrativo para contabilizar quantas contas com privilégio de publicação possuem verificação em duas etapas ativa.</td>
 <td style="text-align: left;">Equipe de Avaliação (Semana Y)</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong>M3</strong></td>
+<td style="text-align: left;">Teste de Injeção na Renderização</td>
+<td style="text-align: left;">Cópia local do <code>oportunidades.json</code> executada com <code>npm run dev</code>; injeção de payloads (<code>&lt;script&gt;</code>, <code>&lt;img onerror&gt;</code>, <code>javascript:</code> em <code>website</code>/<code>instagram</code>) e classificação de cada um entre neutralizado e ativo.</td>
+<td style="text-align: left;">Equipe de Avaliação (Fase 3)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M4</strong></td>
+<td style="text-align: left;">Análise de Procedência</td>
+<td style="text-align: left;">Script sobre o <code>oportunidades.json</code> para calcular o percentual de registros com canal oficial, complementado por verificação manual de uma amostra.</td>
+<td style="text-align: left;">Equipe de Avaliação (Fase 3)</td>
+</tr>
 </tbody>
 </table>
 <h3 id="6-quadro-consolidado-resultados-da-seguranca-integridade">6. Quadro Consolidado (Resultados) da Segurança: Integridade</h3>
@@ -1264,6 +1401,13 @@
 <td style="text-align: left;">0 endpoints (Mecanismo de JWT funcional em todas as rotas de edição)</td>
 <td style="text-align: left;">Excelente 🟢</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong>M3</strong></td>
+<td style="text-align: left;">Taxa de Neutralização de Conteúdo Malicioso (TNCM)</td>
+<td style="text-align: left;">100%</td>
+<td style="text-align: left;">A coletar na Fase 3 (teste de injeção local)</td>
+<td style="text-align: left;">Pendente ⚪</td>
+</tr>
 </tbody>
 </table>
 <h3 id="7-quadro-consolidado-resultados-da-seguranca-autenticidade">7. Quadro Consolidado (Resultados) da Segurança: Autenticidade</h3>
@@ -1292,6 +1436,13 @@
 <td style="text-align: left;">50% a 100%</td>
 <td style="text-align: left;">0% (Nenhuma conta de publicador possui camada extra)</td>
 <td style="text-align: left;">Inadequado 🔴 (Ação: Planejar integração via e-mail)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M4</strong></td>
+<td style="text-align: left;">Taxa de Procedência Verificável (TPV)</td>
+<td style="text-align: left;">≥ 95%</td>
+<td style="text-align: left;">Preliminar ≈ 85% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - confirmar amostra na Fase 3</td>
+<td style="text-align: left;">Satisfatório 🟡 (Ação: padronizar contato institucional)</td>
 </tr>
 </tbody>
 </table>
@@ -1331,6 +1482,18 @@
 <td style="text-align: left;">Analisar o sistema para evitar acesso com credenciais forjadas.</td>
 <td style="text-align: left;">M2.2</td>
 </tr>
+<tr>
+<td style="text-align: left;">Segurança / Integridade</td>
+<td style="text-align: left;">Impedir a injeção de conteúdo malicioso, vindo das fontes externas raspadas, no conteúdo público exibido.</td>
+<td style="text-align: left;">Analisar o pipeline e o frontend para diagnosticar vulnerabilidades de injeção (XSS).</td>
+<td style="text-align: left;">M3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Segurança / Autenticidade</td>
+<td style="text-align: left;">Garantir que cada oportunidade publicada tem origem em uma fonte oficial verificável.</td>
+<td style="text-align: left;">Avaliar a procedência dos registros a partir dos canais oficiais das entidades.</td>
+<td style="text-align: left;">M4</td>
+</tr>
 </tbody>
 </table>
 <h3 id="9-justificativa-das-metricas">9. Justificativa das Métricas</h3>
@@ -1362,6 +1525,12 @@
 <td style="text-align: left;">Criação da página da fase 2</td>
 <td style="text-align: left;"><a href="https://github.com/Lucas-Ricarte">Lucas Ricarte</a></td>
 <td style="text-align: center;">21/05/2025</td>
+</tr>
+<tr>
+<td style="text-align: center;">02</td>
+<td style="text-align: left;">Incremento do GQM de Segurança com questões, hipóteses e métricas</td>
+<td style="text-align: left;">Isaac</td>
+<td style="text-align: center;">11/06/2026</td>
 </tr>
 </tbody>
 </table>
