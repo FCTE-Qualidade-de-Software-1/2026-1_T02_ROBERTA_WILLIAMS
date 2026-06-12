@@ -35,7 +35,7 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
     </td>
   <td align="center">
       <img src="https://github.com/Carlos-UCH.png?size=100" width=100><br>
-      <b><a href="https://github.com/Carlos-UCH">Yogi Nam de Souza Barbosa</a></b><br>
+      <b><a href="https://github.com/Carlos-UCH">Carlos Henrique Brasil de Souza</a></b><br>
     </td>
   </tr>
 </table>
