@@ -32,6 +32,7 @@ nav:
       - Segurança: fase2/index.md
       - Confiabilidade: fase2/confiabilidade.md
   - Fase 3:
+    - Segurança: fase3/seguranca.md
     - Confiabilidade: fase3/confiabilidade.md
   - Fase 4:
     - Segurança: fase4/seguranca.md
