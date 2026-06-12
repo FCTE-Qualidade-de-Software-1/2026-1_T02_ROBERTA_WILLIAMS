@@ -32,6 +32,10 @@ A integridade garante que o sistema previna modificações não autorizadas. No 
 
 * **Hipótese (H1)**: Espera-se que o controle de autorização do sistema seja robusto o suficiente para bloquear a totalidade (100%) das tentativas de manipulação ou alteração de recursos realizadas por perfis sem permissão. Desse modo, o sistema realiza a validação rigorosa dos tokens de sessão no backend antes de processar requisições de alteração (PUT, PATCH, DELETE). Acredita-se que requisições forjadas por contas de perfil padrão (estudantes comuns) serão bloqueadas e retornarão erro de autorização. 
 
+* **Questão (Q3 - complementar, arquitetura real):** Considerando que o Mural UnB é uma aplicação _serverless_ (sem _backend_ ou _login_), cujos dados são arquivos JSON publicados por um pipeline de _scraping_, o sistema impede que conteúdo malicioso vindo das fontes externas raspadas (_scripts_, HTML, _links_ adulterados) seja injetado no `oportunidades.json` e renderizado de forma ativa na interface React?
+
+* **Hipótese (H3):** Espera-se que o escape automático do React - sem uso de `dangerouslySetInnerHTML` no código - neutralize a totalidade dos payloads injetados em campos de texto (`descricao`, `Sobre`, `nome`). Contudo, como o componente `SocialFooter` insere os campos de canal diretamente em `href={website}` / `href={instagram}` sem sanitização, payloads de URI (`javascript:`) nesses campos não serão bloqueados, resultando em taxa de neutralização global inferior a 100% e evidenciando um vetor de injeção via _links_.
+
 ## 2.2. Subcaracterística: Autenticidade 
 
 A autenticidade garante que a identidade de um sujeito ou recurso possa ser comprovada. Para o Mural UnB, isso resulta em segurança de que a entidade que publica uma vaga é, de fato, a entidade real da universidade. 
@@ -39,6 +43,10 @@ A autenticidade garante que a identidade de um sujeito ou recurso possa ser comp
 * **Questão (Q2)**: O sistema comprova de forma robusta a identidade do usuário no momento do login, impedindo a entrada com credenciais forjadas ou inválidas? 
 
 * **Hipótese (H2)**: O sistema exige validação rigorosa da identidade institucional, provavelmente restringindo o cadastro ou a elevação de privilégios mediante a confirmação de um endereço de e-mail com domínio oficial da universidade (@unb.br ou @aluno.unb.br). Outrossim, espera-se que as barreiras de autenticação rejeitem 100% das tentativas de acessos com senhas incorretas, injeções ou usuários inexistentes. 
+
+* **Questão (Q4 - complementar, arquitetura real):** Como não há autenticação de usuários, mas a autenticidade de recurso permanece essencial, é possível verificar que toda oportunidade publicada tem origem em uma fonte oficial autorizada (canal institucional da empresa júnior ou do laboratório) e não em uma fonte forjada ou não verificável?
+
+* **Hipótese (H4):** Espera-se que a procedência seja majoritariamente verificável - as 49 empresas juniores possuem canal oficial (`Site` e `Instagram`) preenchido em 100% dos registros -, porém não integralmente, pois aproximadamente 35% dos laboratórios apresentam `contato` fora do domínio institucional `@unb.br`, reduzindo a taxa global de procedência verificável para uma faixa estimada de ~85%.
 
 ## 3. Nível Quantitativo: Seleção de Métricas e Níveis de Pontuação 
 
@@ -92,6 +100,40 @@ Para garantir excelência nos critérios C4 e C5, as métricas respondem diretam
 
 * **Fórmula**: (Nº de contas com privilégio de publicação que possuem verificação em duas etapas ativa / Nº total de contas com privilégio de publicação) x 100 
 
+### Métrica 3 (M3) - Referente à Q3 (Integridade - Injeção de Conteúdo)
+
+* **Nome**: Taxa de Neutralização de Conteúdo Malicioso (TNCM).
+
+* **Fórmula**: (Nº de payloads neutralizados na renderização / Nº total de payloads injetados no JSON de teste) x 100
+
+* **Procedimento de coleta**: Em uma cópia local do `oportunidades.json` executada com `npm run dev`, injetar um conjunto controlado de payloads distribuídos entre campos de texto (`descricao`, `Sobre`, `nome`) e campos de canal (`website`, `instagram`). Classificar cada payload como neutralizado (renderizado como texto inerte ou link inofensivo) ou ativo (executa script, navega para `javascript:` ou injeta HTML).
+
+* **Níveis de Pontuação e Critérios de Julgamento**:
+
+    * **Excelente (100%)**: Nenhum payload é renderizado de forma ativa. Julgamento: A integridade do conteúdo exibido é confiável.
+
+    * **Aceitável (90% a 99%)**: Falha restrita ao `href` dos campos de canal (exige clique do usuário). Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no `SocialFooter`, aceitando apenas `http`/`https`.
+
+    * **Insatisfatório (< 90% ou qualquer execução em campo de texto)**: Execução automática de payload (XSS direto). Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.
+
+### Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
+
+* **Nome**: Taxa de Procedência Verificável (TPV).
+
+* **Fórmula**: (Nº de registros com fonte/canal oficial verificável / Nº total de registros) x 100
+
+* **Critério de "verificável"**: empresa júnior com `Site` ou `Instagram` correspondente à entidade; laboratório com `contato` em domínio institucional `@unb.br`.
+
+* **Procedimento de coleta**: (1) núcleo automático - script sobre o `oportunidades.json` que calcula o percentual de registros com sinal oficial; (2) verificação amostral - confirmação manual, em uma amostra, de que o canal resolve para a entidade real.
+
+* **Níveis de Pontuação e Critérios de Julgamento**:
+
+    * **Excelente (≥ 95%)**: Quase todos os registros são rastreáveis a uma fonte oficial. Julgamento: Procedência confiável.
+
+    * **Satisfatório (80% a 94%)**: Maioria verificável, com lacuna pontual (laboratórios com contato externo). Julgamento: Aceitável; padronizar o contato institucional.
+
+    * **Insatisfatório (< 80%)**: Procedência insuficiente. Julgamento: Risco de conteúdo de fonte não confirmada; adicionar campo `fonte`/`url_origem` no ETL.
+
 ## 4. Níveis de Pontuação e Critérios de Julgamento 
 
 Para garantir o rigor analítico e a interpretação inequívoca dos resultados, os critérios de julgamento foram estabelecidos abaixo.
@@ -102,6 +144,8 @@ Para garantir o rigor analítico e a interpretação inequívoca dos resultados,
 | **M1.2 (QEC-V)** | Maior que 0 | N/A (Métrica binária na prática) | **0 endpoints** | Proteger rotas expostas implementando validação de *token* JWT. |
 | **M2.1 (EVD-Inst)** | Abaixo de 100% (Aceita e-mail comum) | N/A | **100%** (Bloqueio total) | Implementar validação via Regex para aceitar exclusivamente domínios institucionais. |
 | **M2.2 (P-2FA)** | 0% | Entre 1% e 49% | **50% a 100%** | Planejar a integração de envio de código via e-mail institucional no login. |
+| **M3 (TNCM)** | < 90% ou execução em campo de texto | 90% a 99% (falha restrita ao `href`) | **100%** | Validar o esquema da URL no `SocialFooter` (aceitar só `http`/`https`) e sanitizar as entradas do pipeline. |
+| **M4 (TPV)** | < 80% | 80% a 94% | **≥ 95%** | Padronizar o contato institucional dos laboratórios e adicionar campo `fonte`/`url_origem` no ETL. |
 
 ## 5. Plano de Coleta de Dados 
 
@@ -113,6 +157,8 @@ O plano estabelece as regras, as ferramentas e a frequência das revisões da AP
 | **M1.2** | Inspeção de Rotas | Mapeamento das rotas da API e envio de requisições de manipulação de dados sem o cabeçalho com token JWT válido para aferir bloqueio. | Equipe de Avaliação (Semana X) |
 | **M2.1** | Teste de Validação de Cadastro | Tentativas manuais ou automatizadas de criar perfis de entidades provedoras utilizando domínios de e-mail não oficiais (como @gmail.com ou @outlook.com). | Equipe de Avaliação (Semana Y) |
 | **M2.2** | Verificação de Banco de Dados / Dashboard | Inspeção na base de dados ou painel administrativo para contabilizar quantas contas com privilégio de publicação possuem verificação em duas etapas ativa. | Equipe de Avaliação (Semana Y) |
+| **M3** | Teste de Injeção na Renderização | Cópia local do `oportunidades.json` executada com `npm run dev`; injeção de payloads (`<script>`, `<img onerror>`, `javascript:` em `website`/`instagram`) e classificação de cada um entre neutralizado e ativo. | Equipe de Avaliação (Fase 3) |
+| **M4** | Análise de Procedência | Script sobre o `oportunidades.json` para calcular o percentual de registros com canal oficial, complementado por verificação manual de uma amostra. | Equipe de Avaliação (Fase 3) |
 
 ### 6. Quadro Consolidado (Resultados) da Segurança: Integridade
 
@@ -122,6 +168,7 @@ Abaixo estão os resultados representativos dos testes de Integridade, baseados 
 | :--- | :--- | :--- | :--- | :--- |
 | **M1.1** | Taxa de Bloqueio de Modificação Não Autorizada (TBM-NAut) | 100% | 100% (Todas as requisições forjadas foram bloqueadas) | Excelente 🟢 |
 | **M1.2** | Quantidade de Endpoints Críticos Vulneráveis (QEC-V) | 0 endpoints | 0 endpoints (Mecanismo de JWT funcional em todas as rotas de edição) | Excelente 🟢 |
+| **M3** | Taxa de Neutralização de Conteúdo Malicioso (TNCM) | 100% | A coletar na Fase 3 (teste de injeção local) | Pendente ⚪ |
 
 ### 7. Quadro Consolidado (Resultados) da Segurança: Autenticidade
 
@@ -131,6 +178,7 @@ Resultados voltados à capacidade do sistema em garantir a identidade institucio
 | :--- | :--- | :--- | :--- | :--- |
 | **M2.1** | Efetividade da Verificação de Domínio Institucional (EVD-Inst) | 100% de Bloqueio | 100% (Aceita apenas @unb.br ou @aluno.unb.br) | Excelente 🟢 |
 | **M2.2** | Proporção de Autenticação em Duas Etapas para Publicadores (P-2FA) | 50% a 100% | 0% (Nenhuma conta de publicador possui camada extra) | Inadequado 🔴 (Ação: Planejar integração via e-mail) |
+| **M4** | Taxa de Procedência Verificável (TPV) | ≥ 95% | Preliminar ≈ 85% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - confirmar amostra na Fase 3 | Satisfatório 🟡 (Ação: padronizar contato institucional) |
 
 ### 8. Rastreabilidade da Fase 1 para a Fase 2
 
@@ -142,6 +190,8 @@ A tabela demonstra que as prioridades e o contexto de proteção definidos no pl
 | Segurança / Integridade | Proteger todas as rotas críticas de manipulação de dados contra acessos anônimos. | Analisar o sistema web para diagnosticar vulnerabilidades de endpoints vazados. | M1.2 |
 | Segurança / Autenticidade | Garantir que a entidade que publica uma vaga é institucionalmente real. | Avaliar as barreiras de autenticação e validação de identidade. | M2.1 |
 | Segurança / Autenticidade | Aumentar as barreiras de proteção de contas com alto privilégio no sistema. | Analisar o sistema para evitar acesso com credenciais forjadas. | M2.2 |
+| Segurança / Integridade | Impedir a injeção de conteúdo malicioso, vindo das fontes externas raspadas, no conteúdo público exibido. | Analisar o pipeline e o frontend para diagnosticar vulnerabilidades de injeção (XSS). | M3 |
+| Segurança / Autenticidade | Garantir que cada oportunidade publicada tem origem em uma fonte oficial verificável. | Avaliar a procedência dos registros a partir dos canais oficiais das entidades. | M4 |
 
 ### 9. Justificativa das Métricas
 
@@ -164,3 +214,4 @@ O glossário abaixo foi incluído para auxiliar na compreensão dos termos técn
 | ID | Descrição | Autor | Data |
 |:--:|:---------|:------|:----:|
 | 01 | Criação da página da fase 2 | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
+| 02 | Incremento do GQM de Segurança com questões, hipóteses e métricas| Isaac | 11/06/2026 |
