@@ -1,5 +1,13 @@
 # Fase 3
 
+## Histórico de Versões
+
+| Versão | Descrição                                                                                                                                                     | Autor  | Data       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
+| 1.0    | Criação inicial da Fase 3 com definição do método e ambiente de avaliação básico.                                                                             | Yogi   | 11/06/2026 |
+| 1.1    | Inserção das métricas complementares de teste de carga (M1.2) e persistência pós-falha (M2.3).                                                                | Carlos | 11/06/2026 |
+| 1.2    | Refinamento para os critérios de excelência: simplificação do texto, preenchimento do cronograma de avaliação e adição da seção de consistência com a Fase 2. | Yogi   | 12/06/2026 |
+
 ## Introdução
 
 Nesta etapa do projeto, vamos especificar como iremos implementar e executar as métricas definidas na metodologia Goal-Question-Metric (GQM) da Fase 2 para avaliar objetivamente a Confiabilidade da arquitetura serverless do Mural UnB.
@@ -58,8 +66,6 @@ O método consiste na execução de testes controlados de injeção de falhas em
 4. Observar a reação do script Python e verificar se o sistema interrompe a gravação antes de corromper o arquivo principal.
 5. Analisar o arquivo .json resultante para verificar a preservação e aplicar na fórmula.
 
----
-
 ## 2. Especificação dos Recursos e do Ambiente de Avaliação
 
 - **Sistema Operacional:** Fedora Linux 42.
@@ -68,8 +74,6 @@ O método consiste na execução de testes controlados de injeção de falhas em
 - **Requisitos de Software:** Navegador web atualizado (Google Chrome ou Mozilla Firefox) com ferramentas de desenvolvedor nativas (DevTools); conta configurada no UptimeRobot; ambiente Python local com as dependências do repositório (Locust); fork do repositório no GitHub.
 - **Massa de Dados:** O teste exige a presença de um conjunto de dados em formato `.json` (base estruturada real) e arquivos `.json` corrompidos alocados em `tests/mocks/`. Essa massa é explicitamente justificada e crítica para agilizar a validação visual do frontend (M1.3) e atestar a persistência do pipeline sem destruir os dados da produção (M2.1 e M2.3).
 - **Perfil do Avaliador:** Usuário com conhecimento básico em informática, capacidade de navegação web/DevTools e operação básica de repositórios (GitHub) e terminal.
-
----
 
 ## 3. Cronograma de Avaliação
 
@@ -82,8 +86,14 @@ O método consiste na execução de testes controlados de injeção de falhas em
 | Auditoria e varredura do histórico de execuções do Actions                  | -           | -      | -       | Coleta retroativa de dados de tempo para cálculo do MTTR (M2.2).     |
 | Consolidação, cálculo das fórmulas e julgamento final                       | -           | -      | -       | Cruzamento dos dados com os níveis de pontuação definidos na Fase 2. |
 
----
-
 ## 4. Consistência com a Fase 2
 
 Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via _fork_ e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original.
+
+## 5. Declaração de Uso de IA
+
+**Tabela: Declaração Formal de Uso de IA**
+
+| Ferramenta          | Tarefa Realizada                                                                                         | Conferência Humana                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Gemini 3.1 Pro ** | Mesclagem de versões redundantes, formatação da tabela cronograma e checagem com consistência da fase 2. | A equipe orientou a simplificação do documento, validou as dicas dadas e aprovou as alterações estruturais. |

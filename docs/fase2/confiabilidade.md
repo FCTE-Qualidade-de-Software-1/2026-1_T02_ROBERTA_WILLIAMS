@@ -150,7 +150,7 @@ Esta seção valida formalmente a consistência do plano de métricas frente aos
 
 | Ferramenta | Tarefa Realizada                                                                               | Conferência Humana                                                                                         |
 | ---------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Gemini** | Template inicial, ajuste de terminologia, revisão ortográfica e organização lógica das seções. | A equipe validou todas as fórmulas e o alinhamento com a tabela de avaliação, removendo jargões genéricos. |
+| **Gemini 3.1 Pro ** | Template inicial, ajuste de terminologia, revisão ortográfica e organização lógica das seções. | A equipe validou todas as fórmulas e o alinhamento com a tabela de avaliação, removendo jargões genéricos. |
 
 ## 9. Referências Bibliográficas
 
