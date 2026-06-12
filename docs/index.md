@@ -33,6 +33,10 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
       <img src="https://github.com/oyogi.png?size=100" width=100><br>
       <b><a href="https://github.com/oyogi">Yogi Nam de Souza Barbosa</a></b><br>
     </td>
+  <td align="center">
+      <img src="https://github.com/Carlos-UCH.png?size=100" width=100><br>
+      <b><a href="https://github.com/Carlos-UCH">Yogi Nam de Souza Barbosa</a></b><br>
+    </td>
   </tr>
 </table>
 
@@ -40,5 +44,6 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
 
 | ID | Descrição | Autor | Data |
 |:--:|:---------|:------|:----:|
-| 01 | Reformulação da página inicial | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
-| 02 | Adiciona integrante | [Yogi](https://github.com/oyogi) | 21/05/2025 |
+| 01 | Reformulação da página inicial | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2026 |
+| 02 | Adiciona integrante | [Yogi](https://github.com/oyogi) | 21/05/2026 |
+| 03 | Adiciona integrante e fases| [Carlos](https://github.com/Carlos-UCH) | 12/06/2026 |
