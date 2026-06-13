@@ -643,6 +643,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-tolerancia-a-falhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Tolerância a Falhas
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1060,6 +1071,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-tolerancia-a-falhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Tolerância a Falhas
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1192,13 +1214,19 @@
 </tr>
 <tr>
 <td>1.6</td>
-<td>Adição de novos objetivos ao GQM</td>
+<td>Adição do objetivo de avaliação de Tolerância a Falhas ao GQM</td>
 <td>Guilherme Flyan</td>
 <td>12/06/2026</td>
 </tr>
 <tr>
 <td>1.7</td>
-<td>Adição de Question e Metric sobre a Tolerância a Falhas</td>
+<td>Adição das questões e hipóteses sobre a Tolerância a Falhas</td>
+<td>Guilherme Flyan</td>
+<td>12/06/2026</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Adição das métricas sobre a Tolerância a Falhas</td>
 <td>Guilherme Flyan</td>
 <td>12/06/2026</td>
 </tr>
@@ -1313,6 +1341,20 @@
 </li>
 <li><strong>Fórmula:</strong> <code>Persistencia = (Total de registros íntegros após recuperação / Total de registros antes da falha) * 100</code></li>
 </ul>
+<h3 id="33-tolerancia-a-falhas">3.3. Tolerância a Falhas</h3>
+<ul>
+<li><strong>M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes:</strong> Representa o percentual de execução bem sucedida da suíte de testes existentes.</li>
+<li>
+<p><strong>Fórmula:</strong> <code>Prevenção de Falhas = (A / B) * 100</code>.</p>
+</li>
+<li>
+<p><strong>M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions:</strong> Representa o percentual de execução bem sucedida das Actions do GitHub.</p>
+</li>
+<li><strong>Fórmula:</strong> <code>Prevenção de Falhas = (A / B) * 100</code>.</li>
+</ul>
+<p>Onde em ambas as métricas:</p>
+<p><code>A = Número de ocorrências de falhas críticas e graves evitadas em relação aos casos de teste de padrão de falha</code>.</p>
+<p><code>B = Número de casos de teste de padrão de falha executados (quase causando falha) durante os testes</code>.</p>
 <h2 id="4-hierarquia-gqm">4. Hierarquia GQM</h2>
 <p>O Diagrama 1 ilustra a rastreabilidade entre o objetivo, as questões investigadas e as métricas adotadas.</p>
 <p><strong>Diagrama 1: Desdobramento Hierárquico do Modelo GQM</strong></p>
