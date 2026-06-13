@@ -1266,10 +1266,18 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <li>Clique com o <strong>botão direito</strong> no nome desse arquivo e selecione <strong>Block request URL</strong> (Bloquear URL da requisição). Uma gaveta inferior abrirá confirmando o bloqueio.</li>
 <li><strong>Recarregue a página novamente (F5)</strong>. A requisição do <code>.json</code> aparecerá em vermelho (status <code>(blocked:devtools)</code>).</li>
 <li>Abra a localização onde os dados desse arquivo são renderizados. Como os dados do <code>oportunidades.json</code> aparece em <a href="https://muralunb.com.br/feed">https://muralunb.com.br/feed</a>, vá para essa página.</li>
-<li>Olhe para a tela do site:</li>
-<li>Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).</li>
-<li>Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).</li>
-<li>Para limpar o teste, vá na gaveta inferior "Network request blocking", clique com o botão direito no link bloqueado e escolha "Remove", ou desmarque a caixa "Enable network request blocking".</li>
+<li>
+<p>Olhe para a tela do site:</p>
+</li>
+<li>
+<p>Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).</p>
+</li>
+<li>
+<p>Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).</p>
+</li>
+<li>
+<p>Para limpar o teste, vá na gaveta inferior "Network request blocking", clique com o botão direito no link bloqueado e escolha "Remove", ou desmarque a caixa "Enable network request blocking".</p>
+</li>
 </ol>
 <h4 id="coleta-de-m21-taxa-de-integridade-pos-falha-do-pipeline">Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)</h4>
 <ol>
@@ -1279,8 +1287,12 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <li>Clique na aba <strong>Actions</strong>, selecione o <em>workflow</em> <code>1_ejs_extrair_dados.yml</code> que é o <code>Processar Empresas Juniores</code> na barra lateral e clique em <strong>Run workflow</strong> para iniciar a execução.</li>
 <li>Aguarde a conclusão de todas as etapas do <em>job</em>, independentemente do status final indicado pelo GitHub Actions (verde ou vermelho).</li>
 <li>Volte à aba <strong>Code</strong>, navegue até a pasta <code>data/EJs/</code> e abra o arquivo <code>empresas_juniores_consolidadas.json</code>.</li>
-<li>Inspecione o conteúdo do arquivo e determine o resultado da métrica:</li>
-<li><strong>Sucesso (100%):</strong> O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.</li>
+<li>
+<p>Inspecione o conteúdo do arquivo e determine o resultado da métrica:</p>
+</li>
+<li>
+<p><strong>Sucesso (100%):</strong> O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.</p>
+</li>
 <li><strong>Falha (0%):</strong> O erro foi ignorado ou causou um efeito colateral que sobrescreveu o arquivo anterior, deixando-o vazio, corrompido ou apenas com dados parciais/inválidos.</li>
 </ol>
 <h4 id="coleta-de-m22-tempo-medio-de-recuperacao-mttr">Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)</h4>
@@ -1306,7 +1318,7 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <ol>
 <li>Clonar o repositório do Mural UnB existente no GitHub.</li>
 <li>Realizar a instalação das dependências especificadas de acordo com o README do repositório.</li>
-<li>Executar o script  <code>pytest -v</code>.</li>
+<li>Executar o script <code>pytest -v</code>.</li>
 <li>Contabilizar testes coletados e denominá-los de B.</li>
 <li>Contabilizar testes que passaram e denominá-los de A.</li>
 <li>Obter a métrica através da razão A/B * 100.</li>
@@ -1341,64 +1353,64 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <tbody>
 <tr>
 <td>Setup e ativação do UptimeRobot para o Mural UnB</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Yogi</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Início do monitoramento contínuo para extração da métrica M1.1.</td>
 </tr>
 <tr>
 <td>Execução da ferramenta de carga (Locust) contra a API</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Carlos</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Coleta da taxa de requisições e estabilidade sob pressão (M1.2).</td>
 </tr>
 <tr>
 <td>Execução dos testes de resiliência e simulações de rede offline</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Yogi</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Coleta prática dos dados de comportamento da interface (M1.3).</td>
 </tr>
 <tr>
 <td>Injeção de erros no script e processamento da pasta de arquivos corrompidos</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Yogi e Carlos</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Obtenção dos resultados de integridade e persistência (M2.1 e M2.3).</td>
 </tr>
 <tr>
 <td>Auditoria e varredura do histórico de execuções do Actions</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Yogi</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Coleta retroativa de dados de tempo para cálculo do MTTR (M2.2).</td>
 </tr>
 <tr>
 <td>Consolidação, cálculo das fórmulas e julgamento final</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Equipe</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Cruzamento dos dados com os níveis de pontuação definidos na Fase 2.</td>
 </tr>
 <tr>
 <td>Execução dos testes existentes</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Guilherme</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Obtenção de dados essenciais para realizar a medida definida para tolerância de falhas (M3.1).</td>
 </tr>
 <tr>
 <td>Contabilização dos testes e actions executados</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>Guilherme</td>
+<td>10/06</td>
+<td>12/06</td>
 <td>Definição da conclusão com base nos resultados obtidos (M3.1 e M3.2).</td>
 </tr>
 </tbody>
 </table>
 <h2 id="4-consistencia-com-a-fase-2">4. Consistência com a Fase 2</h2>
-<p>Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via <em>fork</em> e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2). </p>
+<p>Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via <em>fork</em> e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2).</p>
 <h2 id="5-declaracao-de-uso-de-ia">5. Declaração de Uso de IA</h2>
 <p><strong>Tabela: Declaração Formal de Uso de IA</strong></p>
 <table>

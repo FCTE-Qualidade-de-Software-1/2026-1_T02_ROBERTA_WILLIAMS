@@ -762,6 +762,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Versões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-obtencao-das-medidas-e-dados-brutos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -988,6 +999,17 @@
     <span class="md-ellipsis">
       
         4. Conclusão e Plano de Ação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-declaracao-de-uso-de-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Declaração de Uso de IA
       
     </span>
   </a>
@@ -1037,6 +1059,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Versões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-obtencao-das-medidas-e-dados-brutos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1269,6 +1302,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-declaracao-de-uso-de-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Declaração de Uso de IA
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1287,6 +1331,25 @@
 
 
 <h1 id="relatorio-de-avaliacao-de-confiabilidade-fase-4">Relatório de Avaliação de Confiabilidade - Fase 4</h1>
+<h2 id="historico-de-versoes">Histórico de Versões</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>Inserção das coletas, resultados e conclusão</td>
+<td>Yogi e Carlos</td>
+<td>12/06/2026</td>
+</tr>
+</tbody>
+</table>
 <h2 id="1-obtencao-das-medidas-e-dados-brutos">1. Obtenção das Medidas e Dados Brutos</h2>
 <p>As medições foram executadas seguindo o Plano de Avaliação estabelecido na Fase 3. Os dados coletados refletem o comportamento real da arquitetura do Mural UnB sob testes de estresse, injeção de falhas e monitoramento passivo.</p>
 <h3 id="11-evidencias-visuais-da-coleta-screenshots">1.1 Evidências Visuais da Coleta (Screenshots)</h3>
@@ -1318,7 +1381,6 @@
 <p><em>Descrição: Comprovação da inserção da exceção intencional (<code>raise Exception("Erro forçado...")</code>) no script de consolidação e a consequente falha correta do workflow no Actions (exit code 1), garantindo que os 83 registros previamente estabelecidos não fossem apagados.</em></p>
 <p><img alt="M2.3 Screenshot 1" src="../../imagem/m2.3.png" /></p>
 <p><img alt="M2.3 Screenshot 2" src="../../imagem/m2.3%282%29.png" /></p>
-<hr />
 <h2 id="2-processamento-de-dados-e-niveis-de-pontuacao">2. Processamento de Dados e Níveis de Pontuação</h2>
 <p>Os dados brutos coletados foram aplicados às fórmulas matemáticas definidas no modelo GQM para determinar o nível de maturidade de cada indicador.</p>
 <h3 id="tabela-1-consolidacao-das-metricas-e-julgamento-de-nivel">Tabela 1: Consolidação das Métricas e Julgamento de Nível</h3>
@@ -1370,7 +1432,6 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h2 id="3-analise-gqm-e-julgamento-das-hipoteses">3. Análise GQM e Julgamento das Hipóteses</h2>
 <h3 id="q1-a-interface-se-mantem-disponivel-perante-falhas-assincronas">Q1: A interface se mantém disponível perante falhas assíncronas?</h3>
 <ul>
@@ -1392,7 +1453,6 @@
 <li><strong>Julgamento:</strong> Adequado.</li>
 <li><strong>Análise:</strong> O isolamento e o comportamento atômico do pipeline garantem que erros em dados novos ou malformados não corrompam os dados estáveis preexistentes. O arquivo consolidou 100% de persistência (83/83 registros mantidos sem perdas), mitigando o efeito cascata de um carregamento falho (M2.3).</li>
 </ul>
-<hr />
 <h2 id="4-conclusao-e-plano-de-acao">4. Conclusão e Plano de Ação</h2>
 <p>A avaliação de confiabilidade do Mural UnB expôs uma arquitetura robusta em sua integridade de dados estáticos, mas frágil em aspectos operacionais sob estresse e manutenção corretiva. O pipeline mascara quebras de execução devido à diretiva <code>continue-on-error: true</code> no arquivo <code>.yml</code>, gerando logs com falso status de "Successful" para execuções que falharam internamente.</p>
 <p>Para elevar o nível de confiabilidade do sistema, a equipe de desenvolvimento deve executar as seguintes ações:</p>
@@ -1402,6 +1462,24 @@
 <li><strong>Resolução de Erros Crônicos (Severidade Média):</strong> Corrigir o script associado ao workflow <code>Atualizar Tags dos Laboratórios</code>, paralisado desde abril de 2026, restabelecendo a atualização automatizada da plataforma.</li>
 <li><strong>Tratamento de Exceções de Rede no Front (Severidade Baixa):</strong> Ajustar o componente de erro do React para diferenciar um arquivo JSON vazio (sem vagas) de uma requisição bloqueada por HTTP 4xx/5xx, exibindo um alerta claro de "Erro de conexão" para o usuário final.</li>
 </ol>
+<h2 id="5-declaracao-de-uso-de-ia">5. Declaração de Uso de IA</h2>
+<p><strong>Tabela: Declaração Formal de Uso de IA</strong></p>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Tarefa Realizada</th>
+<th>Conferência Humana</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gemini 3.1 Pro</strong></td>
+<td>Revisão de passo a passo de acordo com fase 3 e conferências de ortografia e dúvidas técnicas.</td>
+<td>Validação das informações sugeridas revisando a fase 3 e ajustando o texto.</td>
+</tr>
+</tbody>
+</table>
 
 
 
