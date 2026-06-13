@@ -77,6 +77,35 @@ As medições foram executadas seguindo o Plano de Avaliação estabelecido na F
 
 ![M2.3 Screenshot 2](../imagem/m2.3(2).png)
 
+
+#### M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes
+
+
+
+*Descrição: Obtenção dos dados A (testes que passaram) e B (total de testes executados) conforme definidos na fase 3.*
+
+![M3.1 Screenshot 2](../imagem/m3.1.2.png) Dados A
+
+![M3.1 Screenshot 1](../imagem/m3.1.1.png) Dados B
+
+#### M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions
+
+
+*Descrição: Obtenção dos dados A (últimas actions scheduled que foram executadas de maneira bem sucedida) e B (total de actions scheduled executados) conforme definidos na fase 3.*
+
+![M3.2 Screenshot 1](../imagem/m3.2.1.png)
+
+![M3.2 Screenshot 2](../imagem/m3.2.2.png)
+
+![M3.2 Screenshot 3](../imagem/m3.2.3.png)
+
+![M3.2 Screenshot 4](../imagem/m3.2.4.png)
+
+![M3.2 Screenshot 5](../imagem/m3.2.5.png)
+
+![M3.2 Screenshot 6](../imagem/m3.2.6.png)
+
+
 ---
 
 ## 2. Processamento de Dados e Níveis de Pontuação
@@ -93,6 +122,8 @@ Os dados brutos coletados foram aplicados às fórmulas matemáticas definidas n
 | **M2.1** | Integridade Pipeline | Sistema abortou antes da gravação. $0$ bytes corrompidos em produção. | **Excelente** |
 | **M2.2** | Recuperação (MTTR) | Erro persistente há $> 3$ meses. Sem aplicação de correção definitiva. | **Inadequado** |
 | **M2.3** | Persistência | $\left(\frac{83 \text{ (Pós-falha)}}{83 \text{ (Pré-falha)}}\right) \times 100 = 100\%$ de retenção de registros. | **Excelente** |
+| **M3.1** | Tolerância a Falhas | $126 / 126 * 100 = 100\%$ de execução de testes bem sucedidos. | **Excelente** |
+| **M3.2** | Tolerância a Falhas | $ 4 / 6 * 100 = 66.66\%$ de execução de actions bem sucedidos. | **Inadequado** |
 
 ---
 
@@ -118,6 +149,17 @@ Os dados brutos coletados foram aplicados às fórmulas matemáticas definidas n
 * **Julgamento:** Adequado.
 * **Análise:** O isolamento e o comportamento atômico do pipeline garantem que erros em dados novos ou malformados não corrompam os dados estáveis preexistentes. O arquivo consolidou 100% de persistência (83/83 registros mantidos sem perdas), mitigando o efeito cascata de um carregamento falho (M2.3).
 
+
+### Q5: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?
+
+* **Julgamento:** **Adequado PORÉM Hipótese Refutada**.
+* **Análise:** A cobertura dos testes está ótima entretanto como foi evidenciado pela métrica 3.2 existem códigos que sequer executam nos serviços agendados do GitHub Actions onde os logs apresentam falhas na tentativa de execução de scripts que não são identificados através da execução dos testes manuais, isso acarreta na má adequação e aplicabilidade dos testes caracterizando a qualidade dos mesmos como inadequada onde exploram apenas o cenário feliz de execução do código e não lidam com falhas críticas/graves.
+
+### Q6: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?
+
+* **Julgamento:** Adequado.
+* **Análise:** Através dos logs do Github Actions foi possível evidenciar a existencia de falhas críticas e graves que comprometem o cumprimento do software com seu propósito.
+
 ---
 
 ## 4. Conclusão e Plano de Ação
@@ -130,3 +172,4 @@ Para elevar o nível de confiabilidade do sistema, a equipe de desenvolvimento d
 2. **Mitigação do Bloqueio de Carga (Severidade Alta):** Posicionar uma camada de CDN (ex: Cloudflare) à frente do domínio `muralunb.com.br`. O cacheamento do arquivo JSON na borda (*edge*) evitará o bloqueio por Rate Limiting do servidor de origem, absorvendo as requisições simultâneas constatadas no teste do Locust.
 3. **Resolução de Erros Crônicos (Severidade Média):** Corrigir o script associado ao workflow `Atualizar Tags dos Laboratórios`, paralisado desde abril de 2026, restabelecendo a atualização automatizada da plataforma.
 4. **Tratamento de Exceções de Rede no Front (Severidade Baixa):** Ajustar o componente de erro do React para diferenciar um arquivo JSON vazio (sem vagas) de uma requisição bloqueada por HTTP 4xx/5xx, exibindo um alerta claro de "Erro de conexão" para o usuário final.
+5. **Desenvolvimento de Testes**: O desenvolvimento de novos testes é bastante adequado visando explorar falha críticas e graves para que a aplicação possa cumprir com seu propósito.
