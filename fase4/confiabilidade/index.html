@@ -895,6 +895,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -983,6 +1005,28 @@
     <span class="md-ellipsis">
       
         Q4: A restauração pós-falha garante a consistência dos registros válidos?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-os-testes-ja-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-a-esteira-cicd-do-projeto-estabelecida-atraves-do-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?
       
     </span>
   </a>
@@ -1192,6 +1236,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1286,6 +1352,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#q5-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-os-testes-ja-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-a-esteira-cicd-do-projeto-estabelecida-atraves-do-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1348,6 +1436,12 @@
 <td>Yogi e Carlos</td>
 <td>12/06/2026</td>
 </tr>
+<tr>
+<td>1.1</td>
+<td>Inserção sobre tolerância a falhas</td>
+<td>Guilherme Flyan</td>
+<td>12/06/2026</td>
+</tr>
 </tbody>
 </table>
 <h2 id="1-obtencao-das-medidas-e-dados-brutos">1. Obtenção das Medidas e Dados Brutos</h2>
@@ -1381,9 +1475,23 @@
 <p><em>Descrição: Comprovação da inserção da exceção intencional (<code>raise Exception("Erro forçado...")</code>) no script de consolidação e a consequente falha correta do workflow no Actions (exit code 1), garantindo que os 83 registros previamente estabelecidos não fossem apagados.</em></p>
 <p><img alt="M2.3 Screenshot 1" src="../../imagem/m2.3.png" /></p>
 <p><img alt="M2.3 Screenshot 2" src="../../imagem/m2.3%282%29.png" /></p>
+<h4 id="m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes">M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes</h4>
+<p><em>Descrição: Obtenção dos dados A (testes que passaram) e B (total de testes executados) conforme definidos na fase 3.</em></p>
+<p><img alt="M3.1 Screenshot 2" src="../../imagem/m3.1.2.png" /> Dados A</p>
+<p><img alt="M3.1 Screenshot 1" src="../../imagem/m3.1.1.png" /> Dados B</p>
+<h4 id="m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions">M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions</h4>
+<p><em>Descrição: Obtenção dos dados A (últimas actions scheduled que foram executadas de maneira bem sucedida) e B (total de actions scheduled executados) conforme definidos na fase 3.</em></p>
+<p><img alt="M3.2 Screenshot 1" src="../../imagem/m3.2.1.png" /></p>
+<p><img alt="M3.2 Screenshot 2" src="../../imagem/m3.2.2.png" /></p>
+<p><img alt="M3.2 Screenshot 3" src="../../imagem/m3.2.3.png" /></p>
+<p><img alt="M3.2 Screenshot 4" src="../../imagem/m3.2.4.png" /></p>
+<p><img alt="M3.2 Screenshot 5" src="../../imagem/m3.2.5.png" /></p>
+<p><img alt="M3.2 Screenshot 6" src="../../imagem/m3.2.6.png" /></p>
+<hr />
 <h2 id="2-processamento-de-dados-e-niveis-de-pontuacao">2. Processamento de Dados e Níveis de Pontuação</h2>
 <p>Os dados brutos coletados foram aplicados às fórmulas matemáticas definidas no modelo GQM para determinar o nível de maturidade de cada indicador.</p>
 <h3 id="tabela-1-consolidacao-das-metricas-e-julgamento-de-nivel">Tabela 1: Consolidação das Métricas e Julgamento de Nível</h3>
+<hr />
 <table>
 <thead>
 <tr>
@@ -1430,6 +1538,18 @@
 <td><span class="arithmatex">\(\left(\frac{83 \text{ (Pós-falha)}}{83 \text{ (Pré-falha)}}\right) \times 100 = 100\%\)</span> de retenção de registros.</td>
 <td><strong>Excelente</strong></td>
 </tr>
+<tr>
+<td><strong>M3.1</strong></td>
+<td>Tolerância a Falhas</td>
+<td><span class="arithmatex">\(126 / 126 * 100 = 100\%\)</span> de execução de testes bem sucedidos.</td>
+<td><strong>Excelente</strong></td>
+</tr>
+<tr>
+<td><strong>M3.2</strong></td>
+<td>Tolerância a Falhas</td>
+<td>$ 4 / 6 * 100 = 66.66\%$ de execução de actions bem sucedidos.</td>
+<td><strong>Inadequado</strong></td>
+</tr>
 </tbody>
 </table>
 <h2 id="3-analise-gqm-e-julgamento-das-hipoteses">3. Análise GQM e Julgamento das Hipóteses</h2>
@@ -1453,6 +1573,17 @@
 <li><strong>Julgamento:</strong> Adequado.</li>
 <li><strong>Análise:</strong> O isolamento e o comportamento atômico do pipeline garantem que erros em dados novos ou malformados não corrompam os dados estáveis preexistentes. O arquivo consolidou 100% de persistência (83/83 registros mantidos sem perdas), mitigando o efeito cascata de um carregamento falho (M2.3).</li>
 </ul>
+<h3 id="q5-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-os-testes-ja-existentes">Q5: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?</h3>
+<ul>
+<li><strong>Julgamento:</strong> <strong>Adequado PORÉM Hipótese Refutada</strong>.</li>
+<li><strong>Análise:</strong> A cobertura dos testes está ótima entretanto como foi evidenciado pela métrica 3.2 existem códigos que sequer executam nos serviços agendados do GitHub Actions onde os logs apresentam falhas na tentativa de execução de scripts que não são identificados através da execução dos testes manuais, isso acarreta na má adequação e aplicabilidade dos testes caracterizando a qualidade dos mesmos como inadequada onde exploram apenas o cenário feliz de execução do código e não lidam com falhas críticas/graves.</li>
+</ul>
+<h3 id="q6-qual-e-a-eficacia-do-sistema-pipeline-de-dados-em-tratar-e-controlar-falhas-criticas-e-graves-de-acordo-com-a-esteira-cicd-do-projeto-estabelecida-atraves-do-github-actions">Q6: Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?</h3>
+<ul>
+<li><strong>Julgamento:</strong> Adequado.</li>
+<li><strong>Análise:</strong> Através dos logs do Github Actions foi possível evidenciar a existencia de falhas críticas e graves que comprometem o cumprimento do software com seu propósito.</li>
+</ul>
+<hr />
 <h2 id="4-conclusao-e-plano-de-acao">4. Conclusão e Plano de Ação</h2>
 <p>A avaliação de confiabilidade do Mural UnB expôs uma arquitetura robusta em sua integridade de dados estáticos, mas frágil em aspectos operacionais sob estresse e manutenção corretiva. O pipeline mascara quebras de execução devido à diretiva <code>continue-on-error: true</code> no arquivo <code>.yml</code>, gerando logs com falso status de "Successful" para execuções que falharam internamente.</p>
 <p>Para elevar o nível de confiabilidade do sistema, a equipe de desenvolvimento deve executar as seguintes ações:</p>
@@ -1461,6 +1592,7 @@
 <li><strong>Mitigação do Bloqueio de Carga (Severidade Alta):</strong> Posicionar uma camada de CDN (ex: Cloudflare) à frente do domínio <code>muralunb.com.br</code>. O cacheamento do arquivo JSON na borda (<em>edge</em>) evitará o bloqueio por Rate Limiting do servidor de origem, absorvendo as requisições simultâneas constatadas no teste do Locust.</li>
 <li><strong>Resolução de Erros Crônicos (Severidade Média):</strong> Corrigir o script associado ao workflow <code>Atualizar Tags dos Laboratórios</code>, paralisado desde abril de 2026, restabelecendo a atualização automatizada da plataforma.</li>
 <li><strong>Tratamento de Exceções de Rede no Front (Severidade Baixa):</strong> Ajustar o componente de erro do React para diferenciar um arquivo JSON vazio (sem vagas) de uma requisição bloqueada por HTTP 4xx/5xx, exibindo um alerta claro de "Erro de conexão" para o usuário final.</li>
+<li><strong>Desenvolvimento de Testes</strong>: O desenvolvimento de novos testes é bastante adequado visando explorar falha críticas e graves para que a aplicação possa cumprir com seu propósito.</li>
 </ol>
 <h2 id="5-declaracao-de-uso-de-ia">5. Declaração de Uso de IA</h2>
 <p><strong>Tabela: Declaração Formal de Uso de IA</strong></p>
