@@ -48,6 +48,16 @@ A autenticidade garante que a identidade de um sujeito ou recurso possa ser comp
 
 * **Hipótese (H4):** Espera-se que a procedência seja majoritariamente verificável - as 49 empresas juniores possuem canal oficial (`Site` e `Instagram`) preenchido em 100% dos registros -, porém não integralmente, pois aproximadamente 35% dos laboratórios apresentam `contato` fora do domínio institucional `@unb.br`, reduzindo a taxa global de procedência verificável para uma faixa estimada de ~85%.
 
+## 2.3. Subcaracterística: Confidencialidade e Controle (Avaliação em Produção)
+
+Esta seção foi adicionada para complementar a avaliação do *backend local* (Q1/Q2), validando rigorosamente a camada **estática de produção** exposta na internet, com testes diretos via terminal e tráfego de rede.
+
+* **Questão (Q5 - Controle de Acesso):** O sistema restringe rigorosamente as permissões horizontais e verticais, impedindo que usuários não autorizados burlem a interface ou consumam os endpoints protegidos da API em produção?
+* **Hipótese (H5):** A taxa de bloqueio de tentativas de acesso ilegais ou de operações não autorizadas será de 100%, tanto na camada de interface quanto no servidor.
+
+* **Questão (Q6 - Proteção Criptográfica):** Os dados sensíveis dos estudantes estão devidamente protegidos por criptografia durante o tráfego na rede e no armazenamento físico do servidor?
+* **Hipótese (H6):** A totalidade dos pacotes de dados restritos, conforme exigido pelas normativas de segurança, trafegará sob protocolos criptográficos fortes (TLS), e os registros críticos no banco estarão anonimizados com funções de hash.
+
 ## 3. Nível Quantitativo: Seleção de Métricas e Níveis de Pontuação 
 
 Para garantir excelência nos critérios C4 e C5, as métricas respondem diretamente às questões (Q), possuindo níveis de pontuação claramente estabelecidos e critérios de julgamento explícitos. 
@@ -74,7 +84,7 @@ Para garantir excelência nos critérios C4 e C5, as métricas respondem diretam
 
     * **Coleta**: Envio de payloads via ferramentas de teste de API (ex: Postman) tentando alterar o ID de uma publicação de terceiros. 
 
-* **M1.2 - Quantidade de Endpoints Críticos Vulneráveis (QEC-V)**: Contagem absoluta de rotas de manipulação de dados que aceitam requisições sem o envio de um token JWT válido no cabeçalho. 
+* **M1.2 - Quantidade de Endpoints Críticos Vulneráveis (QEC-V)**: Contagem absoluta de rotas de manipulação de dados que aceitam requisições sem o envio de um token JWT válido no cabeçalho. **⚠️ Nota arquitetural:** esta métrica é formalmente **Não Aplicável (N/A)** na camada de produção atual do Mural UnB, que opera com arquitetura Jamstack (GitHub Pages + arquivos JSON estáticos). Não existem endpoints privados em um servidor de arquivos estáticos — o teste aplica-se ao backend de referência (2025-2) executado via Docker. 
 
 ### Métrica 2 (M2) - Referente à Q2 (Autenticidade) 
 
@@ -136,6 +146,20 @@ Para garantir excelência nos critérios C4 e C5, as métricas respondem diretam
 
     * **Insatisfatório (< 80%)**: Procedência insuficiente. Julgamento: Risco de conteúdo de fonte não confirmada; adicionar campo `fonte`/`url_origem` no ETL.
 
+### Métrica 5 (M5) - Referente à Q5 (Controle de Acesso em Produção)
+
+Para avaliar o comportamento real do servidor de produção contra tentativas de invasão e mapeamento de rotas.
+
+* **M5.1 - Auditoria de Acesso na Interface Administrativa**: Mede a taxa de bloqueio efetivo perante o volume de tentativas de acesso ilegal, simulando acesso com perfil de discente sem privilégios, executando evasão de rotas (inserindo caminhos protegidos diretamente na URL) e inspecionando o DOM em busca de vulnerabilidades em elementos ocultos.
+* **M5.2 - Teste de Penetração em Endpoints Privados (API)**: Analisa a eficácia do servidor em rejeitar requisições estruturadas e não autorizadas. Utiliza ferramentas de auditoria de rede para direcionar chamadas HTTP a endpoints de manipulação e tenta a exaustão de autorização empregando *tokens* forjados ou expirados.
+
+### Métrica 6 (M6) - Referente à Q6 (Proteção Criptográfica em Produção)
+
+Garante a integridade do trânsito da informação e da persistência de dados no repositório de produção.
+
+* **M6.1 - Verificação de Criptografia em Trânsito**: Certifica a presença de protocolos HTTPS/TLS, garantindo que nenhum dado trafegue em texto plano. Medida através de interceptação do tráfego gerado pela camada frontend com destino ao host de dados.
+* **M6.2 - Auditoria de Proteção de Dados em Repouso**: Valida a aplicação de algoritmos de *hashing* robustos (ex: bcrypt) nos dados críticos para garantir a ilegibilidade. Envolve consulta à base de dados (arquivos armazenados/repositório de dados de produção) e verificação dos segredos do código.
+
 ## 4. Níveis de Pontuação e Critérios de Julgamento 
 
 Para garantir o rigor analítico e a interpretação inequívoca dos resultados, os critérios de julgamento foram estabelecidos abaixo.
@@ -143,11 +167,15 @@ Para garantir o rigor analítico e a interpretação inequívoca dos resultados,
 | Métrica | Inadequado (Crítico) | Aceitável (Requer Atenção) | Excelente (Seguro) | Ação Recomendada (Se falhar) |
 | :--- | :--- | :--- | :--- | :--- |
 | **M1.1 (TBM-NAut)** | Abaixo de 95% | Entre 95% e 99% | **100%** | Revisar imediatamente os *middlewares* de autorização nas rotas da API. |
-| **M1.2 (QEC-V)** | Maior que 0 | N/A (Métrica binária na prática) | **0 endpoints** | Proteger rotas expostas implementando validação de *token* JWT. |
+| **M1.2 (QEC-V)** | Maior que 0 (backend Docker) | N/A (Métrica binária; **N/A em produção** — Jamstack sem endpoints) | **0 endpoints** (backend) | Proteger rotas expostas implementando validação de *token* JWT (aplica-se ao backend de referência). |
 | **M2.1 (EVD-Inst)** | Abaixo de 100% (Aceita e-mail comum) | N/A | **100%** (Bloqueio total) | Implementar validação via Regex para aceitar exclusivamente domínios institucionais. |
 | **M2.2 (P-2FA)** | 0% | Entre 1% e 49% | **50% a 100%** | Planejar a integração de envio de código via e-mail institucional no login. |
 | **M3 (TNCM)** | Execução automática (auto-XSS) em campo de texto | Falha restrita ao `href` de canal (exige clique) | Nenhum vetor ativo (texto e `href` limpos) | Validar o esquema da URL no `SocialFooter` (aceitar só `http`/`https`) e sanitizar as entradas do pipeline. |
 | **M4 (TPV)** | < 80% | 80% a 94% | **≥ 95%** | Padronizar o contato institucional dos laboratórios e adicionar campo `fonte`/`url_origem` no ETL. |
+| **M5.1 (Acesso Interface)** | Menos de 100% de bloqueios | N/A | **100% (Bloqueio ou 404)** | Remover qualquer rota não pública do roteador frontend; revisar `localStorage`. |
+| **M5.2 (Pentest Endpoints)**| Eficácia menor que 100% | N/A | **100% (Rejeição ou N/A por ausência de API)** | Desativar métodos HTTP inseguros caso existam na configuração do servidor. |
+| **M6.1 (Criptografia Rede)**| Dados em texto plano capturados | Configuração TLS fraca | **100% via HTTPS forte** | Forçar redirecionamento `HTTP -> HTTPS` e aplicar HSTS. |
+| **M6.2 (Proteção Repouso)** | Campos sensíveis não criptografados | Segredos fracos no código | **Segredos externalizados / 100% com Hash (ou N/A sem PII)** | Implementar *hashing* no ETL e transferir credenciais *hardcoded* para *Secrets*. |
 
 ## 5. Plano de Coleta de Dados 
 
@@ -218,10 +246,12 @@ O glossário abaixo foi incluído para auxiliar na compreensão dos termos técn
 | 01 | Criação da página da fase 2 | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
 | 02 | Incremento do GQM de Segurança com questões, hipóteses e métricas| Isaac | 11/06/2026 |
 | 03 | Ajuste do critério de M3 (TNCM): julgamento pelo padrão da falha (auto-XSS em texto) em vez do percentual bruto | Isaac | 12/06/2026 |
+| 04 | Nota arquitetural sobre Jamstack em M1.2 (QEC-V): métrica N/A na camada de produção estática, válida apenas no backend de referência (Docker) | Isaac | 12/06/2026 |
+| 05 | Integração das métricas M5 (Acesso/Pentest) e M6 (Criptografia/Repouso) baseadas na avaliação direta da camada de produção via terminal e rede | Caio Soares | 12/06/2026 |
+| 06 | Estruturação e planejamento do escopo da parte de segurança | Caio Soares | 12/06/2026 |
 
 ## Declaração do uso de ia
 
-
 | Ferramenta | Tarefa | Revisão Humana |
 |:--:|:---------|:------|
-| Gemini 3.1 Pro | Auxílio na elaboração da fase 2, no tocante ao objetivo, questões, hipóteses e métricas. | O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB. |
+| Gemini 1.5 Pro / Agentes IA | Utilizada para classificar insights de confiabilidade e segurança, auxiliar na interpretação de dados, conduzir a estruturação dos testes práticos, e realizar a revisão e correção ortográfica do documento. | O texto e as classificações geradas pela IA foram rigorosamente revisados, adaptados ao contexto do projeto e validados para garantir informações fidedignas e relevantes para o projeto Mural UnB. |
