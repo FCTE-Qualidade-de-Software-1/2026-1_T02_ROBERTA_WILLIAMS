@@ -118,6 +118,9 @@ O método consiste na execução de testes controlados de injeção de falhas em
 | Injeção de erros no script e processamento da pasta de arquivos corrompidos | -           | -      | -       | Obtenção dos resultados de integridade e persistência (M2.1 e M2.3). |
 | Auditoria e varredura do histórico de execuções do Actions                  | -           | -      | -       | Coleta retroativa de dados de tempo para cálculo do MTTR (M2.2).     |
 | Consolidação, cálculo das fórmulas e julgamento final                       | -           | -      | -       | Cruzamento dos dados com os níveis de pontuação definidos na Fase 2. |
+| Execução dos testes existentes | -           | -      | -       | Obtenção de dados essenciais para realizar a medida definida para tolerância de falhas (M3.1). |
+| Contabilização dos testes e actions executados | -           | -      | -       | Definição da conclusão com base nos resultados obtidos (M3.1 e M3.2). |
+
 
 ## 4. Consistência com a Fase 2
 
