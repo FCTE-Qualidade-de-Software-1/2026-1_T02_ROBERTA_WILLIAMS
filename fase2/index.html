@@ -554,6 +554,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#23-subcaracteristica-confidencialidade-e-controle-avaliacao-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Subcaracterística: Confidencialidade e Controle (Avaliação em Produção)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#3-nivel-quantitativo-selecao-de-metricas-e-niveis-de-pontuacao" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -603,6 +614,28 @@
     <span class="md-ellipsis">
       
         Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-5-m5-referente-a-q5-controle-de-acesso-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 5 (M5) - Referente à Q5 (Controle de Acesso em Produção)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-6-m6-referente-a-q6-protecao-criptografica-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 6 (M6) - Referente à Q6 (Proteção Criptográfica em Produção)
       
     </span>
   </a>
@@ -1026,6 +1059,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#23-subcaracteristica-confidencialidade-e-controle-avaliacao-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Subcaracterística: Confidencialidade e Controle (Avaliação em Produção)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#3-nivel-quantitativo-selecao-de-metricas-e-niveis-de-pontuacao" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1075,6 +1119,28 @@
     <span class="md-ellipsis">
       
         Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-5-m5-referente-a-q5-controle-de-acesso-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 5 (M5) - Referente à Q5 (Controle de Acesso em Produção)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica-6-m6-referente-a-q6-protecao-criptografica-em-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métrica 6 (M6) - Referente à Q6 (Proteção Criptográfica em Produção)
       
     </span>
   </a>
@@ -1273,6 +1339,18 @@
 <p><strong>Hipótese (H4):</strong> Espera-se que a procedência seja majoritariamente verificável - as 49 empresas juniores possuem canal oficial (<code>Site</code> e <code>Instagram</code>) preenchido em 100% dos registros -, porém não integralmente, pois aproximadamente 35% dos laboratórios apresentam <code>contato</code> fora do domínio institucional <code>@unb.br</code>, reduzindo a taxa global de procedência verificável para uma faixa estimada de ~85%.</p>
 </li>
 </ul>
+<h2 id="23-subcaracteristica-confidencialidade-e-controle-avaliacao-em-producao">2.3. Subcaracterística: Confidencialidade e Controle (Avaliação em Produção)</h2>
+<p>Esta seção foi adicionada para complementar a avaliação do <em>backend local</em> (Q1/Q2), validando rigorosamente a camada <strong>estática de produção</strong> exposta na internet, com testes diretos via terminal e tráfego de rede.</p>
+<ul>
+<li><strong>Questão (Q5 - Controle de Acesso):</strong> O sistema restringe rigorosamente as permissões horizontais e verticais, impedindo que usuários não autorizados burlem a interface ou consumam os endpoints protegidos da API em produção?</li>
+<li>
+<p><strong>Hipótese (H5):</strong> A taxa de bloqueio de tentativas de acesso ilegais ou de operações não autorizadas será de 100%, tanto na camada de interface quanto no servidor.</p>
+</li>
+<li>
+<p><strong>Questão (Q6 - Proteção Criptográfica):</strong> Os dados sensíveis dos estudantes estão devidamente protegidos por criptografia durante o tráfego na rede e no armazenamento físico do servidor?</p>
+</li>
+<li><strong>Hipótese (H6):</strong> A totalidade dos pacotes de dados restritos, conforme exigido pelas normativas de segurança, trafegará sob protocolos criptográficos fortes (TLS), e os registros críticos no banco estarão anonimizados com funções de hash.</li>
+</ul>
 <h2 id="3-nivel-quantitativo-selecao-de-metricas-e-niveis-de-pontuacao">3. Nível Quantitativo: Seleção de Métricas e Níveis de Pontuação</h2>
 <p>Para garantir excelência nos critérios C4 e C5, as métricas respondem diretamente às questões (Q), possuindo níveis de pontuação claramente estabelecidos e critérios de julgamento explícitos. </p>
 <h3 id="metrica-1-m1-referente-a-q1-integridade">Métrica 1 (M1) - Referente à Q1 (Integridade)</h3>
@@ -1312,7 +1390,7 @@
 </ul>
 </li>
 <li>
-<p><strong>M1.2 - Quantidade de Endpoints Críticos Vulneráveis (QEC-V)</strong>: Contagem absoluta de rotas de manipulação de dados que aceitam requisições sem o envio de um token JWT válido no cabeçalho. </p>
+<p><strong>M1.2 - Quantidade de Endpoints Críticos Vulneráveis (QEC-V)</strong>: Contagem absoluta de rotas de manipulação de dados que aceitam requisições sem o envio de um token JWT válido no cabeçalho. <strong>⚠️ Nota arquitetural:</strong> esta métrica é formalmente <strong>Não Aplicável (N/A)</strong> na camada de produção atual do Mural UnB, que opera com arquitetura Jamstack (GitHub Pages + arquivos JSON estáticos). Não existem endpoints privados em um servidor de arquivos estáticos — o teste aplica-se ao backend de referência (2025-2) executado via Docker. </p>
 </li>
 </ul>
 <h3 id="metrica-2-m2-referente-a-q2-autenticidade">Métrica 2 (M2) - Referente à Q2 (Autenticidade)</h3>
@@ -1413,6 +1491,18 @@
 </ul>
 </li>
 </ul>
+<h3 id="metrica-5-m5-referente-a-q5-controle-de-acesso-em-producao">Métrica 5 (M5) - Referente à Q5 (Controle de Acesso em Produção)</h3>
+<p>Para avaliar o comportamento real do servidor de produção contra tentativas de invasão e mapeamento de rotas.</p>
+<ul>
+<li><strong>M5.1 - Auditoria de Acesso na Interface Administrativa</strong>: Mede a taxa de bloqueio efetivo perante o volume de tentativas de acesso ilegal, simulando acesso com perfil de discente sem privilégios, executando evasão de rotas (inserindo caminhos protegidos diretamente na URL) e inspecionando o DOM em busca de vulnerabilidades em elementos ocultos.</li>
+<li><strong>M5.2 - Teste de Penetração em Endpoints Privados (API)</strong>: Analisa a eficácia do servidor em rejeitar requisições estruturadas e não autorizadas. Utiliza ferramentas de auditoria de rede para direcionar chamadas HTTP a endpoints de manipulação e tenta a exaustão de autorização empregando <em>tokens</em> forjados ou expirados.</li>
+</ul>
+<h3 id="metrica-6-m6-referente-a-q6-protecao-criptografica-em-producao">Métrica 6 (M6) - Referente à Q6 (Proteção Criptográfica em Produção)</h3>
+<p>Garante a integridade do trânsito da informação e da persistência de dados no repositório de produção.</p>
+<ul>
+<li><strong>M6.1 - Verificação de Criptografia em Trânsito</strong>: Certifica a presença de protocolos HTTPS/TLS, garantindo que nenhum dado trafegue em texto plano. Medida através de interceptação do tráfego gerado pela camada frontend com destino ao host de dados.</li>
+<li><strong>M6.2 - Auditoria de Proteção de Dados em Repouso</strong>: Valida a aplicação de algoritmos de <em>hashing</em> robustos (ex: bcrypt) nos dados críticos para garantir a ilegibilidade. Envolve consulta à base de dados (arquivos armazenados/repositório de dados de produção) e verificação dos segredos do código.</li>
+</ul>
 <h2 id="4-niveis-de-pontuacao-e-criterios-de-julgamento">4. Níveis de Pontuação e Critérios de Julgamento</h2>
 <p>Para garantir o rigor analítico e a interpretação inequívoca dos resultados, os critérios de julgamento foram estabelecidos abaixo.</p>
 <table>
@@ -1435,10 +1525,10 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>M1.2 (QEC-V)</strong></td>
-<td style="text-align: left;">Maior que 0</td>
-<td style="text-align: left;">N/A (Métrica binária na prática)</td>
-<td style="text-align: left;"><strong>0 endpoints</strong></td>
-<td style="text-align: left;">Proteger rotas expostas implementando validação de <em>token</em> JWT.</td>
+<td style="text-align: left;">Maior que 0 (backend Docker)</td>
+<td style="text-align: left;">N/A (Métrica binária; <strong>N/A em produção</strong> — Jamstack sem endpoints)</td>
+<td style="text-align: left;"><strong>0 endpoints</strong> (backend)</td>
+<td style="text-align: left;">Proteger rotas expostas implementando validação de <em>token</em> JWT (aplica-se ao backend de referência).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>M2.1 (EVD-Inst)</strong></td>
@@ -1467,6 +1557,34 @@
 <td style="text-align: left;">80% a 94%</td>
 <td style="text-align: left;"><strong>≥ 95%</strong></td>
 <td style="text-align: left;">Padronizar o contato institucional dos laboratórios e adicionar campo <code>fonte</code>/<code>url_origem</code> no ETL.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M5.1 (Acesso Interface)</strong></td>
+<td style="text-align: left;">Menos de 100% de bloqueios</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;"><strong>100% (Bloqueio ou 404)</strong></td>
+<td style="text-align: left;">Remover qualquer rota não pública do roteador frontend; revisar <code>localStorage</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M5.2 (Pentest Endpoints)</strong></td>
+<td style="text-align: left;">Eficácia menor que 100%</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;"><strong>100% (Rejeição ou N/A por ausência de API)</strong></td>
+<td style="text-align: left;">Desativar métodos HTTP inseguros caso existam na configuração do servidor.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M6.1 (Criptografia Rede)</strong></td>
+<td style="text-align: left;">Dados em texto plano capturados</td>
+<td style="text-align: left;">Configuração TLS fraca</td>
+<td style="text-align: left;"><strong>100% via HTTPS forte</strong></td>
+<td style="text-align: left;">Forçar redirecionamento <code>HTTP -&gt; HTTPS</code> e aplicar HSTS.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>M6.2 (Proteção Repouso)</strong></td>
+<td style="text-align: left;">Campos sensíveis não criptografados</td>
+<td style="text-align: left;">Segredos fracos no código</td>
+<td style="text-align: left;"><strong>Segredos externalizados / 100% com Hash (ou N/A sem PII)</strong></td>
+<td style="text-align: left;">Implementar <em>hashing</em> no ETL e transferir credenciais <em>hardcoded</em> para <em>Secrets</em>.</td>
 </tr>
 </tbody>
 </table>
@@ -1684,6 +1802,24 @@
 <td style="text-align: left;">Isaac</td>
 <td style="text-align: center;">12/06/2026</td>
 </tr>
+<tr>
+<td style="text-align: center;">04</td>
+<td style="text-align: left;">Nota arquitetural sobre Jamstack em M1.2 (QEC-V): métrica N/A na camada de produção estática, válida apenas no backend de referência (Docker)</td>
+<td style="text-align: left;">Isaac</td>
+<td style="text-align: center;">12/06/2026</td>
+</tr>
+<tr>
+<td style="text-align: center;">05</td>
+<td style="text-align: left;">Integração das métricas M5 (Acesso/Pentest) e M6 (Criptografia/Repouso) baseadas na avaliação direta da camada de produção via terminal e rede</td>
+<td style="text-align: left;">Caio Soares</td>
+<td style="text-align: center;">12/06/2026</td>
+</tr>
+<tr>
+<td style="text-align: center;">06</td>
+<td style="text-align: left;">Estruturação e planejamento do escopo da parte de segurança</td>
+<td style="text-align: left;">Caio Soares</td>
+<td style="text-align: center;">12/06/2026</td>
+</tr>
 </tbody>
 </table>
 <h2 id="declaracao-do-uso-de-ia">Declaração do uso de ia</h2>
@@ -1697,9 +1833,9 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">Gemini 3.1 Pro</td>
-<td style="text-align: left;">Auxílio na elaboração da fase 2, no tocante ao objetivo, questões, hipóteses e métricas.</td>
-<td style="text-align: left;">O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB.</td>
+<td style="text-align: center;">Gemini 1.5 Pro / Agentes IA</td>
+<td style="text-align: left;">Utilizada para classificar insights de confiabilidade e segurança, auxiliar na interpretação de dados, conduzir a estruturação dos testes práticos, e realizar a revisão e correção ortográfica do documento.</td>
+<td style="text-align: left;">O texto e as classificações geradas pela IA foram rigorosamente revisados, adaptados ao contexto do projeto e validados para garantir informações fidedignas e relevantes para o projeto Mural UnB.</td>
 </tr>
 </tbody>
 </table>
