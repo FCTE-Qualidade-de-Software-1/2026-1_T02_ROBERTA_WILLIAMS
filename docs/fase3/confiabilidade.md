@@ -21,10 +21,10 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 #### Coleta de M1.1 (Uptime do GitHub Pages)
 
-1. Acesse a ferramenta de monitoramento configurada (UptimeRobot).
-2. Defina o filtro de visualização para as últimas 24 horas.
-3. Extraia o percentual de tempo em que o servidor respondeu com status HTTP 200.
-4. Aplique o valor diretamente na fórmula de M1.1.
+1. Acesse a ferramenta de monitoramento UptimeRobot [https://dashboard.uptimerobot.com/monitors](https://dashboard.uptimerobot.com/monitors).
+2. Clique em New para adicionar um monitoramento.
+3. Insira o URL [https://muralunb.com.br/](https://muralunb.com.br/).
+4. Anote o valor de porcentagem de uptime das últimas 24 horas, este é o resultado da métrica M1.1.
 
 #### Coleta de M1.2 (Taxa de Sucesso de Requisições)
 
@@ -35,28 +35,42 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 #### Coleta de M1.3 (Taxa de Resiliência da Interface Front-end)
 
-1. Abra o navegador Google Chrome e acesse a URL pública do painel do Mural UnB.
-2. Pressione `F12` para abrir o _DevTools_ e selecione a aba **Network** (Rede).
-3. No campo de controle de banda (Throttling), altere de _No throttling_ para **Offline**.
-4. Recarregue a página (`F5`).
-5. Observe o comportamento da interface: registre "Sucesso" se o React renderizou uma mensagem amigável de erro/carregamento falho; registre "Falha" se a tela apresentar um travamento completo (tela branca/quebra de DOM).
-6. Repita o teste 5 vezes e aplique a fórmula de M1.3.
+1. Abra o site [https://muralunb.com.br/](https://muralunb.com.br/) no Chrome.
+2. Aperte `F12` e clique na aba **Network** (Rede).
+3. Na barra de opções da aba Network, marque a caixa **Disable cache** (Desativar cache) e clique no filtro **Fetch/XHR**.
+4. **Recarregue a página (F5)** com o F12 aberto. Isso fará a lista de arquivos carregados aparecer.
+5. Na coluna "Name", procure pelo arquivo de dados (geralmente com final `.json`, como `oportunidades.json`).
+6. Clique com o **botão direito** no nome desse arquivo e selecione **Block request URL** (Bloquear URL da requisição). Uma gaveta inferior abrirá confirmando o bloqueio.
+7. **Recarregue a página novamente (F5)**. A requisição do `.json` aparecerá em vermelho (status `(blocked:devtools)`).
+8. Abra a localização onde os dados desse arquivo são renderizados. Como os dados do `oportunidades.json` aparece em [https://muralunb.com.br/feed](https://muralunb.com.br/feed), vá para essa página.
+9. Olhe para a tela do site:
+  * Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).
+  * Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).
+10. Para limpar o teste, vá na gaveta inferior "Network request blocking", clique com o botão direito no link bloqueado e escolha "Remove", ou desmarque a caixa "Enable network request blocking".
 
 #### Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)
 
-1. Acesse o repositório _fork_ do projeto no GitHub.
-2. Navegue até o script Python responsável pelo processo de ETL.
-3. Insira um erro de sintaxe intencional na primeira linha do arquivo (ex: `import erro_propositado`). Faça o commit diretamente na branch principal do _fork_.
-4. Vá até a aba **Actions**, selecione o workflow correspondente (ex: `1_ejs_extrair_dados.yml`) e clique em **Run workflow** para forçar a execução.
-5. Aguarde o pipeline falhar.
-6. Acesse o diretório onde o arquivo JSON de produção fica armazenado. Verifique se o arquivo foi mantido intacto com os dados anteriores ou se foi limpo/corrompido. Registre o resultado para o cálculo.
+1. Acesse o repositório *fork* do projeto no GitHub.
+2. Navegue até o arquivo do script Python responsável pelo ETL e clique no ícone de lápis para editar.
+3. Insira um erro de código intencional na primeira linha (ex: `import erro_proposital_teste`) e clique em **Commit changes** para salvar na *branch* principal.
+4. Vá para a aba **Actions**, selecione o *workflow* correspondente ao script (ex: `1_ejs_extrair_dados.yml`) e clique em **Run workflow**.
+5. Aguarde até que a execução seja interrompida e apresente o status de falha (ícone de 'X' vermelho).
+6. Volte à aba **Code** e navegue até o diretório onde o arquivo `.json` de produção fica armazenado (ex: pasta `data/`).
+7. Inspecione o conteúdo atual do arquivo `.json` e o seu histórico de *commits*:
+  * **Sucesso (Integridade mantida):** O script falhou antes de salvar. O arquivo manteve os dados antigos perfeitamente intactos e não houve sobrescrita.
+  * **Falha (Corrupção de dados):** O script sobrescreveu o arquivo antes de quebrar. O `.json` foi apagado, substituído por um arquivo vazio com zero bytes, ou contém apenas marcações vazias (como `[]` ou `{}`).
+8. Registre a contagem de sucessos/falhas e aplique na fórmula de M2.1.
 
 #### Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)
 
-1. No repositório principal do GitHub, acesse a aba **Actions**.
-2. Filtre o histórico pelas execuções que falharam nos últimos 3 meses.
-3. Para cada falha encontrada: subtraia o carimbo de data/hora do primeiro disparo falho do carimbo de data/hora do commit que aplicou a correção definitiva.
-4. Some todos os intervalos em horas e divida pelo número total de quebras para obter o MTTR.
+1. Acesse o repositório Mural UnB no GitHub e abra o separador **Actions**.
+2. No campo "Filter workflow runs", escreva `is:failure` para listar apenas as execuções que falharam.
+3. Identifique uma falha ocorrida nos últimos 3 meses. Anote a data e hora exata do erro.
+4. Volte à lista, remova o filtro `is:failure` e localize a primeira execução bem-sucedida (ícone verde) do mesmo *workflow* ocorrida *após* a falha identificada.
+5. Se encontrar a execução de sucesso: Anote a data e hora exata, e subtraia a data/hora da falha da data/hora do sucesso para obter o tempo de recuperação (em horas).
+6. Se não encontrar uma execução de sucesso (falha não corrigida): registre o tempo como incalculável e classifique a métrica diretamente como Inadequado (> 48h).
+7. Repita os passos 3 a 6 para todas as falhas registadas no período de 3 meses.
+8. Some todos os tempos de recuperação válidos e divida pelo número total de quebras corrigidas para obter o MTTR.
 
 #### Coleta de M2.3 (Taxa de Persistência Pós-Falha)
 
@@ -96,4 +110,4 @@ Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o mod
 
 | Ferramenta          | Tarefa Realizada                                                                                         | Conferência Humana                                                                                          |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **Gemini 3.1 Pro ** | Mesclagem de versões redundantes, formatação da tabela cronograma e checagem com consistência da fase 2. | A equipe orientou a simplificação do documento, validou as dicas dadas e aprovou as alterações estruturais. |
+| **Gemini 3.1 Pro** | Mesclagem de versões redundantes, formatação da tabela cronograma e checagem com consistência da fase 2. | A equipe orientou a simplificação do documento, validou as dicas dadas e aprovou as alterações estruturais. |
