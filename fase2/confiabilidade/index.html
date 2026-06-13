@@ -1230,6 +1230,12 @@
 <td>Guilherme Flyan</td>
 <td>12/06/2026</td>
 </tr>
+<tr>
+<td>1.9</td>
+<td>Atualizações acerca da rastreabilidade e bibliografia</td>
+<td>Guilherme Flyan</td>
+<td>12/06/2026</td>
+</tr>
 </tbody>
 </table>
 <h2 id="1-nivel-conceitual-objetivo-de-medicao-gqm">1. Nível Conceitual: Objetivo de Medição (GQM)</h2>
@@ -1368,6 +1374,8 @@
         Q2[Q2: Sistema mantém estabilidade sob picos de acesso?]
         Q3[Q3: Pipeline ETL protege arquivos JSON contra corrupção?]
         Q4[Q4: Sistema restaura funções e dados pós-falha?]
+        Q5[Q5: Qual é a eficácia do pipeline de dados em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?]
+        Q6[Q6: Qual é a eficácia do pipeline de dados em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?]
     end
 
     subgraph Nivel_Quantitativo [Nível Quantitativo - Métricas]
@@ -1376,20 +1384,25 @@
         M1_3[M1.3: Taxa de Resiliência Front-end]
         M2_1[M2.1: Integridade Pós-Falha Pipeline]
         M2_2[M2.2: MTTR Pipeline]
-        M2_3[M2.3: Taxa de Persistência Dados]
+        M2_3[M2.3: Taxa de Persistência Dados]    
+        M3_1[M3.1: Percentual de Prevenção de Falhas de Acordo com os Testes Existentes]
+        M3_2[M3.2: Percentual de Prevenção de Falhas de Acordo com o GitHub Actions]
     end
 
     O --&gt; Q1
     O --&gt; Q2
     O --&gt; Q3
     O --&gt; Q4
+    O --&gt; Q5
+    O --&gt; Q6
     Q1 --&gt; M1_1
     Q1 --&gt; M1_3
     Q2 --&gt; M1_2
     Q3 --&gt; M2_1
     Q3 --&gt; M2_2
     Q4 --&gt; M2_3
-</code></pre>
+    Q5 --&gt; M3_1
+    Q6 --&gt; M3_2</code></pre>
 <h2 id="5-niveis-de-pontuacao-e-criterios-de-julgamento">5. Níveis de Pontuação e Critérios de Julgamento</h2>
 <p><strong>Tabela 3: Critérios Detalhados de Julgamento</strong></p>
 <table>
@@ -1445,6 +1458,20 @@
 <td><strong>100%</strong></td>
 <td>Falhas na execução do fluxo não podem comprometer ou apagar registros consolidados previamente. Exige-se persistência total. Recomendação: Implementar rotina automatizada de backup de segurança do JSON.</td>
 </tr>
+<tr>
+<td><strong>M3.1</strong></td>
+<td>&lt; 90%</td>
+<td>90%-95%</td>
+<td>&gt; 95%</td>
+<td>Falhas na execução dos testes do pipeline devem ser tratadas o mais urgente possível para que a aplicação não fique desatualizada fornecendo informações antigas que podem prejudicar os usuários.</td>
+</tr>
+<tr>
+<td><strong>M3.2</strong></td>
+<td>&lt; 100%</td>
+<td>Não aceito</td>
+<td>100%</td>
+<td>Falhas na execução de Actions do GitHub evidenciam problemas ocultos não tão triviais de serem indicados, impossibilitando a atualização constante de informações do sistema, característica essa fundamental para o Mural UnB.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="6-rastreabilidade">6. Rastreabilidade</h2>
@@ -1474,6 +1501,13 @@
 <td>Recuperabilidade</td>
 <td>M2.1, M2.2, M2.3</td>
 <td>Assegura que falhas no fluxo automatizado não gerem perda de dados legados (M2.1), que o tempo de reparo seja mínimo (M2.2) e os dados permaneçam salvos (M2.3).</td>
+</tr>
+<tr>
+<td>Tolerância a Falhas</td>
+<td>Desenvolvedores e Usuários</td>
+<td>Tolerância a Falhas</td>
+<td>M3.1, M3.2</td>
+<td>Assegura que falhas no fluxo automatizado do pipeline serão tratadas (M3.1 e M3.2).</td>
 </tr>
 </tbody>
 </table>
@@ -1508,6 +1542,7 @@
 <ol>
 <li><strong>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.</strong> <em>ISO/IEC 25010: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model</em>. Genebra: ISO, 2023.</li>
 <li><strong>BASILI, V. R.; CALDIERA, G.; ROMBACH, H. D.</strong> <em>The Goal Question Metric Approach</em>. In: Encyclopedia of Software Engineering. New York: John Wiley &amp; Sons, 1994. p. 528-532.</li>
+<li><strong>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.</strong> <em>ISO/IEC 25023: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Measurement of system and software product quality.</em> Geneva: ISO, 2016.</li>
 </ol>
 
 
