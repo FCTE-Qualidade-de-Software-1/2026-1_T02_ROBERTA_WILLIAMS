@@ -2,13 +2,22 @@
 
 ## 1. Objetivo deste Plano**
 
-O projeto de avaliação do **Mural UnB**, na Fase 1 definiu "o que" avaliar (Confiabilidade e Segurança) e na Fase 2 estabeleceu "como medir" (por meio do framework GQM focando em Integridade e Autenticidade). Nesta fase, o objetivo é estruturar o Plano de Avaliação, servindo como a ponte definitiva entre as métricas e as hipóteses levantadas na Fase 2 (Especificar a Avaliação) e a execução prática na Fase 4 (Executar a Avaliação).
+O projeto de avaliação do **Mural UnB**, na Fase 1 definiu "o que" avaliar (Confiabilidade e Segurança) e na Fase 2 estabeleceu "como medir" (por meio do framework GQM focando em Integridade e Autenticidade). Nesta fase, o objetivo é estruturar o Plano de Avaliação, servindo como a ponte definitiva entre as métricas e as hipóteses levantadas na Fase 2 (Especificar a Avaliação) e a execução prática na Fase 4 (Executar a Avaliação).
 
-Outrossim, o **Plano de Avaliação** tem como objetivo detalhar metodologicamente a execução dos testes, bem como definir os métodos de coleta, os recursos tecnológicos, o ambiente isolado de testes e o fluxo de procedimentos para auditar a **Segurança (Integridade e Autenticidade)** da API do Mural UnB. Ele define os recursos de hardware e software necessários, a massa de dados para simulação, e o roteiro passo a passo (scripts de teste) para que qualquer avaliador externo consiga reproduzir as medições de forma consistente, objetiva e auditável na Fase 4. O escopo desta execução limita-se ao **Backend e API** do Mural UnB.
+Outrossim, o **Plano de Avaliação** tem como objetivo detalhar metodologicamente a execução dos testes, bem como definir os métodos de coleta, os recursos tecnológicos, o ambiente isolado de testes e o fluxo de procedimentos para auditar a **Segurança (Integridade e Autenticidade)** do Mural UnB. Ele define os recursos de hardware e software necessários, a massa de dados para simulação, e o roteiro passo a passo (scripts de teste) para que qualquer avaliador externo consiga reproduzir as medições de forma consistente, objetiva e auditável na Fase 4.
 
-**Resumo da Coleta:** O fluxo de testes adotará uma estratégia **híbrida (automatizada e manual).** A coleta das métricas de integridade serão extraídas por meio de rotinas automatizadas via API. Os dados consolidados serão armazenados em uma **“Ficha de Registro (Google Sheets)”,** enquanto as evidências de execução documentadas por meio de relatórios nos formatos .*json* e *.csv*, além de prints de tela do banco de dados.
+> **Nota Arquitetural — Escopo Dual de Avaliação**
+>
+> O Mural UnB adota uma **arquitetura 100% Estática (Jamstack)** em produção: o frontend é uma SPA React (Vite + TypeScript) hospedada no GitHub Pages, alimentada por arquivos `.json` gerados offline por um *pipeline* de *scraping* via GitHub Actions. **Não existe servidor de aplicação ativo (Node.js, Django, etc.), banco de dados acessível em tempo real, sistema de autenticação por JWT ou endpoints `POST`/`PUT`/`DELETE`** na camada de produção atual.
+>
+> Em face dessa arquitetura, este Plano de Avaliação cobre dois escopos complementares:
+>
+> * **Escopos M1.1, M1.2, M2.1 e M2.2 (Passos 1–4):** Testam os controles de acesso e autenticação do *backend* da versão de referência (Repositório 2025-2), executado localmente via Docker. Trata-se do modelo de avaliação planejado para um sistema com API dinâmica. A medida **M1.2 (QEC-V)** é formalmente **Não Aplicável (N/A)** na camada de produção atual — não há endpoints privados para atacar em um servidor de arquivos estáticos, sendo válida apenas no ambiente Docker local.
+> * **Escopos M3 (TNCM) e M4 (TPV) (Passos 5–6):** Avaliam a camada efetivamente em produção — a SPA estática — por análise de renderização React e procedência dos dados no `oportunidades.json`.
 
-* **Produto Alvo:** Backend/API do Mural UnB (Repositório Oficial 2025-2).
+**Resumo da Coleta:** O fluxo de testes adotará uma estratégia **híbrida (automatizada e manual).** A coleta das métricas de integridade (M1/M2) será realizada via API em ambiente Docker local. As métricas de camada frontend (M3/M4) serão coletadas por injeção de *payloads* e análise estática do código-fonte. Os dados consolidados serão armazenados em uma **"Ficha de Registro (Google Sheets)",** enquanto as evidências de execução serão documentadas por relatórios nos formatos *.json* e *.csv*, além de capturas de tela.
+
+* **Produto Alvo:** Mural UnB — camada backend (Repositório Oficial 2025-2, via Docker) para M1/M2; camada frontend/serverless (produção GitHub Pages) para M3/M4.
 * **Foco da avaliação:** Segurança da Informação (Integridade de Endpoints e Autenticidade de Usuários).
 
 ## 2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**
@@ -18,11 +27,15 @@ Para assegurar a rastreabilidade exigida pelo processo formal de avaliação e e
 | **Métrica (Fase 2)** | **Foco** | **Método Projetado (Fase 3)** | **Justificativa do Alinhamento** |
 | --- | --- | --- | --- |
 | **M1.1 (TBM-NAut)** | Integridade | Testes de *Payload* de API com interceptação de *Tokens* JWT. | Avalia diretamente se a API bloqueia ações (PUT/DELETE) feitas por usuários sem o privilégio adequado, garantindo o Nível de Pontuação de 100% de bloqueios exigido. |
-| **M1.2 (QEC-V)** | Integridade | Inspeção sistemática de rotas e injeção de requisições sem cabeçalho Authorization. | Garante a verificação binária (0 endpoints vulneráveis) estipulada na Fase 2 para rotas de manipulação de dados. |
+| **M1.2 (QEC-V)** | Integridade | Inspeção sistemática de rotas e injeção de requisições sem cabeçalho Authorization (ambiente Docker). **⚠️ N/A na camada de produção** — o GitHub Pages serve arquivos estáticos; não há endpoints privados para atacar. | Garante a verificação binária (0 endpoints vulneráveis) para rotas de manipulação de dados no backend de referência (2025-2). |
 | **M2.1 (EVD-Inst)** | Autenticidade | Automação de tentativas de cadastro via API com domínios *Regex* falhos. | Permite quantificar a Taxa de Rejeição de Acessos Inválidos simulando e-mails não institucionais (@gmail, @outlook). |
 | **M2.2 (P-2FA)** | Autenticidade | Consulta SQL direta no Banco de Dados (Ambiente de Teste). | Mede empiricamente a adoção da dupla autenticação pelos administradores, acessando a base de dados onde a flag is\_2fa\_enabled fica armazenada. |
 | **M3 (TNCM)** | Integridade | Teste de injeção de *payloads* na renderização React, em cópia local do `oportunidades.json` executada com Vite (`npm run dev`). | Mede diretamente se o escape automático do React neutraliza o conteúdo malicioso vindo do *pipeline* de _scraping_, atendendo ao critério de neutralização (nenhum vetor ativo, julgado pelo padrão da falha) definido na Fase 2. |
 | **M4 (TPV)** | Autenticidade | Análise estática (*script*) do `oportunidades.json` somada à verificação amostral manual dos canais oficiais. | Quantifica a proporção de registros rastreáveis a uma fonte oficial verificável, atendendo ao limiar de ≥ 95% (Excelente) definido na Fase 2. |
+| **M5.1 (Acesso Interface)** | Controle de Acesso | Evasão de rotas restritas via URL (`/admin`, `/dashboard`) e inspeção de DOM na aplicação hospedada. | Valida em ambiente produtivo se o front-end vaza componentes ou rotas administrativas indevidas. |
+| **M5.2 (Pentest Endpoints)**| Controle de Acesso | Inspeção de tráfego (aba Network) e mapeamento exaustivo de chamadas HTTP na aplicação Jamstack. | Confirma a inexistência de uma superfície de ataque backend ativa no ambiente de produção. |
+| **M6.1 (Criptografia Rede)**| Criptografia | Disparo de requisições web (`Invoke-WebRequest`) para análise de redirecionamentos (HSTS) e certificados TLS. | Garante que toda a transmissão de dados no domínio oficial se dá de forma cifrada em texto não plano. |
+| **M6.2 (Proteção Repouso)** | Criptografia | Busca ativa de chaves expostas no código fonte (ex: API Keys no repositório) e auditoria dos arquivos JSON. | Verifica que a falta de um DB tradicional não afrouxa o tratamento de segredos sensíveis do projeto. |
 
 * As ferramentas de injeção de *payloads* (Passo 2 do fluxo) respondem diretamente às métricas **M1.1 (TBM-NAut)** e **M1.2 (QEC-V)**.
 * A validação de formulários de registro e consultas ao banco de dados (Passo 3 do fluxo) fornecem os dados exatos exigidos pelas métricas **M2.1 (EVD-Inst)** e **M2.2 (P-2FA)**.
@@ -200,6 +213,17 @@ O método de avaliação é baseado em testes dinâmicos de API e auditoria est�
   2. Compare com os critérios de julgamento (Excelente ≥ 95%; Satisfatório 80% a 94%; Insatisfatório < 80%).
   3. *Evidência:* Saída do *script* e registros da verificação amostral.
 
+**Passo 7: Avaliação da Camada de Produção via Terminal e Rede (Métricas M5 e M6)**
+
+Este passo é exclusivo para o ambiente estático efetivamente publicado (o site no GitHub Pages), não se aplicando à API local executada via Docker. Ele compreende a auditoria de acesso (M5) e da criptografia (M6).
+
+* **Objetivo:** Comprovar a segurança de tráfego, ausência de rotas vulneráveis e blindagem dos dados sensíveis armazenados na camada de produção do Mural-UnB.
+* **Ação e Coleta de Evidências:**
+  1. **M5.1 (Acesso Interface):** Tentar acessar via navegador rotas administrativas comuns (ex: `https://muralunb.com.br/admin` ou `/dashboard`). Registrar se retornam *404 Not Found*. Inspecionar o código-fonte (DOM) e *localStorage* por dados vazados.
+  2. **M5.2 (Pentest Endpoints):** Realizar mapeamento de todas as chamadas via `fetch` no *frontend*. Registrar e apresentar evidência de que não existem métodos HTTP ativos para injeção (ex: `POST`, `PUT`), ou seja, constatar que a API produtiva "não existe" no formato tradicional vulnerável.
+  3. **M6.1 (Criptografia Rede):** No PowerShell (ou Terminal), executar `Invoke-WebRequest -Uri http://muralunb.com.br -MaximumRedirection 0`. Coletar o código `301 Moved Permanently` para provar o redirecionamento. Averiguar os cabeçalhos de resposta HTTP atrás do `Strict-Transport-Security` (HSTS) e da configuração de TLS.
+  4. **M6.2 (Proteção Repouso):** Auditar a configuração dos "Secrets" no GitHub Actions (ex: verificação da proteção da variável `GEMINI_API_KEY`). Checar se não existem dados como CPF/Senhas (PII) salvos em texto plano nos JSONs. Registrar conformidade na proteção dos segredos do repositório.
+
 ## 5. Armazenamento e Estrutura dos Dados (Evidências)
 
 * **Ficha de Registro (Google Sheets):** Todos os dados numéricos brutos (contagem de requisições, status codes, percentuais) serão lançados na planilha padronizada criada na Fase 2.
@@ -226,11 +250,11 @@ Abaixo, o roteiro alinha as preparações e as execuções práticas, consideran
 | **14/06/2026** | Fase 3 | Criação e exportação da Collection do Postman com as rotas a serem avaliadas. | Lucas, Caio, Guilherme | postman\_collection\_mural\_unb.json. |
 | **17/06/2026** | Fase 4 | Sessão de Avaliação - Execução de M1.1 e M1.2 (Integridade). | Carlos, Yogi, Isaac | Gravação de tela e prints de bloqueio. |
 | **18/06/2026** | Fase 4 | Sessão de Avaliação - Execução de M2.1 e M2.2 (Autenticidade). | Equipe | Relatórios SQL e testes de Regex com Postman. |
-| **19/06/2026** | Fase 4 | Sessão de Avaliação - Execução de M3 (TNCM) e M4 (TPV) no Frontend. | Isaac | Injeção de payloads e análise de procedência. |
+| **19/06/2026** | Fase 4 | Sessão de Avaliação - Execução de M3 (TNCM), M4 (TPV), M5 e M6. | Isaac | Testes de frontend, procedência e produção. |
 | **20/06/2026** | Fase 4 | Consolidação das planilhas, cálculo das métricas e elaboração do julgamento cruzado com a Fase 2. | Equipe | Planilha final e redação do Relatório F4. |
 | **24/06/2026** | Fase 4 | Revisão ortográfica, validação de links na GitPage e entrega (EU3). | Equipe | Release final no GitHub/Moodle. |
 
-## Referências Bibliográficas
+## 7. Referências Bibliográficas
 
 <a id="ref-1"></a>[1] INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. **ISO/IEC 25010**: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models. Geneva: ISO, 2011.
 
@@ -253,4 +277,4 @@ Abaixo, o roteiro alinha as preparações e as execuções práticas, consideran
 
 | Ferramenta | Tarefa | Revisão Humana |
 |:--:|:---------|:------|
-| Gemini 3.1 Pro | Contribuiu para estruturar o plano de avaliação, além de estruturar o git page.  | O texto gerado pela ia foi revisado para garantir informações válidas e relevantes para o projeto Mural UnB. |
+| Gemini 1.5 Pro / Agentes IA | Utilizada para classificar insights de confiabilidade e segurança, auxiliar na interpretação de dados, conduzir a estruturação dos testes práticos, e realizar a revisão e correção ortográfica do documento. | O texto e as classificações geradas pela IA foram rigorosamente revisados, adaptados ao contexto do projeto e validados para garantir informações fidedignas e relevantes para o projeto Mural UnB. |
