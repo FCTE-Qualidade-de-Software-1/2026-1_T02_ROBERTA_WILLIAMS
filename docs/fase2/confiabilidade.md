@@ -12,6 +12,7 @@
 | 1.6 | Adição do objetivo de avaliação de Tolerância a Falhas ao GQM | Guilherme Flyan | 12/06/2026
 | 1.7 | Adição das questões e hipóteses sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
 | 1.8 | Adição das métricas sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
+| 1.9 | Atualizações acerca da rastreabilidade e bibliografia | Guilherme Flyan | 12/06/2026
 
 ## 1. Nível Conceitual: Objetivo de Medição (GQM)
 
@@ -59,7 +60,6 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 - **Hipótese (H6):** Espera-se encontrar falhas nos logs do GitHub Actions que envidenciem a contradição da cobertura de testes já estabelecidos com o real cenário da aplicação que é apresentado ao realizar o ETL do pipeline através das Actions do GitHub.
 
-
 ## 3. Nível Quantitativo: Seleção de Métricas
 
 ### 3.1. Métricas de Disponibilidade
@@ -98,8 +98,6 @@ Onde em ambas as métricas:
 
 `B = Número de casos de teste de padrão de falha executados (quase causando falha) durante os testes`.
 
-
-
 ## 4. Hierarquia GQM
 
 O Diagrama 1 ilustra a rastreabilidade entre o objetivo, as questões investigadas e as métricas adotadas.
@@ -117,6 +115,8 @@ graph TD
         Q2[Q2: Sistema mantém estabilidade sob picos de acesso?]
         Q3[Q3: Pipeline ETL protege arquivos JSON contra corrupção?]
         Q4[Q4: Sistema restaura funções e dados pós-falha?]
+        Q5[Q5: Qual é a eficácia do pipeline de dados em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?]
+        Q6[Q6: Qual é a eficácia do pipeline de dados em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?]
     end
 
     subgraph Nivel_Quantitativo [Nível Quantitativo - Métricas]
@@ -125,20 +125,25 @@ graph TD
         M1_3[M1.3: Taxa de Resiliência Front-end]
         M2_1[M2.1: Integridade Pós-Falha Pipeline]
         M2_2[M2.2: MTTR Pipeline]
-        M2_3[M2.3: Taxa de Persistência Dados]
+        M2_3[M2.3: Taxa de Persistência Dados]    
+        M3_1[M3.1: Percentual de Prevenção de Falhas de Acordo com os Testes Existentes]
+        M3_2[M3.2: Percentual de Prevenção de Falhas de Acordo com o GitHub Actions]
     end
 
     O --> Q1
     O --> Q2
     O --> Q3
     O --> Q4
+    O --> Q5
+    O --> Q6
     Q1 --> M1_1
     Q1 --> M1_3
     Q2 --> M1_2
     Q3 --> M2_1
     Q3 --> M2_2
     Q4 --> M2_3
-
+    Q5 --> M3_1
+    Q6 --> M3_2
 ```
 
 ## 5. Níveis de Pontuação e Critérios de Julgamento
@@ -153,6 +158,8 @@ graph TD
 | **M2.1** | < 100%     | Não aceito   | **100%**  | A integridade do arquivo de produção deve ser absoluta para evitar dados zerados em produção. Recomendação: Remover a flag `continue-on-error: true` dos passos críticos do arquivo YAML.                  |
 | **M2.2** | > 48h      | 12h - 48h    | **< 12h** | O ciclo de atualização de oportunidades de estágio deve ser ágil. Demoras superiores a 48h desatualizam a plataforma. Recomendação: Acoplar alertas automatizados e refinar logs do Python.                |
 | **M2.3** | < 100%     | Não aceito   | **100%**  | Falhas na execução do fluxo não podem comprometer ou apagar registros consolidados previamente. Exige-se persistência total. Recomendação: Implementar rotina automatizada de backup de segurança do JSON. |
+| **M3.1** | < 90%     | 90%-95% | > 95%  | Falhas na execução dos testes do pipeline devem ser tratadas o mais urgente possível para que a aplicação não fique desatualizada fornecendo informações antigas que podem prejudicar os usuários. |
+| **M3.2** | < 100%     | Não aceito | 100%  | Falhas na execução de Actions do GitHub evidenciam problemas ocultos não tão triviais de serem indicados, impossibilitando a atualização constante de informações do sistema, característica essa fundamental para o Mural UnB. |
 
 ## 6. Rastreabilidade
 
@@ -164,6 +171,8 @@ Esta seção valida formalmente a consistência do plano de métricas frente aos
 | ----------------------------- | --------------------------------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Disponibilidade Geral         | Alunos da UnB                     | Disponibilidade   | M1.1, M1.2, M1.3 | Garante que o estudante acesse o painel sem interrupções de conexão do servidor (M1.1), mesmo sob alta concorrência (M1.2) e sem quebras visuais na aplicação web (M1.3). |
 | Persistência e Integridade    | Administradores e Equipe de Dados | Recuperabilidade  | M2.1, M2.2, M2.3 | Assegura que falhas no fluxo automatizado não gerem perda de dados legados (M2.1), que o tempo de reparo seja mínimo (M2.2) e os dados permaneçam salvos (M2.3).          |
+| Tolerância a Falhas | Desenvolvedores e Usuários | Tolerância a Falhas  | M3.1, M3.2 | Assegura que falhas no fluxo automatizado do pipeline serão tratadas (M3.1 e M3.2).          |
+
 
 ## 7. Glossário
 
@@ -186,3 +195,4 @@ Esta seção valida formalmente a consistência do plano de métricas frente aos
 
 1. **INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.** _ISO/IEC 25010: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model_. Genebra: ISO, 2023.
 2. **BASILI, V. R.; CALDIERA, G.; ROMBACH, H. D.** _The Goal Question Metric Approach_. In: Encyclopedia of Software Engineering. New York: John Wiley & Sons, 1994. p. 528-532.
+3. **INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.** *ISO/IEC 25023: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Measurement of system and software product quality.* Geneva: ISO, 2016.
