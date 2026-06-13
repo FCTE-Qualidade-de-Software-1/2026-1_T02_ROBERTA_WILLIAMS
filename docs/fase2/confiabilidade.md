@@ -10,6 +10,7 @@
 | 1.4    | Inserção de perguntas, hipóteses e métricas para o GQM                                                | Carlos | 09/06/2026 |
 | 1.5    | Inserção de glossário, remoção do plano de coleta (vai para fase 3), melhora parte de rastreabilidade | Yogi   | 11/06/2026 |
 | 1.6 | Adição de novos objetivos ao GQM | Guilherme Flyan | 12/06/2026
+| 1.7 | Adição de Question e Metric sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
 
 ## 1. Nível Conceitual: Objetivo de Medição (GQM)
 
@@ -46,6 +47,17 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 - **Questão (Q4):** O sistema é capaz de restaurar suas funções e consistência de dados automaticamente ou com intervenção mínima após uma falha ou interrupção no serviço?
 - **Hipótese (H4):** Espera-se que, em caso de queda do servidor ou erro crítico no banco de dados, o sistema consiga retomar as operações sem perda de dados significativos das oportunidades publicadas, e que o tempo necessário para o serviço voltar a ficar online seja reduzido
+
+### 2.3. Foco em Tolerância a Falhas
+
+- **Questão (Q5):** Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?
+
+- **Hipótese (H5):** Devido o Mural UnB ser uma aplicação que depende majoritariamente que seus dados estejam o máximo atualizados é necessário constância na extração de dados para que o sistema esteja atualizado regularmente, espera-se que os testes já estabelecidos encontrem falhas críticas e graves que inviabilizem o software de cumprir com seu o propósito.  
+
+- **Questão (Q6):** Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?
+
+- **Hipótese (H6):** Espera-se encontrar falhas nos logs do GitHub Actions que envidenciem a contradição da cobertura de testes já estabelecidos com o real cenário da aplicação que é apresentado ao realizar o ETL do pipeline através das Actions do GitHub.
+
 
 ## 3. Nível Quantitativo: Seleção de Métricas
 
