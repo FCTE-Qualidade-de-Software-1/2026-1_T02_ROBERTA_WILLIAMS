@@ -1291,16 +1291,33 @@
 <p>As medições foram executadas seguindo o Plano de Avaliação estabelecido na Fase 3. Os dados coletados refletem o comportamento real da arquitetura do Mural UnB sob testes de estresse, injeção de falhas e monitoramento passivo.</p>
 <h3 id="11-evidencias-visuais-da-coleta-screenshots">1.1 Evidências Visuais da Coleta (Screenshots)</h3>
 <h4 id="m11-disponibilidade-do-dominio-uptimerobot">M1.1 - Disponibilidade do Domínio (UptimeRobot)</h4>
+<p><em>Descrição: Painel do UptimeRobot comprovando a disponibilidade contínua do domínio <code>muralunb.com.br</code>, com 100% de uptime registrado nas últimas 24 horas.</em></p>
+<p><img alt="M1.1 Screenshot" src="../../imagem/m1.1.png" /></p>
 <h4 id="m12-teste-de-carga-e-estabilidade-locust">M1.2 - Teste de Carga e Estabilidade (Locust)</h4>
-<p><em>(Substituir pelo arquivo correspondente do disparo do Locust)</em></p>
+<p><em>Descrição: Interface do Locust exibindo 15.539 requisições totais durante o teste de estresse. Observa-se a falha integral (100%) no endpoint <code>/data/vagas.json</code> e bloqueios parciais na rota raiz <code>/</code>.</em></p>
+<p><img alt="M1.2 Screenshot" src="../../imagem/m1.2.png" /></p>
 <h4 id="m13-resiliencia-do-frontend-chrome-devtools">M1.3 - Resiliência do Frontend (Chrome DevTools)</h4>
+<p><em>Descrição: Teste de bloqueio de rede via DevTools. A requisição de <code>oportunidades.json</code> foi bloqueada manualmente. A interface não colapsou em tela branca, renderizando o estado vazio ("Nenhuma oportunidade encontrada").</em></p>
+<p><img alt="M1.3 Screenshot" src="../../imagem/m1.3.png" /></p>
 <h4 id="m21-injecao-de-erro-de-sintaxe-no-pipeline">M2.1 - Injeção de Erro de Sintaxe no Pipeline</h4>
+<p><em>Descrição: Injeção do código <code>import erro_proposital_teste</code> no script <code>extrair_empresas_juniores.py</code> diretamente no repositório para forçar a quebra da execução do ETL.</em></p>
+<p><img alt="M2.1 Screenshot 1" src="../../imagem/m2.1%28erro%29.png" /></p>
 <h4 id="m21-status-dos-workflows-apos-injecao">M2.1 - Status dos Workflows após Injeção</h4>
+<p><em>Descrição: Registro do GitHub Actions mostrando o fluxo "Processar Empresas Juniores" finalizando com status de sucesso verde ("Successful in 17s"), mascarando o erro real do Python devido à má configuração do arquivo <code>.yml</code>.</em></p>
+<p><img alt="M2.1 Screenshot 3" src="../../imagem/m2.1%28workflows%29.png" /></p>
 <h4 id="m21-integridade-do-repositorio-pos-falha">M2.1 - Integridade do Repositório pós-falha</h4>
+<p><em>Descrição: Comprovação da preservação dos dados de produção. Os arquivos <code>.json</code> na pasta <code>data/EJs/</code> não sofreram commits recentes (mantidos há 7 meses), confirmando que a falha não corrompeu os arquivos existentes.</em></p>
+<p><img alt="M2.1 Screenshot 2" src="../../imagem/m2.1%28sucesso%29.png" /></p>
 <h4 id="m22-historico-geral-de-execucoes-gargalo-de-manutencao">M2.2 - Histórico Geral de Execuções (Gargalo de Manutenção)</h4>
+<p><em>Descrição: Visão geral das Actions, evidenciando o padrão cronológico de execuções com sucesso intercaladas com falhas sistemáticas no fluxo de laboratórios.</em></p>
+<p><img alt="M2.2 Screenshot" src="../../imagem/m2.2.png" /></p>
 <h4 id="m22-historico-filtrado-de-falhas-cronicas">M2.2 - Histórico Filtrado de Falhas Crônicas</h4>
+<p><em>Descrição: Filtro <code>is:failure</code> destacando falhas contínuas e não resolvidas do script "Atualizar Tags dos Laboratórios" ao longo de vários meses, impedindo o cálculo do MTTR e evidenciando abandono de manutenção.</em></p>
+<p><img alt="M2.2 Screenshot 2" src="../../imagem/m2.2%28falhas%29.png" /></p>
 <h4 id="m23-teste-de-persistencia-com-dados-corrompidos">M2.3 - Teste de Persistência com Dados Corrompidos</h4>
-<p><em>(Substituir pelo arquivo correspondente da execução dos mocks)</em></p>
+<p><em>Descrição: Comprovação da inserção da exceção intencional (<code>raise Exception("Erro forçado...")</code>) no script de consolidação e a consequente falha correta do workflow no Actions (exit code 1), garantindo que os 83 registros previamente estabelecidos não fossem apagados.</em></p>
+<p><img alt="M2.3 Screenshot 1" src="../../imagem/m2.3.png" /></p>
+<p><img alt="M2.3 Screenshot 2" src="../../imagem/m2.3%282%29.png" /></p>
 <hr />
 <h2 id="2-processamento-de-dados-e-niveis-de-pontuacao">2. Processamento de Dados e Níveis de Pontuação</h2>
 <p>Os dados brutos coletados foram aplicados às fórmulas matemáticas definidas no modelo GQM para determinar o nível de maturidade de cada indicador.</p>
