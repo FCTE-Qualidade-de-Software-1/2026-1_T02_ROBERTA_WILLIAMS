@@ -7,6 +7,7 @@
 | 1.0    | Criação inicial da Fase 3 com definição do método e ambiente de avaliação básico.                                                                             | Yogi   | 11/06/2026 |
 | 1.1    | Inserção das métricas complementares de teste de carga (M1.2) e persistência pós-falha (M2.3).                                                                | Carlos | 11/06/2026 |
 | 1.2    | Refinamento para os critérios de excelência: simplificação do texto, preenchimento do cronograma de avaliação e adição da seção de consistência com a Fase 2. | Yogi   | 12/06/2026 |
+| 1.3    | Adição da metodologia referente as métricas de tolerância a falhas | Guilherme Flyan   | 12/06/2026 |
 
 ## Introdução
 
@@ -80,6 +81,25 @@ O método consiste na execução de testes controlados de injeção de falhas em
 4. Observar a reação do script Python e verificar se o sistema interrompe a gravação antes de corromper o arquivo principal.
 5. Analisar o arquivo .json resultante para verificar a preservação e aplicar na fórmula.
 
+#### Coleta de M3.1 (Percentual de Prevenção de Falhas de Acordo com os Testes Existentes)
+
+1. Clonar o repositório do Mural UnB existente no GitHub.
+2. Realizar a instalação das dependências especificadas de acordo com o README do repositório.
+3. Executar o script  `pytest -v`.
+4. Contabilizar testes coletados e denominá-los de B.
+5. Contabilizar testes que passaram e denominá-los de A.
+6. Obter a métrica através da razão A/B * 100.
+
+
+#### Coleta de M3.2 (Percentual de Prevenção de Falhas de Acordo com o GitHub Actions)
+
+1. Acessar a aba Actions do repositório do Mural UnB no GitHub.
+2. Contabilizar a quantidade de Actions fixos agendados (caracterizados como `scheduled`) existentes e denominá-los B.
+3. Contabilizar a quantidade de Actions fixos agendados (caracterizados como `scheduled`) existentes que foram bem sucedidos de acordo com a sua última execução e denominá-los A.
+4. Obter a métrica através da razão A/B * 100.
+
+
+
 ## 2. Especificação dos Recursos e do Ambiente de Avaliação
 
 - **Sistema Operacional:** Fedora Linux 42.
@@ -102,7 +122,7 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 ## 4. Consistência com a Fase 2
 
-Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via _fork_ e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original.
+Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via _fork_ e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2). 
 
 ## 5. Declaração de Uso de IA
 
