@@ -2,12 +2,12 @@
 
 ## Histórico de Versões
 
-| Versão | Descrição                                                                                                                                                     | Autor  | Data       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
-| 1.0    | Criação inicial da Fase 3 com definição do método e ambiente de avaliação básico.                                                                             | Yogi   | 11/06/2026 |
-| 1.1    | Inserção das métricas complementares de teste de carga (M1.2) e persistência pós-falha (M2.3).                                                                | Carlos | 11/06/2026 |
-| 1.2    | Refinamento para os critérios de excelência: simplificação do texto, preenchimento do cronograma de avaliação e adição da seção de consistência com a Fase 2. | Yogi   | 12/06/2026 |
-| 1.3    | Adição da metodologia referente as métricas de tolerância a falhas | Guilherme Flyan   | 12/06/2026 |
+| Versão | Descrição                                                                                                                                                     | Autor           | Data       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------- |
+| 1.0    | Criação inicial da Fase 3 com definição do método e ambiente de avaliação básico.                                                                             | Yogi            | 11/06/2026 |
+| 1.1    | Inserção das métricas complementares de teste de carga (M1.2) e persistência pós-falha (M2.3).                                                                | Carlos          | 11/06/2026 |
+| 1.2    | Refinamento para os critérios de excelência: simplificação do texto, preenchimento do cronograma de avaliação e adição da seção de consistência com a Fase 2. | Yogi            | 12/06/2026 |
+| 1.3    | Adição da metodologia referente as métricas de tolerância a falhas                                                                                            | Guilherme Flyan | 12/06/2026 |
 
 ## Introdução
 
@@ -45,28 +45,31 @@ O método consiste na execução de testes controlados de injeção de falhas em
 7. **Recarregue a página novamente (F5)**. A requisição do `.json` aparecerá em vermelho (status `(blocked:devtools)`).
 8. Abra a localização onde os dados desse arquivo são renderizados. Como os dados do `oportunidades.json` aparece em [https://muralunb.com.br/feed](https://muralunb.com.br/feed), vá para essa página.
 9. Olhe para a tela do site:
-  * Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).
-  * Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).
+
+- Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).
+- Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).
+
 10. Para limpar o teste, vá na gaveta inferior "Network request blocking", clique com o botão direito no link bloqueado e escolha "Remove", ou desmarque a caixa "Enable network request blocking".
 
 #### Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)
 
-1. Acesse o repositório clonado (*fork*) no GitHub.
+1. Acesse o repositório clonado (_fork_) no GitHub.
 2. Navegue até a pasta `scripts/`, abra o arquivo `extrair_empresas_juniores.py` e clique no ícone de lápis para editar.
-3. Insira o código `import erro_proposital_teste` na primeira linha e faça o *commit* diretamente na *branch* principal (`main`).
-4. Clique na aba **Actions**, selecione o *workflow* `1_ejs_extrair_dados.yml` que é o `Processar Empresas Juniores` na barra lateral e clique em **Run workflow** para iniciar a execução.
-5. Aguarde a conclusão de todas as etapas do *job*, independentemente do status final indicado pelo GitHub Actions (verde ou vermelho).
+3. Insira o código `import erro_proposital_teste` na primeira linha e faça o _commit_ diretamente na _branch_ principal (`main`).
+4. Clique na aba **Actions**, selecione o _workflow_ `1_ejs_extrair_dados.yml` que é o `Processar Empresas Juniores` na barra lateral e clique em **Run workflow** para iniciar a execução.
+5. Aguarde a conclusão de todas as etapas do _job_, independentemente do status final indicado pelo GitHub Actions (verde ou vermelho).
 6. Volte à aba **Code**, navegue até a pasta `data/EJs/` e abra o arquivo `empresas_juniores_consolidadas.json`.
 7. Inspecione o conteúdo do arquivo e determine o resultado da métrica:
-* **Sucesso (100%):** O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.
-* **Falha (0%):** O erro foi ignorado ou causou um efeito colateral que sobrescreveu o arquivo anterior, deixando-o vazio, corrompido ou apenas com dados parciais/inválidos.
+
+- **Sucesso (100%):** O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.
+- **Falha (0%):** O erro foi ignorado ou causou um efeito colateral que sobrescreveu o arquivo anterior, deixando-o vazio, corrompido ou apenas com dados parciais/inválidos.
 
 #### Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)
 
 1. Acesse o repositório Mural UnB no GitHub e abra o separador **Actions**.
 2. No campo "Filter workflow runs", escreva `is:failure` para listar apenas as execuções que falharam.
 3. Identifique uma falha ocorrida nos últimos 3 meses. Anote a data e hora exata do erro.
-4. Volte à lista, remova o filtro `is:failure` e localize a primeira execução bem-sucedida (ícone verde) do mesmo *workflow* ocorrida *após* a falha identificada.
+4. Volte à lista, remova o filtro `is:failure` e localize a primeira execução bem-sucedida (ícone verde) do mesmo _workflow_ ocorrida _após_ a falha identificada.
 5. Se encontrar a execução de sucesso: Anote a data e hora exata, e subtraia a data/hora da falha da data/hora do sucesso para obter o tempo de recuperação (em horas).
 6. Se não encontrar uma execução de sucesso (falha não corrigida): registre o tempo como incalculável e classifique a métrica diretamente como Inadequado (> 48h).
 7. Repita os passos 3 a 6 para todas as falhas registadas no período de 3 meses.
@@ -84,20 +87,17 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 1. Clonar o repositório do Mural UnB existente no GitHub.
 2. Realizar a instalação das dependências especificadas de acordo com o README do repositório.
-3. Executar o script  `pytest -v`.
+3. Executar o script `pytest -v`.
 4. Contabilizar testes coletados e denominá-los de B.
 5. Contabilizar testes que passaram e denominá-los de A.
-6. Obter a métrica através da razão A/B * 100.
-
+6. Obter a métrica através da razão A/B \* 100.
 
 #### Coleta de M3.2 (Percentual de Prevenção de Falhas de Acordo com o GitHub Actions)
 
 1. Acessar a aba Actions do repositório do Mural UnB no GitHub.
 2. Contabilizar a quantidade de Actions fixos agendados (caracterizados como `scheduled`) existentes e denominá-los B.
 3. Contabilizar a quantidade de Actions fixos agendados (caracterizados como `scheduled`) existentes que foram bem sucedidos de acordo com a sua última execução e denominá-los A.
-4. Obter a métrica através da razão A/B * 100.
-
-
+4. Obter a métrica através da razão A/B \* 100.
 
 ## 2. Especificação dos Recursos e do Ambiente de Avaliação
 
@@ -110,26 +110,25 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 ## 3. Cronograma de Avaliação
 
-| Atividade                                                                   | Responsável | Início | Término | Alinhamento com a Fase 4                                             |
-| --------------------------------------------------------------------------- | ----------- | ------ | ------- | -------------------------------------------------------------------- |
-| Setup e ativação do UptimeRobot para o Mural UnB                            | -           | -      | -       | Início do monitoramento contínuo para extração da métrica M1.1.      |
-| Execução da ferramenta de carga (Locust) contra a API                       | -           | -      | -       | Coleta da taxa de requisições e estabilidade sob pressão (M1.2).     |
-| Execução dos testes de resiliência e simulações de rede offline             | -           | -      | -       | Coleta prática dos dados de comportamento da interface (M1.3).       |
-| Injeção de erros no script e processamento da pasta de arquivos corrompidos | -           | -      | -       | Obtenção dos resultados de integridade e persistência (M2.1 e M2.3). |
-| Auditoria e varredura do histórico de execuções do Actions                  | -           | -      | -       | Coleta retroativa de dados de tempo para cálculo do MTTR (M2.2).     |
-| Consolidação, cálculo das fórmulas e julgamento final                       | -           | -      | -       | Cruzamento dos dados com os níveis de pontuação definidos na Fase 2. |
-| Execução dos testes existentes | -           | -      | -       | Obtenção de dados essenciais para realizar a medida definida para tolerância de falhas (M3.1). |
-| Contabilização dos testes e actions executados | -           | -      | -       | Definição da conclusão com base nos resultados obtidos (M3.1 e M3.2). |
-
+| Atividade                                                                   | Responsável   | Início | Término | Alinhamento com a Fase 4                                                                       |
+| --------------------------------------------------------------------------- | ------------- | ------ | ------- | ---------------------------------------------------------------------------------------------- |
+| Setup e ativação do UptimeRobot para o Mural UnB                            | Yogi          | 10/06  | 12/06   | Início do monitoramento contínuo para extração da métrica M1.1.                                |
+| Execução da ferramenta de carga (Locust) contra a API                       | Carlos        | 10/06  | 12/06   | Coleta da taxa de requisições e estabilidade sob pressão (M1.2).                               |
+| Execução dos testes de resiliência e simulações de rede offline             | Yogi          | 10/06  | 12/06   | Coleta prática dos dados de comportamento da interface (M1.3).                                 |
+| Injeção de erros no script e processamento da pasta de arquivos corrompidos | Yogi e Carlos | 10/06  | 12/06   | Obtenção dos resultados de integridade e persistência (M2.1 e M2.3).                           |
+| Auditoria e varredura do histórico de execuções do Actions                  | Yogi          | 10/06  | 12/06   | Coleta retroativa de dados de tempo para cálculo do MTTR (M2.2).                               |
+| Consolidação, cálculo das fórmulas e julgamento final                       | Equipe        | 10/06  | 12/06   | Cruzamento dos dados com os níveis de pontuação definidos na Fase 2.                           |
+| Execução dos testes existentes                                              | Guilherme     | 10/06  | 12/06   | Obtenção de dados essenciais para realizar a medida definida para tolerância de falhas (M3.1). |
+| Contabilização dos testes e actions executados                              | Guilherme     | 10/06  | 12/06   | Definição da conclusão com base nos resultados obtidos (M3.1 e M3.2).                          |
 
 ## 4. Consistência com a Fase 2
 
-Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via _fork_ e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2). 
+Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via _fork_ e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2).
 
 ## 5. Declaração de Uso de IA
 
 **Tabela: Declaração Formal de Uso de IA**
 
-| Ferramenta          | Tarefa Realizada                                                                                         | Conferência Humana                                                                                          |
-| ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Ferramenta         | Tarefa Realizada                                                                                         | Conferência Humana                                                                                          |
+| ------------------ | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | **Gemini 3.1 Pro** | Mesclagem de versões redundantes, formatação da tabela cronograma e checagem com consistência da fase 2. | A equipe orientou a simplificação do documento, validou as dicas dadas e aprovou as alterações estruturais. |

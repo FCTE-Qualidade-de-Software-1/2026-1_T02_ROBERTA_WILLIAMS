@@ -1,18 +1,18 @@
-# Fase 2: Execução da Avaliação e Medições 
+# Fase 2: Execução da Avaliação e Medições
 
 ## Histórico de Versões
 
-| Versão | Descrição                                                                                             | Autor  | Data       |
-| ------ | ----------------------------------------------------------------------------------------------------- | ------ | ---------- |
-| 1.1    | Estruturação inicial do GQM.                                                                          | Yogi   | 07/06/2026 |
-| 1.2    | Inserção de métricas, plano de coleta e referências (ISO 25010:2023).                                 | Yogi   | 07/06/2026 |
-| 1.3    | Reorganização lógica, ajuste de rastreabilidade e refinamento das hipóteses.                          | Yogi   | 07/06/2026 |
-| 1.4    | Inserção de perguntas, hipóteses e métricas para o GQM                                                | Carlos | 09/06/2026 |
-| 1.5    | Inserção de glossário, remoção do plano de coleta (vai para fase 3), melhora parte de rastreabilidade | Yogi   | 11/06/2026 |
-| 1.6 | Adição do objetivo de avaliação de Tolerância a Falhas ao GQM | Guilherme Flyan | 12/06/2026
-| 1.7 | Adição das questões e hipóteses sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
-| 1.8 | Adição das métricas sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
-| 1.9 | Atualizações acerca da rastreabilidade e bibliografia | Guilherme Flyan | 12/06/2026
+| Versão | Descrição                                                                                             | Autor           | Data       |
+| ------ | ----------------------------------------------------------------------------------------------------- | --------------- | ---------- |
+| 1.1    | Estruturação inicial do GQM.                                                                          | Yogi            | 07/06/2026 |
+| 1.2    | Inserção de métricas, plano de coleta e referências (ISO 25010:2023).                                 | Yogi            | 07/06/2026 |
+| 1.3    | Reorganização lógica, ajuste de rastreabilidade e refinamento das hipóteses.                          | Yogi            | 07/06/2026 |
+| 1.4    | Inserção de perguntas, hipóteses e métricas para o GQM                                                | Carlos          | 09/06/2026 |
+| 1.5    | Inserção de glossário, remoção do plano de coleta (vai para fase 3), melhora parte de rastreabilidade | Yogi            | 11/06/2026 |
+| 1.6    | Adição do objetivo de avaliação de Tolerância a Falhas ao GQM                                         | Guilherme Flyan | 12/06/2026 |
+| 1.7    | Adição das questões e hipóteses sobre a Tolerância a Falhas                                           | Guilherme Flyan | 12/06/2026 |
+| 1.8    | Adição das métricas sobre a Tolerância a Falhas                                                       | Guilherme Flyan | 12/06/2026 |
+| 1.9    | Atualizações acerca da rastreabilidade e bibliografia                                                 | Guilherme Flyan | 12/06/2026 |
 
 ## 1. Nível Conceitual: Objetivo de Medição (GQM)
 
@@ -20,13 +20,13 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 **Tabela 1: Definição do Objetivo GQM**
 
-| Elemento GQM           | Definição no Contexto do Projeto                                     |
-| ---------------------- | -------------------------------------------------------------------- |
-| **Analisar**           | O sistema Mural UnB (frontend estático e pipeline de dados).         |
-| **Com o propósito de** | Avaliar e diagnosticar falhas arquiteturais e interrupções de fluxo. |
-| **Em relação à**       | Confiabilidade (Disponibilidade, Recuperabilidade e Tolerância a Falhas).                 |
-| **Do ponto de vista**  | Da equipe avaliadora externa e dos usuários finais.                  |
-| **No contexto do**     | Projeto da disciplina de Qualidade de Software 1 (FGA0315).          |
+| Elemento GQM           | Definição no Contexto do Projeto                                          |
+| ---------------------- | ------------------------------------------------------------------------- |
+| **Analisar**           | O sistema Mural UnB (frontend estático e pipeline de dados).              |
+| **Com o propósito de** | Avaliar e diagnosticar falhas arquiteturais e interrupções de fluxo.      |
+| **Em relação à**       | Confiabilidade (Disponibilidade, Recuperabilidade e Tolerância a Falhas). |
+| **Do ponto de vista**  | Da equipe avaliadora externa e dos usuários finais.                       |
+| **No contexto do**     | Projeto da disciplina de Qualidade de Software 1 (FGA0315).               |
 
 **Objetivo Explícito:** Avaliar a confiabilidade do produto de software para diagnosticar a disponibilidade da interface web, a recuperabilidade do pipeline de dados e a tolerância a falhas ao realizar web crawling ou chamadas a serviços externos como a API do Gemini, do ponto de vista de avaliadores externos e usuários, no contexto da disciplina de Qualidade de Software 1.
 
@@ -41,7 +41,6 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 - **Hipótese (H2):** Espera-se que a infraestrutura da API suporte uma carga de usuários simultâneos condizente com o volume de estudantes da UnB, mantendo o tempo de resposta dentro de limites aceitáveis e a taxa de sucesso das requisições próxima de 100%.
 
-
 ### 2.2. Foco em Recuperabilidade
 
 - **Questão (Q3):** O pipeline automatizado (ETL) protege os arquivos JSON em produção contra corrupção e permite o rápido restabelecimento em caso de erro nos scripts Python?
@@ -54,7 +53,7 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 - **Questão (Q5):** Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?
 
-- **Hipótese (H5):** Devido o Mural UnB ser uma aplicação que depende majoritariamente que seus dados estejam o máximo atualizados é necessário constância na extração de dados para que o sistema esteja atualizado regularmente, espera-se que os testes já estabelecidos encontrem falhas críticas e graves que inviabilizem o software de cumprir com seu o propósito.  
+- **Hipótese (H5):** Devido o Mural UnB ser uma aplicação que depende majoritariamente que seus dados estejam o máximo atualizados é necessário constância na extração de dados para que o sistema esteja atualizado regularmente, espera-se que os testes já estabelecidos encontrem falhas críticas e graves que inviabilizem o software de cumprir com seu o propósito.
 
 - **Questão (Q6):** Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?
 
@@ -125,7 +124,7 @@ graph TD
         M1_3[M1.3: Taxa de Resiliência Front-end]
         M2_1[M2.1: Integridade Pós-Falha Pipeline]
         M2_2[M2.2: MTTR Pipeline]
-        M2_3[M2.3: Taxa de Persistência Dados]    
+        M2_3[M2.3: Taxa de Persistência Dados]
         M3_1[M3.1: Percentual de Prevenção de Falhas de Acordo com os Testes Existentes]
         M3_2[M3.2: Percentual de Prevenção de Falhas de Acordo com o GitHub Actions]
     end
@@ -150,16 +149,16 @@ graph TD
 
 **Tabela 3: Critérios Detalhados de Julgamento**
 
-| Métrica  | Inadequado | Satisfatório | Excelente | Justificativa do Critério de Julgamento / Recomendação                                                                                                                                                     |
-| -------- | ---------- | ------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **M1.1** | < 95%      | 95% - 98,9%  | **≥ 99%** | O limite de 99% segue o SLA padrão esperado para o GitHub Pages. Se abaixo de 95%, recomenda-se migrar o host para a Vercel.                                                                               |
-| **M1.2** | < 98%      | 98% - 99,9%  | **100%**  | Como a aplicação serve arquivos estáticos leves, qualquer perda de requisições indica problemas na rede de entrega do GitHub. Recomendação: Otimizar requisições concorrentes.                             |
-| **M1.3** | < 100%     | Não aceito   | **100%**  | Por ser uma Single Page Application, erros assíncronos não tratados geram tela branca (quebra de DOM). Exige-se comportamento binário rigoroso. Recomendação: Inserir _Error Boundaries_ no React.         |
-| **M2.1** | < 100%     | Não aceito   | **100%**  | A integridade do arquivo de produção deve ser absoluta para evitar dados zerados em produção. Recomendação: Remover a flag `continue-on-error: true` dos passos críticos do arquivo YAML.                  |
-| **M2.2** | > 48h      | 12h - 48h    | **< 12h** | O ciclo de atualização de oportunidades de estágio deve ser ágil. Demoras superiores a 48h desatualizam a plataforma. Recomendação: Acoplar alertas automatizados e refinar logs do Python.                |
-| **M2.3** | < 100%     | Não aceito   | **100%**  | Falhas na execução do fluxo não podem comprometer ou apagar registros consolidados previamente. Exige-se persistência total. Recomendação: Implementar rotina automatizada de backup de segurança do JSON. |
-| **M3.1** | < 90%     | 90%-95% | > 95%  | Falhas na execução dos testes do pipeline devem ser tratadas o mais urgente possível para que a aplicação não fique desatualizada fornecendo informações antigas que podem prejudicar os usuários. |
-| **M3.2** | < 100%     | Não aceito | 100%  | Falhas na execução de Actions do GitHub evidenciam problemas ocultos não tão triviais de serem indicados, impossibilitando a atualização constante de informações do sistema, característica essa fundamental para o Mural UnB. |
+| Métrica  | Inadequado | Satisfatório | Excelente | Justificativa do Critério de Julgamento / Recomendação                                                                                                                                                                          |
+| -------- | ---------- | ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **M1.1** | < 95%      | 95% - 98,9%  | **≥ 99%** | O limite de 99% segue o SLA padrão esperado para o GitHub Pages. Se abaixo de 95%, recomenda-se migrar o host para a Vercel.                                                                                                    |
+| **M1.2** | < 98%      | 98% - 99,9%  | **100%**  | Como a aplicação serve arquivos estáticos leves, qualquer perda de requisições indica problemas na rede de entrega do GitHub. Recomendação: Otimizar requisições concorrentes.                                                  |
+| **M1.3** | < 100%     | Não aceito   | **100%**  | Por ser uma Single Page Application, erros assíncronos não tratados geram tela branca (quebra de DOM). Exige-se comportamento binário rigoroso. Recomendação: Inserir _Error Boundaries_ no React.                              |
+| **M2.1** | < 100%     | Não aceito   | **100%**  | A integridade do arquivo de produção deve ser absoluta para evitar dados zerados em produção. Recomendação: Remover a flag `continue-on-error: true` dos passos críticos do arquivo YAML.                                       |
+| **M2.2** | > 48h      | 12h - 48h    | **< 12h** | O ciclo de atualização de oportunidades de estágio deve ser ágil. Demoras superiores a 48h desatualizam a plataforma. Recomendação: Acoplar alertas automatizados e refinar logs do Python.                                     |
+| **M2.3** | < 100%     | Não aceito   | **100%**  | Falhas na execução do fluxo não podem comprometer ou apagar registros consolidados previamente. Exige-se persistência total. Recomendação: Implementar rotina automatizada de backup de segurança do JSON.                      |
+| **M3.1** | < 90%      | 90%-95%      | > 95%     | Falhas na execução dos testes do pipeline devem ser tratadas o mais urgente possível para que a aplicação não fique desatualizada fornecendo informações antigas que podem prejudicar os usuários.                              |
+| **M3.2** | < 100%     | Não aceito   | 100%      | Falhas na execução de Actions do GitHub evidenciam problemas ocultos não tão triviais de serem indicados, impossibilitando a atualização constante de informações do sistema, característica essa fundamental para o Mural UnB. |
 
 ## 6. Rastreabilidade
 
@@ -167,12 +166,11 @@ Esta seção valida formalmente a consistência do plano de métricas frente aos
 
 **Tabela 4: Rastreabilidade de Requisitos Justificada**
 
-| Requisito Priorizado (Fase 1) | Stakeholder Alvo                  | Subcaracterística | Métrica (Fase 2) | Justificativa do Alinhamento Coerente                                                                                                                                     |
-| ----------------------------- | --------------------------------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Disponibilidade Geral         | Alunos da UnB                     | Disponibilidade   | M1.1, M1.2, M1.3 | Garante que o estudante acesse o painel sem interrupções de conexão do servidor (M1.1), mesmo sob alta concorrência (M1.2) e sem quebras visuais na aplicação web (M1.3). |
-| Persistência e Integridade    | Administradores e Equipe de Dados | Recuperabilidade  | M2.1, M2.2, M2.3 | Assegura que falhas no fluxo automatizado não gerem perda de dados legados (M2.1), que o tempo de reparo seja mínimo (M2.2) e os dados permaneçam salvos (M2.3).          |
-| Tolerância a Falhas | Desenvolvedores e Usuários | Tolerância a Falhas  | M3.1, M3.2 | Assegura que falhas no fluxo automatizado do pipeline serão tratadas (M3.1 e M3.2).          |
-
+| Requisito Priorizado (Fase 1) | Stakeholder Alvo                  | Subcaracterística   | Métrica (Fase 2) | Justificativa do Alinhamento Coerente                                                                                                                                     |
+| ----------------------------- | --------------------------------- | ------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disponibilidade Geral         | Alunos da UnB                     | Disponibilidade     | M1.1, M1.2, M1.3 | Garante que o estudante acesse o painel sem interrupções de conexão do servidor (M1.1), mesmo sob alta concorrência (M1.2) e sem quebras visuais na aplicação web (M1.3). |
+| Persistência e Integridade    | Administradores e Equipe de Dados | Recuperabilidade    | M2.1, M2.2, M2.3 | Assegura que falhas no fluxo automatizado não gerem perda de dados legados (M2.1), que o tempo de reparo seja mínimo (M2.2) e os dados permaneçam salvos (M2.3).          |
+| Tolerância a Falhas           | Desenvolvedores e Usuários        | Tolerância a Falhas | M3.1, M3.2       | Assegura que falhas no fluxo automatizado do pipeline serão tratadas (M3.1 e M3.2).                                                                                       |
 
 ## 7. Glossário
 
@@ -187,12 +185,12 @@ Esta seção valida formalmente a consistência do plano de métricas frente aos
 
 **Tabela 5: Declaração Formal de Uso de IA**
 
-| Ferramenta | Tarefa Realizada                                                                               | Conferência Humana                                                                                         |
-| ---------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Ferramenta          | Tarefa Realizada                                                                               | Conferência Humana                                                                                         |
+| ------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | **Gemini 3.1 Pro ** | Template inicial, ajuste de terminologia, revisão ortográfica e organização lógica das seções. | A equipe validou todas as fórmulas e o alinhamento com a tabela de avaliação, removendo jargões genéricos. |
 
 ## 9. Referências Bibliográficas
 
 1. **INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.** _ISO/IEC 25010: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model_. Genebra: ISO, 2023.
 2. **BASILI, V. R.; CALDIERA, G.; ROMBACH, H. D.** _The Goal Question Metric Approach_. In: Encyclopedia of Software Engineering. New York: John Wiley & Sons, 1994. p. 528-532.
-3. **INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.** *ISO/IEC 25023: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Measurement of system and software product quality.* Geneva: ISO, 2016.
+3. **INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.** _ISO/IEC 25023: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Measurement of system and software product quality._ Geneva: ISO, 2016.
