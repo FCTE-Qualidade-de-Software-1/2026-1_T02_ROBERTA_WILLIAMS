@@ -1370,13 +1370,16 @@
 <p><strong>Níveis de Pontuação e Critérios de Julgamento</strong>:</p>
 <ul>
 <li>
-<p><strong>Excelente (100%)</strong>: Nenhum payload é renderizado de forma ativa. Julgamento: A integridade do conteúdo exibido é confiável.</p>
+<p><em>O veredicto segue o <strong>padrão da falha</strong> (onde há renderização ativa), e não o percentual bruto, que varia conforme a composição dos payloads. A TNCM é reportada como indicador complementar.</em></p>
 </li>
 <li>
-<p><strong>Aceitável (90% a 99%)</strong>: Falha restrita ao <code>href</code> dos campos de canal (exige clique do usuário). Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no <code>SocialFooter</code>, aceitando apenas <code>http</code>/<code>https</code>.</p>
+<p><strong>Excelente</strong>: Nenhum vetor ativo. Todos os payloads, em campos de texto e de canal, são neutralizados. Julgamento: A integridade do conteúdo exibido é confiável.</p>
 </li>
 <li>
-<p><strong>Insatisfatório (&lt; 90% ou qualquer execução em campo de texto)</strong>: Execução automática de payload (XSS direto). Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.</p>
+<p><strong>Aceitável</strong>: Falha restrita ao <code>href</code> dos campos de canal (exige clique do usuário), <strong>sem execução automática em campo de texto</strong>. Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no <code>SocialFooter</code>, aceitando apenas <code>http</code>/<code>https</code>.</p>
+</li>
+<li>
+<p><strong>Insatisfatório</strong>: Qualquer execução automática (auto-XSS) em campo de texto. Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.</p>
 </li>
 </ul>
 </li>
@@ -1453,9 +1456,9 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>M3 (TNCM)</strong></td>
-<td style="text-align: left;">&lt; 90% ou execução em campo de texto</td>
-<td style="text-align: left;">90% a 99% (falha restrita ao <code>href</code>)</td>
-<td style="text-align: left;"><strong>100%</strong></td>
+<td style="text-align: left;">Execução automática (auto-XSS) em campo de texto</td>
+<td style="text-align: left;">Falha restrita ao <code>href</code> de canal (exige clique)</td>
+<td style="text-align: left;">Nenhum vetor ativo (texto e <code>href</code> limpos)</td>
 <td style="text-align: left;">Validar o esquema da URL no <code>SocialFooter</code> (aceitar só <code>http</code>/<code>https</code>) e sanitizar as entradas do pipeline.</td>
 </tr>
 <tr>
@@ -1547,9 +1550,9 @@
 <tr>
 <td style="text-align: left;"><strong>M3</strong></td>
 <td style="text-align: left;">Taxa de Neutralização de Conteúdo Malicioso (TNCM)</td>
-<td style="text-align: left;">100%</td>
-<td style="text-align: left;">A coletar na Fase 3 (teste de injeção local)</td>
-<td style="text-align: left;">Pendente ⚪</td>
+<td style="text-align: left;">Nenhum vetor ativo (texto e <code>href</code> limpos)</td>
+<td style="text-align: left;">Texto 100% neutralizado; <code>href</code> de canal vulnerável a <code>javascript:</code> (medido na Fase 4)</td>
+<td style="text-align: left;">Aceitável 🟡 (Ação: validar esquema no <code>SocialFooter</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -1584,13 +1587,13 @@
 <td style="text-align: left;"><strong>M4</strong></td>
 <td style="text-align: left;">Taxa de Procedência Verificável (TPV)</td>
 <td style="text-align: left;">≥ 95%</td>
-<td style="text-align: left;">Preliminar ≈ 85% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - confirmar amostra na Fase 3</td>
+<td style="text-align: left;">85,5% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - medido na Fase 4</td>
 <td style="text-align: left;">Satisfatório 🟡 (Ação: padronizar contato institucional)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="8-rastreabilidade-da-fase-1-para-a-fase-2">8. Rastreabilidade da Fase 1 para a Fase 2</h2>
-<p>A tabela demonstra que as prioridades e o contexto de proteção definidos no planejamento (Fase 1) foram convertidos exatamente nas métricas estipuladas nos níveis operacionais e quantitativos (Q1, Q2, M1 e M2).</p>
+<p>A tabela demonstra que as prioridades e o contexto de proteção definidos no planejamento (Fase 1) foram convertidos exatamente nas métricas estipuladas nos níveis operacionais e quantitativos (Q1 a Q4, M1 a M4).</p>
 <table>
 <thead>
 <tr>
@@ -1640,7 +1643,7 @@
 </tbody>
 </table>
 <h2 id="9-justificativa-das-metricas">9. Justificativa das Métricas</h2>
-<p>As métricas implementadas diminuem riscos diretos de Segurança da Informação. As medições <strong>M1.1</strong> e <strong>M1.2</strong> asseguram a <strong>Integridade</strong> ao bloquear alterações nos dados por usuários sem privilégios e ao exigir Tokens JWT em rotas essenciais. Simultaneamente métricas <strong>M2.1</strong> e <strong>M2.2</strong> resguardam a <strong>Autenticidade</strong>, exigindo uso de e-mails acadêmicos oficiais e etapas adicionais de validação de identidade.</p>
+<p>As métricas implementadas diminuem riscos diretos de Segurança da Informação. As medições <strong>M1.1</strong> e <strong>M1.2</strong> asseguram a <strong>Integridade</strong> ao bloquear alterações nos dados por usuários sem privilégios e ao exigir Tokens JWT em rotas essenciais. Simultaneamente métricas <strong>M2.1</strong> e <strong>M2.2</strong> resguardam a <strong>Autenticidade</strong>, exigindo uso de e-mails acadêmicos oficiais e etapas adicionais de validação de identidade. Complementarmente, <strong>M3</strong> reforça a <strong>Integridade</strong> ao medir a neutralização de conteúdo malicioso injetado pelo <em>pipeline</em> de <em>scraping</em> na renderização do <em>frontend</em>, e <strong>M4</strong> sustenta a <strong>Autenticidade</strong> ao quantificar a procedência verificável dos registros a partir de seus canais oficiais, cobrindo os vetores de risco reais da arquitetura <em>serverless</em> do Mural UnB.</p>
 <h2 id="10-glossario">10. Glossário</h2>
 <p>O glossário abaixo foi incluído para auxiliar na compreensão dos termos técnicos desta fase avaliativa:</p>
 <ul>
@@ -1674,6 +1677,12 @@
 <td style="text-align: left;">Incremento do GQM de Segurança com questões, hipóteses e métricas</td>
 <td style="text-align: left;">Isaac</td>
 <td style="text-align: center;">11/06/2026</td>
+</tr>
+<tr>
+<td style="text-align: center;">03</td>
+<td style="text-align: left;">Ajuste do critério de M3 (TNCM): julgamento pelo padrão da falha (auto-XSS em texto) em vez do percentual bruto</td>
+<td style="text-align: left;">Isaac</td>
+<td style="text-align: center;">12/06/2026</td>
 </tr>
 </tbody>
 </table>

@@ -642,6 +642,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#niveis-de-pontuacao-e-criterios-de-julgamento-m3-e-m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Níveis de Pontuação e Critérios de Julgamento (M3 e M4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -760,6 +777,17 @@
     <span class="md-ellipsis">
       
         6. Cronograma das Ações (Realista e Alinhado)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências Bibliográficas
       
     </span>
   </a>
@@ -963,6 +991,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#niveis-de-pontuacao-e-criterios-de-julgamento-m3-e-m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Níveis de Pontuação e Critérios de Julgamento (M3 e M4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1088,6 +1133,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências Bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#historico-de-versao" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1171,12 +1227,52 @@
 <td>Consulta SQL direta no Banco de Dados (Ambiente de Teste).</td>
 <td>Mede empiricamente a adoção da dupla autenticação pelos administradores, acessando a base de dados onde a flag is_2fa_enabled fica armazenada.</td>
 </tr>
+<tr>
+<td><strong>M3 (TNCM)</strong></td>
+<td>Integridade</td>
+<td>Teste de injeção de <em>payloads</em> na renderização React, em cópia local do <code>oportunidades.json</code> executada com Vite (<code>npm run dev</code>).</td>
+<td>Mede diretamente se o escape automático do React neutraliza o conteúdo malicioso vindo do <em>pipeline</em> de <em>scraping</em>, atendendo ao critério de neutralização (nenhum vetor ativo, julgado pelo padrão da falha) definido na Fase 2.</td>
+</tr>
+<tr>
+<td><strong>M4 (TPV)</strong></td>
+<td>Autenticidade</td>
+<td>Análise estática (<em>script</em>) do <code>oportunidades.json</code> somada à verificação amostral manual dos canais oficiais.</td>
+<td>Quantifica a proporção de registros rastreáveis a uma fonte oficial verificável, atendendo ao limiar de ≥ 95% (Excelente) definido na Fase 2.</td>
+</tr>
 </tbody>
 </table>
 <ul>
-<li>As ferramentas de injeção de <em>payloads</em> (Passo 2 do fluxo) respondem diretamente às métricas <strong>M1.1 (TBM-NAut)</strong> e <strong>M1.2 (QEC-V)</strong>.</li>
-<li>A validação de formulários de registro e consultas ao banco de dados (Passo 3 do fluxo) fornecem os dados exatos exigidos pelas métricas <strong>M2.1 (EVD-Inst)</strong> e <strong>M2.2 (P-2FA)</strong>.</li>
+<li>As ferramentas de injeção de <em>payloads</em> (Passo 2 do fluxo) respondem diretamente às métricas <strong>M1.1 (TBM-NAut)</strong> e <strong>M1.2 (QEC-V)</strong>.</li>
+<li>A validação de formulários de registro e consultas ao banco de dados (Passo 3 do fluxo) fornecem os dados exatos exigidos pelas métricas <strong>M2.1 (EVD-Inst)</strong> e <strong>M2.2 (P-2FA)</strong>.</li>
+<li>O teste de injeção de conteúdo na renderização (Passo 5 do fluxo) responde diretamente à métrica <strong>M3 (TNCM)</strong>.</li>
+<li>A análise de procedência e verificação amostral de canais oficiais (Passo 6 do fluxo) responde diretamente à métrica <strong>M4 (TPV)</strong>.</li>
 </ul>
+<h3 id="niveis-de-pontuacao-e-criterios-de-julgamento-m3-e-m4">Níveis de Pontuação e Critérios de Julgamento (M3 e M4)</h3>
+<p>Da mesma forma que M1.1, M1.2, M2.1 e M2.2 herdam da Fase 2 seus níveis de pontuação, <strong>M3</strong> e <strong>M4</strong> reaproveitam os critérios já definidos no GQM. Os limiares abaixo são idênticos aos da Fase 2 e orientam o julgamento na Fase 4.</p>
+<p><strong>Métrica 3 (M3) - Taxa de Neutralização de Conteúdo Malicioso (TNCM)</strong></p>
+<ul>
+<li><strong>Fórmula:</strong> <code>TNCM = (Nº de payloads neutralizados na renderização / Nº total de payloads injetados no JSON de teste) x 100</code></li>
+<li><strong>Referência:</strong> <a href="#ref-1">[1]</a>, <a href="#ref-2">[2]</a></li>
+<li><strong>Critérios de julgamento</strong> (pelo padrão da falha; a TNCM é indicador informativo)<strong>:</strong><ul>
+<li><strong>Excelente (H3 confirmada):</strong> nenhum vetor ativo. Todos os payloads, em texto e <code>href</code>, são neutralizados.</li>
+<li><strong>Aceitável:</strong> falha restrita ao <code>href</code> dos campos de canal (exige clique do usuário), sem execução automática em campo de texto.</li>
+<li><strong>Insatisfatório (H3 refutada):</strong> qualquer execução automática (auto-XSS) em campo de texto.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Métrica 4 (M4) - Taxa de Procedência Verificável (TPV)</strong></p>
+<ul>
+<li><strong>Fórmula:</strong> <code>TPV = (Nº de registros com fonte/canal oficial verificável / Nº total de registros) x 100</code></li>
+<li><strong>Referência:</strong> <a href="#ref-1">[1]</a>, <a href="#ref-3">[3]</a></li>
+<li><strong>Critério de "verificável":</strong> empresa júnior com <code>Site</code> ou <code>Instagram</code> preenchido e correspondente à entidade; laboratório com <code>contato</code> em domínio institucional <code>@unb.br</code>.</li>
+<li><strong>Critérios de julgamento:</strong><ul>
+<li><strong>Excelente (H4 confirmada):</strong> ≥ 95%, quase todos os registros são rastreáveis a uma fonte oficial.</li>
+<li><strong>Satisfatório:</strong> 80% a 94%, maioria verificável, com lacuna pontual.</li>
+<li><strong>Insatisfatório (H4 refutada):</strong> &lt; 80%, procedência insuficiente.</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h2 id="3-recursos-e-ambiente-de-avaliacao">3. Recursos e Ambiente de Avaliação</h2>
 <p>Para que a avaliação não afete os usuários reais da UnB e mantenha total isolamento e segurança, a coleta de dados ocorrerá em um <strong>Ambiente Local (Localhost)</strong> replicando a arquitetura de produção do repositório oficial do Mural UnB. Desse modo, a fim de garantir o rigor técnico e isolar as variáveis de teste, os recursos de avaliação e a configuração do ambiente estão detalhados abaixo.</p>
 <h3 id="31-recursos-de-hardware">3.1 Recursos de Hardware</h3>
@@ -1186,12 +1282,13 @@
 </ul>
 <h3 id="32-recursos-de-software">3.2 Recursos de Software</h3>
 <ul>
-<li><strong>Sistema Operacional:</strong> Distribuição Linux (como Fedora ou Ubuntu) com kernel atualizado, ou Windows com WSL2 configurado.</li>
-<li><strong>Ambiente de Execução:</strong> Docker e Docker Compose instalados para inicializar a aplicação (para subir a API e o Banco de Dados do Mural UnB localmente de forma padronizada).</li>
-<li><strong>Ferramenta de Teste de API:</strong> <strong>Postman</strong> ou <strong>Insomnia</strong>. Utilizados para montar as requisições (GET, POST, PUT, DELETE), manipular <em>Headers</em> (JWT) e injetar <em>payloads</em>, bem como para estruturação e disparo das requisições HTTP (M1.1, M1.2, M2.1).</li>
-<li><strong>Cliente de Banco de Dados:</strong> DBeaver ou PgAdmin ou interface SQLite (para visualizar as tabelas locais e para auditoria direta no banco de dados M2.2).</li>
-<li><strong>Captura de Evidências:</strong> OBS Studio (para gravação do fluxo de testes) e ferramenta de captura de tela nativa do SO.</li>
-<li><strong>Planilha de Registro:</strong> Google Sheets (para consolidação dos logs de sucesso/falha).</li>
+<li><strong>Sistema Operacional:</strong> Distribuição Linux (como Fedora ou Ubuntu) com kernel atualizado, ou Windows com WSL2 configurado.</li>
+<li><strong>Ambiente de Execução:</strong> Docker e Docker Compose instalados para inicializar a aplicação (para subir a API e o Banco de Dados do Mural UnB localmente de forma padronizada).</li>
+<li><strong>Ferramenta de Teste de API:</strong> <strong>Postman</strong> ou <strong>Insomnia</strong>. Utilizados para montar as requisições (GET, POST, PUT, DELETE), manipular <em>Headers</em> (JWT) e injetar <em>payloads</em>, bem como para estruturação e disparo das requisições HTTP (M1.1, M1.2, M2.1).</li>
+<li><strong>Cliente de Banco de Dados:</strong> DBeaver ou PgAdmin ou interface SQLite (para visualizar as tabelas locais e para auditoria direta no banco de dados M2.2).</li>
+<li><strong>Captura de Evidências:</strong> OBS Studio (para gravação do fluxo de testes) e ferramenta de captura de tela nativa do SO.</li>
+<li><strong>Planilha de Registro:</strong> Google Sheets (para consolidação dos logs de sucesso/falha).</li>
+<li><strong>Ambiente Frontend (para M3 e M4):</strong> Node.js (v18+) e npm para executar o site localmente; Python 3 para o <em>script</em> de procedência; navegador web atualizado (Google Chrome ou Mozilla Firefox) com ferramentas de desenvolvedor nativas.</li>
 </ul>
 <h3 id="33-massa-de-dados-preparacao-critica">3.3 Massa de Dados (Preparação Crítica)</h3>
 <p><strong>Justificativa:</strong> Avaliar o controle de acesso e a segurança de uma API sem um estado prévio não produz resultados reais. É estritamente pertinente e <strong>obrigatório</strong> o uso de uma massa de dados (via <em>seeders</em> ou script .sql) para agilizar a avaliação. Testar em um banco de dados vazio impossibilita a métrica M1.1 (pois não haveria oportunidades para tentar modificar) e a M2.2 (não haveria publicadores para checar o 2FA).</p>
@@ -1260,29 +1357,81 @@
 </ul>
 <p><strong>Passo 4: Proporção de 2FA para Publicadores (Métrica M2.2 - Autenticidade)</strong></p>
 <ul>
-<li><strong>Objetivo:</strong> Medir a camada extra de segurança diretamente no banco.</li>
+<li><strong>Objetivo:</strong> Medir a camada extra de segurança diretamente no banco.</li>
 <li><strong>Ação:</strong></li>
 <li>Abrir o cliente de Banco de Dados (DBeaver) conectado ao PostgreSQL/MySQL do Mural UnB local.</li>
-<li>Executar a Query SQL: SELECT COUNT(*) FROM users WHERE role='publisher' AND is_2fa_enabled=true; (Para pegar usuários com 2FA).</li>
-<li>Executar a Query SQL: SELECT COUNT(*) FROM users WHERE role='publisher'; (Total de publicadores).</li>
+<li>Executar a Query SQL: SELECT COUNT(*) FROM users WHERE role='publisher' AND is_2fa_enabled=true; (Para pegar usuários com 2FA).</li>
+<li>Executar a Query SQL: SELECT COUNT(*) FROM users WHERE role='publisher'; (Total de publicadores).</li>
 <li>Dividir o resultado pelo total dos usuários publicadores. Registrar a porcentagem exata na Ficha de Registro.</li>
 <li><strong>Coleta de Evidência:</strong></li>
 <li>Captura de tela contendo o comando SQL executado e o retorno da tabela no console do banco de dados.</li>
 <li>Printar o resultado da Query.</li>
 <li>Calcular na planilha a porcentagem de adoção do 2FA.</li>
 </ul>
+<p><strong>Passo 5: Teste de Injeção de Conteúdo (Métrica M3 - Integridade/Frontend)</strong></p>
+<ul>
+<li><strong>Objetivo:</strong> Verificar se o React neutraliza payloads XSS injetados no <code>oportunidades.json</code>.</li>
+<li><strong>Ação:</strong></li>
+<li>Clone (ou <em>fork</em>) o repositório do Mural UnB. Na pasta <code>site/</code>, execute <code>npm install</code> para instalar as dependências (React 19 + Vite).</li>
+<li>Crie uma cópia de teste do arquivo <code>data/oportunidades.json</code>. Em registros selecionados, injete um conjunto controlado de payloads, distribuídos por tipo de campo, e registre o total injetado (denominador):<ul>
+<li><strong>Campos de texto</strong> (<code>descricao</code>, <code>Sobre</code>, <code>Nome</code>): <code>&lt;script&gt;alert('xss')&lt;/script&gt;</code>, <code>&lt;img src=x onerror=alert('xss')&gt;</code> e <code>&lt;b&gt;conteudo-injetado&lt;/b&gt;</code>.</li>
+<li><strong>Campos de canal</strong> (<code>Site</code>, <code>Instagram</code>): <code>javascript:alert('xss')</code>.</li>
+</ul>
+</li>
+<li>Inicie a aplicação com <code>npm run dev</code> e abra no navegador as oportunidades modificadas.</li>
+<li>Para cada payload, observe a renderização e classifique:<ul>
+<li><strong>Neutralizado:</strong> o conteúdo aparece como texto literal na tela, ou o <em>link</em> não executa código.</li>
+<li><strong>Ativo:</strong> o <em>script</em> executa (o <code>alert</code> dispara), o HTML é injetado no DOM, ou o clique no <em>link</em> <code>javascript:</code> executa código.
+  Registre o resultado da classificação de cada payload.</li>
+</ul>
+</li>
+<li><strong>Coleta de Evidência:</strong></li>
+<li>Conte os payloads neutralizados (numerador) e aplique a fórmula: <code>TNCM = (neutralizados / total injetado) * 100</code>.</li>
+<li>Compare com os critérios de julgamento classificando pelo <strong>padrão da falha</strong>: Excelente = nenhum vetor ativo; Aceitável = falha restrita ao <code>href</code> de canal (exige clique), sem auto-XSS em campo de texto; Insatisfatório = qualquer execução automática em campo de texto. A TNCM é reportada como indicador.</li>
+<li><em>Evidência:</em> registro da classificação dos payloads e a análise estática do código-fonte (<code>docs/evidencias_fase4/m3_analise_estatica.md</code>).</li>
+</ul>
+<p><strong>Passo 6: Análise de Procedência (Métrica M4 - Autenticidade/Frontend)</strong></p>
+<ul>
+<li><strong>Objetivo:</strong> Verificar que toda oportunidade publicada tem origem em uma fonte oficial verificável.</li>
+<li><strong>Ação:</strong></li>
+<li>Obtenha o arquivo <code>data/oportunidades.json</code> do repositório.</li>
+<li>
+<p>Execute um <em>script</em> que percorra os registros e conte os que possuem canal/fonte oficial verificável: empresas juniores com <code>Site</code> ou <code>Instagram</code> preenchido; laboratórios com <code>contato</code> em domínio institucional <code>@unb.br</code>. Exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">re</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/oportunidades.json&#39;</span><span class="p">))</span>
+<span class="n">labs</span><span class="p">,</span> <span class="n">ejs</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;laboratorios&#39;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;empresas_juniores&#39;</span><span class="p">]</span>
+<span class="n">unb</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;@([a-z0-9.-]+\.)?unb\.br&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+
+<span class="n">lab_ok</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labs</span> <span class="k">if</span> <span class="n">unb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contato&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))]</span>
+<span class="n">ej_ok</span>  <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">ejs</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Site&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Instagram&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+
+<span class="n">verificaveis</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lab_ok</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">ej_ok</span><span class="p">)</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">ejs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TPV = </span><span class="si">%.1f%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">verificaveis</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>
+</code></pre></div>
+</li>
+<li>
+<p>Selecione uma amostra aleatória (~20 registros) e confirme manualmente que o canal informado resolve para a entidade real (o <code>Site</code>/<code>Instagram</code> pertence à empresa júnior citada; o <code>contato</code> do laboratório é institucional). Registre quantos da amostra se confirmam.</p>
+</li>
+<li><strong>Coleta de Evidência:</strong></li>
+<li>Aplique a fórmula: <code>TPV = (registros com procedência verificável / total de registros) * 100</code>.</li>
+<li>Compare com os critérios de julgamento (Excelente ≥ 95%; Satisfatório 80% a 94%; Insatisfatório &lt; 80%).</li>
+<li><em>Evidência:</em> Saída do <em>script</em> e registros da verificação amostral.</li>
+</ul>
 <h2 id="5-armazenamento-e-estrutura-dos-dados-evidencias">5. Armazenamento e Estrutura dos Dados (Evidências)</h2>
 <ul>
-<li><strong>Ficha de Registro (Google Sheets):</strong> Todos os dados numéricos brutos (contagem de requisições, status codes, percentuais) serão lançados na planilha padronizada criada na Fase 2.</li>
-<li><strong>Gestão de Evidências:</strong> A pasta /evidencias_fase4/ no repositório GitHub deverá conter:</li>
-<li>O arquivo postman_collection_results.csv.</li>
-<li>Os prints de tela nomeados de forma rastreável (ex: M2.1_Erro_Dominio_Invalido.png, M2.2_Query_2FA.png).</li>
+<li><strong>Ficha de Registro (Google Sheets):</strong> Todos os dados numéricos brutos (contagem de requisições, status codes, percentuais) serão lançados na planilha padronizada criada na Fase 2.</li>
+<li><strong>Gestão de Evidências:</strong> A pasta /evidencias_fase4/ no repositório GitHub deverá conter:</li>
+<li>O arquivo postman_collection_results.csv.</li>
+<li>Os prints de tela nomeados de forma rastreável (ex: M2.1_Erro_Dominio_Invalido.png, M2.2_Query_2FA.png).</li>
+<li>Evidência de M3 por análise estática do código (<code>m3\_analise\_estatica.md</code>).</li>
+<li>Saída do <em>script</em> de procedência M4 e registros da verificação amostral.</li>
 </ul>
-<p>Todos os artefatos resultantes deverão ser comitados no repositório GitHub do projeto sob o diretório docs/evidencias_fase4/:</p>
+<p>Todos os artefatos resultantes deverão ser comitados no repositório GitHub do projeto sob o diretório docs/evidencias_fase4/:</p>
 <ul>
-<li>tabela_resultados_mural_unb.xlsx (Contendo os cálculos de M1.1 a M2.2).</li>
-<li>postman_collection_mural_unb.json (Exportação com as requisições exatas feitas para que a professora possa auditar a reprodutibilidade).</li>
-<li>Pasta de <em>Screenshots</em> rotulados claramente (ex: M1.1_TentativaDelete_UserB.png).</li>
+<li>tabela_resultados_mural_unb.xlsx (Contendo os cálculos de M1.1 a M4).</li>
+<li>postman_collection_mural_unb.json (Exportação com as requisições exatas feitas para que a professora possa auditar a reprodutibilidade).</li>
+<li>Pasta de <em>Screenshots</em> rotulados claramente (ex: M1.1_TentativaDelete_UserB.png).</li>
 <li>O link do vídeo (não listado no YouTube) demonstrando a execução contínua dos testes será fixado no relatório final da Fase 4.</li>
 </ul>
 <h2 id="6-cronograma-das-acoes-realista-e-alinhado">6. Cronograma das Ações (Realista e Alinhado)</h2>
@@ -1327,6 +1476,13 @@
 <td>Relatórios SQL e testes de Regex com Postman.</td>
 </tr>
 <tr>
+<td><strong>19/06/2026</strong></td>
+<td>Fase 4</td>
+<td>Sessão de Avaliação - Execução de M3 (TNCM) e M4 (TPV) no Frontend.</td>
+<td>Isaac</td>
+<td>Injeção de payloads e análise de procedência.</td>
+</tr>
+<tr>
 <td><strong>20/06/2026</strong></td>
 <td>Fase 4</td>
 <td>Consolidação das planilhas, cálculo das métricas e elaboração do julgamento cruzado com a Fase 2.</td>
@@ -1342,6 +1498,11 @@
 </tr>
 </tbody>
 </table>
+<h2 id="referencias-bibliograficas">Referências Bibliográficas</h2>
+<p><a id="ref-1"></a>[1] INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. <strong>ISO/IEC 25010</strong>: Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models. Geneva: ISO, 2011.</p>
+<p><a id="ref-2"></a>[2] MITRE. <em>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</em>. 2024. Disponível em: <code>https://cwe.mitre.org/data/definitions/79.html</code>. Acesso em: 12 jun. 2026.</p>
+<p><a id="ref-3"></a>[3] OWASP FOUNDATION. <em>OWASP Top Ten — A01:2021 Broken Access Control</em>. 2021. Disponível em: <code>https://owasp.org/Top10/A01_2021-Broken_Access_Control/</code>. Acesso em: 12 jun. 2026.</p>
+<hr />
 <h2 id="historico-de-versao">Histórico de Versão</h2>
 <table>
 <thead>
@@ -1350,7 +1511,6 @@
 <th><strong>Data</strong></th>
 <th><strong>Descrição</strong></th>
 <th><strong>Autor</strong></th>
-<th><strong>data</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -1359,7 +1519,24 @@
 <td>10/06/2026</td>
 <td>Criação inicial do Plano de Avaliação (Fase 3) alinhado ao GQM.</td>
 <td>Lucas</td>
+</tr>
+<tr>
+<td>2.0</td>
 <td>12/06/2026</td>
+<td>Integração das métricas M3 (TNCM) e M4 (TPV) Frontend/Serverless. Passos 5 e 6, referências bibliográficas</td>
+<td>Isaac</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>12/06/2026</td>
+<td>Padronização de M3 e M4: inclusão na tabela de rastreabilidade (Fase 2 ➔ Fase 3) e reformatação dos critérios de julgamento no padrão do documento.</td>
+<td>Isaac</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>12/06/2026</td>
+<td>Ajuste do critério de M3 (TNCM): julgamento pelo padrão da falha (auto-XSS em texto) em vez do percentual bruto, alinhado à Fase 2.</td>
+<td>Isaac</td>
 </tr>
 </tbody>
 </table>

@@ -778,6 +778,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#23-medicao-3-seguranca-camada-frontendserverless-q3-e-q4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Medição 3: Segurança - Camada Frontend/Serverless (Q3 e Q4)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -936,6 +947,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#23-medicao-3-seguranca-camada-frontendserverless-q3-e-q4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Medição 3: Segurança - Camada Frontend/Serverless (Q3 e Q4)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1037,7 +1059,7 @@
 <li><strong>Período de Execução:</strong> 17/06/2026 a 20/06/2026.</li>
 </ul>
 <h2 id="2-processamento-e-transformacao-de-dados-em-metricas">2. Processamento e Transformação de Dados em Métricas</h2>
-<p>Com efeito, seguindo os Passos 1 a 4 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida (testes dinâmicos de API via Postman e auditoria estática via cliente DBeaver).</p>
+<p>Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via Postman e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do <code>oportunidades.json</code> na camada frontend/<em>serverless</em> (detalhados na Seção 2.3).</p>
 <h3 id="21-medicao-1-seguranca-integridade-q1">2.1. Medição 1: Segurança - Integridade (Q1)</h3>
 <p>A integridade avalia se o sistema previne modificações de editais, de vagas e de oportunidades por usuários sem os devidos privilégios.</p>
 <table>
@@ -1104,6 +1126,56 @@
 </tbody>
 </table>
 <p><strong>Análise:</strong> Na execução do <strong>Passo 3</strong>, o envio de <em>payloads</em> de cadastro de publicadores contendo e-mails @<a href="http://gmail.com/">gmail.com</a> e @<a href="http://outlook.com/">outlook.com</a> retornou consistentemente o erro 422 Unprocessable Entity (validação Regex funcional). Contudo, a execução do <strong>Passo 4</strong> via <em>Query</em> SQL revelou que nenhuma das contas com privilégio de publicação (role='publisher') possuía a camada de segurança is_2fa_enabled=true ativa, o que representa uma vulnerabilidade crítica de autenticação em contas sensíveis.</p>
+<h3 id="23-medicao-3-seguranca-camada-frontendserverless-q3-e-q4">2.3. Medição 3: Segurança - Camada Frontend/Serverless (Q3 e Q4)</h3>
+<p>As métricas <strong>M3</strong> e <strong>M4</strong> avaliam a camada efetivamente em produção do Mural UnB - a SPA estática (React 19 + Vite, servida por GitHub Pages) alimentada pelo <code>data/oportunidades.json</code> produzido pelo <em>pipeline</em> de <em>scraping</em>. Por não dependerem de <em>backend</em>, foram medidas por análise estática do código-fonte do <code>site/</code> (M3) e pela execução de um <em>script</em> de procedência sobre os dados reais (M4 — 83 registros: 34 laboratórios + 49 empresas juniores).</p>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Métrica (Descrição)</strong></th>
+<th><strong>Fórmula / Método</strong></th>
+<th><strong>Resultado Obtido</strong></th>
+<th><strong>Limiar de Julgamento (Fase 2)</strong></th>
+<th><strong>Status</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M3</strong></td>
+<td><strong>Taxa de Neutralização de Conteúdo Malicioso (TNCM)</strong></td>
+<td>Análise estática da renderização (componentes React) com payloads de teste</td>
+<td>Texto: <strong>100% neutralizado</strong> · Canal (<code>href</code>): vetor <code>javascript:</code> ativo</td>
+<td>Aceitável: falha restrita ao <code>href</code> (sem auto-XSS em texto)</td>
+<td><strong>ACEITÁVEL (c/ ressalva)</strong> 🟡</td>
+</tr>
+<tr>
+<td><strong>M4</strong></td>
+<td><strong>Taxa de Procedência Verificável (TPV)</strong></td>
+<td>(71 verificáveis / 83 registros) × 100</td>
+<td><strong>85,5%</strong> (EJs 49/49; labs 22/34 com <code>@unb.br</code>)</td>
+<td>80% a 94% <span class="arithmatex">\(\implies\)</span> Satisfatório</td>
+<td><strong>SATISFATÓRIO</strong> 🟡</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise (M3):</strong> A inspeção do <code>site/src/</code> confirmou <strong>ausência total de <code>dangerouslySetInnerHTML</code></strong>: todo conteúdo textual (<code>Nome</code>, <code>descricao</code>, <code>Sobre</code>, <code>Missão</code>, <code>Visão</code>, <code>Valores</code>, <code>Serviços</code>) é renderizado via expressões JSX (<code>OpportunityHeader.tsx</code>, <code>DescriptionSection.tsx</code>) e, portanto, <strong>escapado automaticamente</strong> - os payloads <code>&lt;script&gt;</code>, <code>&lt;img onerror&gt;</code> e <code>&lt;b&gt;</code> aparecem como texto inerte. A exceção é o componente <code>SocialFooter.tsx</code>, que insere <code>Site</code>/<code>Instagram</code> diretamente em <code>href={website}</code> / <code>href={instagram}</code> <strong>sem validar o esquema da URL</strong>, mantendo vivo um vetor <code>javascript:</code> acionável por clique. Não há execução automática (auto-XSS) em nenhum campo de texto.</p>
+<p><strong>Análise (M4):</strong> O <em>script</em> de procedência (<code>docs/evidencias_fase4/m4_procedencia.py</code>) sobre o <code>oportunidades.json</code> real apurou <strong>85,5%</strong> de procedência verificável: as <strong>49 empresas juniores</strong> possuem canal oficial (<code>Site</code>/<code>Instagram</code>) em 100% dos casos, enquanto <strong>12 dos 34 laboratórios (≈35%)</strong> registram <code>contato</code> em domínio externo (<code>@gmail.com</code>), reduzindo a taxa global. O resultado confirma a estimativa preliminar e a <em>Hipótese H4</em>.</p>
+<p><strong>Julgamento das Questões (GQM) - Q3 e Q4:</strong></p>
+<ul>
+<li><strong>Q3: O sistema impede que conteúdo malicioso das fontes raspadas seja injetado e renderizado de forma ativa?</strong><ul>
+<li><strong>Resposta: Parcialmente.</strong> O escape automático do React neutraliza <strong>100%</strong> dos payloads em campos de texto, mas o <code>SocialFooter</code> deixa um vetor <code>javascript:</code> nos campos de canal (<code>href</code>), que exige clique do usuário. A <em>Hipótese H3</em> foi <strong>confirmada</strong> (previu exatamente esse padrão de falha restrita ao <code>href</code>).</li>
+</ul>
+</li>
+<li><strong>Q4: É possível verificar que toda oportunidade tem origem em fonte oficial autorizada?</strong><ul>
+<li><strong>Resposta: Majoritariamente sim.</strong> <strong>85,5%</strong> dos registros têm procedência verificável; a lacuna concentra-se em laboratórios com contato pessoal <code>@gmail.com</code>. A <em>Hipótese H4</em> foi <strong>confirmada</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Ações recomendadas (M3 e M4):</strong></p>
+<ol>
+<li><strong>M3 -</strong> Validar o esquema da URL no <code>SocialFooter.tsx</code>, aceitando apenas <code>http</code>/<code>https</code> antes de atribuir a <code>href</code> (bloquear/normalizar <code>javascript:</code> e <code>data:</code>).</li>
+<li><strong>M4 -</strong> Padronizar o <code>contato</code> dos laboratórios para o domínio institucional <code>@unb.br</code> e, no <em>pipeline</em> de <em>scraping</em> (ETL), registrar um campo explícito de <code>fonte</code>/<code>url_origem</code> por oportunidade.</li>
+</ol>
 <h2 id="3-rastreabilidade-e-evidencias-documentadas-arquivos-de-coleta">3. Rastreabilidade e Evidências Documentadas (Arquivos de Coleta)</h2>
 <p>A transparência da execução desta avaliação é garantida pela disponibilização integral dos dados brutos e sua correlação direta com as métricas apresentadas. Todos os artefatos estão versionados e organizados no repositório GitHub do projeto sob o diretório <strong>docs/evidencias_fase4/</strong>.</p>
 <p><strong>Conteúdo do Diretório de Evidências</strong></p>
@@ -1122,6 +1194,8 @@
 <li>M2.2_Query_2FA.png: Print do console DBeaver evidenciando o código da consulta SQL e a contagem nula (0) no retorno do banco de dados.</li>
 </ul>
 </li>
+<li><strong>m4_procedencia.py</strong> e <strong>m4_resultado.txt</strong>: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o <code>oportunidades.json</code> real.</li>
+<li><strong>m3_analise_estatica.md</strong>: Evidência de M3 por análise estática de código, com citações <code>arquivo:linha</code> de <code>SocialFooter.tsx</code> e <code>DescriptionSection.tsx</code> e a confirmação da ausência de <code>dangerouslySetInnerHTML</code>.</li>
 </ul>
 <p><strong>Vídeo de Execução Contínua</strong></p>
 <p>Para fins de validação e auditoria, o procedimento de testes foi registrado em formato contínuo (Passos 1 ao 4) por meio do OBS Studio, sem pausas.</p>
@@ -1145,6 +1219,14 @@
 <li><strong>Resposta:</strong> <strong>Parcialmente.</strong> Embora o sistema possua uma trava eficiente de <em>Regex</em> que restringe cadastros apenas para domínios @<a href="http://unb.br/">unb.br</a> ou @<a href="http://aluno.unb.br/">aluno.unb.br</a> (validando M2.1), a barreira falha gravemente no critério de Autenticação em Duas Etapas (M2.2 = 0%), reprovando a expectativa da <em>Hipótese H2</em> de que contas de alto escalão tivessem mecanismos de defesa complexos contra roubo de senhas ou força-bruta.</li>
 </ul>
 </li>
+<li><strong>Q3: O sistema impede que conteúdo malicioso das fontes raspadas seja injetado e renderizado de forma ativa?</strong><ul>
+<li><strong>Resposta:</strong> <strong>Parcialmente.</strong> O escape automático do React neutraliza 100% dos payloads em campos de texto; resta o vetor <code>javascript:</code> no <code>href</code> dos campos de canal (<code>SocialFooter</code>), que exige clique do usuário. M3 = <strong>Aceitável</strong>; a <em>Hipótese H3</em> foi <strong>confirmada</strong> (ver Seção 2.3).</li>
+</ul>
+</li>
+<li><strong>Q4: É possível verificar que toda oportunidade publicada tem origem em fonte oficial autorizada?</strong><ul>
+<li><strong>Resposta:</strong> <strong>Majoritariamente sim.</strong> A Taxa de Procedência Verificável é de <strong>85,5%</strong> (M4 = <strong>Satisfatório</strong>); a lacuna concentra-se em 12 laboratórios com <code>contato</code> em <code>@gmail.com</code>. A <em>Hipótese H4</em> foi <strong>confirmada</strong> (ver Seção 2.3).</li>
+</ul>
+</li>
 </ul>
 <p><strong>Julgamento do Objetivo GQM:</strong> O escopo de avaliação de <em>vulnerabilidades de Integridade e Autenticidade</em> foi <strong>alcançado metodologicamente</strong>. O sistema provou possuir uma <strong>base sólida de Integridade</strong> contra manipulação de dados, porém apresentou uma lacuna arquitetural severa no que tange aos mecanismos de <strong>Autenticidade.</strong></p>
 <h2 id="5-julgamento-final-e-plano-de-acao-recomendacoes-concretas">5. Julgamento Final e Plano de Ação (Recomendações Concretas)</h2>
@@ -1159,6 +1241,8 @@
 </li>
 <li><strong>Manter e Documentar a Validação Regex:</strong> A validação que barra domínios externos (M2.1) está funcionando perfeitamente. Necessita-se, desse modo, converter essa regra de negócio em um teste de unidade no repositório (test_email_domain_validation.py), para proteger o código contra regressões futuras.</li>
 <li><strong>Automatizar a inspeção de Headers JWT:</strong> Integrar o artefato gerado na avaliação (postman_collection_mural_unb.json) ao <em>Pipeline</em> de CI/CD do GitHub Actions. A medida garantirá validações contínuas, assegurando que nenhuma nova rota de manipulação de dados seja implantada em produção sem exigir autorização prévia (Ação referente à consolidação definitiva da M1.2).</li>
+<li><strong>Sanitizar o esquema de URL no <code>SocialFooter</code> (Ação referente à M3):</strong> validar os campos <code>Site</code>/<code>Instagram</code> para aceitar apenas <code>http</code>/<code>https</code> antes de atribuí-los ao <code>href</code>, bloqueando o vetor <code>javascript:</code> identificado na renderização.</li>
+<li><strong>Padronizar a procedência dos registros (Ação referente à M4):</strong> migrar o <code>contato</code> dos 12 laboratórios externos para o domínio institucional <code>@unb.br</code> e registrar um campo explícito de <code>fonte</code>/<code>url_origem</code> por oportunidade no <em>pipeline</em> ETL.</li>
 </ul>
 <h2 id="6-cronograma-realizado">6. Cronograma Realizado</h2>
 <p>A passagem do planejamento para a prática decorreu exatamente dentro da janela alinhada na Fase 3:</p>
@@ -1235,7 +1319,7 @@
 </tr>
 <tr>
 <td>Isaac Batista</td>
-<td>Execução dos ataques controlados na API (M1.1 e M1.2), capturas de tela e gravação.</td>
+<td>Medição da camada frontend/<em>serverless</em>: M3 (injeção de payloads/XSS na renderização) e M4 (análise de procedência), evidências em <code>docs/evidencias_fase4/</code> e respostas GQM de Q3/Q4.</td>
 <td>16.66%</td>
 </tr>
 </tbody>
@@ -1265,6 +1349,27 @@
 <td>Consolidação final e checagem de rastreabilidade (diretório evidencias_fase4).</td>
 <td>Isaac Batista</td>
 <td>Lucas Ricarte</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>12/06/2026</td>
+<td>Inclusão das medições M3 (TNCM) e M4 (TPV) da camada frontend/<em>serverless</em> (Seção 2.3), respostas GQM de Q3/Q4 e evidências em <code>docs/evidencias_fase4/</code>.</td>
+<td>Isaac Batista</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>12/06/2026</td>
+<td>Alinhamento do limiar de M3 ao critério revisado (julgamento pelo padrão da falha).</td>
+<td>Isaac Batista</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>12/06/2026</td>
+<td>Amarração de M3/M4 nas seções consolidadas: §2 (Passos 1–6), §3 (evidências), §4 (GQM Q3/Q4), §5 (plano de ação) e §7 (contribuição).</td>
+<td>Isaac Batista</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
