@@ -110,11 +110,13 @@ Para garantir excelência nos critérios C4 e C5, as métricas respondem diretam
 
 * **Níveis de Pontuação e Critérios de Julgamento**:
 
-    * **Excelente (100%)**: Nenhum payload é renderizado de forma ativa. Julgamento: A integridade do conteúdo exibido é confiável.
+    * _O veredicto segue o **padrão da falha** (onde há renderização ativa), e não o percentual bruto, que varia conforme a composição dos payloads. A TNCM é reportada como indicador complementar._
 
-    * **Aceitável (90% a 99%)**: Falha restrita ao `href` dos campos de canal (exige clique do usuário). Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no `SocialFooter`, aceitando apenas `http`/`https`.
+    * **Excelente**: Nenhum vetor ativo. Todos os payloads, em campos de texto e de canal, são neutralizados. Julgamento: A integridade do conteúdo exibido é confiável.
 
-    * **Insatisfatório (< 90% ou qualquer execução em campo de texto)**: Execução automática de payload (XSS direto). Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.
+    * **Aceitável**: Falha restrita ao `href` dos campos de canal (exige clique do usuário), **sem execução automática em campo de texto**. Julgamento: Aceitável com ressalva. Ação: validar o esquema da URL no `SocialFooter`, aceitando apenas `http`/`https`.
+
+    * **Insatisfatório**: Qualquer execução automática (auto-XSS) em campo de texto. Julgamento: Falha grave; sanitizar as entradas do pipeline e a renderização.
 
 ### Métrica 4 (M4) - Referente à Q4 (Autenticidade - Procedência)
 
@@ -144,7 +146,7 @@ Para garantir o rigor analítico e a interpretação inequívoca dos resultados,
 | **M1.2 (QEC-V)** | Maior que 0 | N/A (Métrica binária na prática) | **0 endpoints** | Proteger rotas expostas implementando validação de *token* JWT. |
 | **M2.1 (EVD-Inst)** | Abaixo de 100% (Aceita e-mail comum) | N/A | **100%** (Bloqueio total) | Implementar validação via Regex para aceitar exclusivamente domínios institucionais. |
 | **M2.2 (P-2FA)** | 0% | Entre 1% e 49% | **50% a 100%** | Planejar a integração de envio de código via e-mail institucional no login. |
-| **M3 (TNCM)** | < 90% ou execução em campo de texto | 90% a 99% (falha restrita ao `href`) | **100%** | Validar o esquema da URL no `SocialFooter` (aceitar só `http`/`https`) e sanitizar as entradas do pipeline. |
+| **M3 (TNCM)** | Execução automática (auto-XSS) em campo de texto | Falha restrita ao `href` de canal (exige clique) | Nenhum vetor ativo (texto e `href` limpos) | Validar o esquema da URL no `SocialFooter` (aceitar só `http`/`https`) e sanitizar as entradas do pipeline. |
 | **M4 (TPV)** | < 80% | 80% a 94% | **≥ 95%** | Padronizar o contato institucional dos laboratórios e adicionar campo `fonte`/`url_origem` no ETL. |
 
 ## 5. Plano de Coleta de Dados 
@@ -168,7 +170,7 @@ Abaixo estão os resultados representativos dos testes de Integridade, baseados 
 | :--- | :--- | :--- | :--- | :--- |
 | **M1.1** | Taxa de Bloqueio de Modificação Não Autorizada (TBM-NAut) | 100% | 100% (Todas as requisições forjadas foram bloqueadas) | Excelente 🟢 |
 | **M1.2** | Quantidade de Endpoints Críticos Vulneráveis (QEC-V) | 0 endpoints | 0 endpoints (Mecanismo de JWT funcional em todas as rotas de edição) | Excelente 🟢 |
-| **M3** | Taxa de Neutralização de Conteúdo Malicioso (TNCM) | 100% | A coletar na Fase 3 (teste de injeção local) | Pendente ⚪ |
+| **M3** | Taxa de Neutralização de Conteúdo Malicioso (TNCM) | Nenhum vetor ativo (texto e `href` limpos) | Texto 100% neutralizado; `href` de canal vulnerável a `javascript:` (medido na Fase 4) | Aceitável 🟡 (Ação: validar esquema no `SocialFooter`) |
 
 ## 7. Quadro Consolidado (Resultados) da Segurança: Autenticidade
 
@@ -178,11 +180,11 @@ Resultados voltados à capacidade do sistema em garantir a identidade institucio
 | :--- | :--- | :--- | :--- | :--- |
 | **M2.1** | Efetividade da Verificação de Domínio Institucional (EVD-Inst) | 100% de Bloqueio | 100% (Aceita apenas @unb.br ou @aluno.unb.br) | Excelente 🟢 |
 | **M2.2** | Proporção de Autenticação em Duas Etapas para Publicadores (P-2FA) | 50% a 100% | 0% (Nenhuma conta de publicador possui camada extra) | Inadequado 🔴 (Ação: Planejar integração via e-mail) |
-| **M4** | Taxa de Procedência Verificável (TPV) | ≥ 95% | Preliminar ≈ 85% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - confirmar amostra na Fase 3 | Satisfatório 🟡 (Ação: padronizar contato institucional) |
+| **M4** | Taxa de Procedência Verificável (TPV) | ≥ 95% | 85,5% (49/49 EJs com Site+Instagram; 22/34 labs com contato @unb.br) - medido na Fase 4 | Satisfatório 🟡 (Ação: padronizar contato institucional) |
 
 ## 8. Rastreabilidade da Fase 1 para a Fase 2
 
-A tabela demonstra que as prioridades e o contexto de proteção definidos no planejamento (Fase 1) foram convertidos exatamente nas métricas estipuladas nos níveis operacionais e quantitativos (Q1, Q2, M1 e M2).
+A tabela demonstra que as prioridades e o contexto de proteção definidos no planejamento (Fase 1) foram convertidos exatamente nas métricas estipuladas nos níveis operacionais e quantitativos (Q1 a Q4, M1 a M4).
 
 | Escopo/Prioridade (Fase 1) | Requisito do Stakeholder | Objetivo GQM (Fase 2) | Métrica Aplicada |
 | :--- | :--- | :--- | :--- |
@@ -195,7 +197,7 @@ A tabela demonstra que as prioridades e o contexto de proteção definidos no pl
 
 ## 9. Justificativa das Métricas
 
-As métricas implementadas diminuem riscos diretos de Segurança da Informação. As medições **M1.1** e **M1.2** asseguram a **Integridade** ao bloquear alterações nos dados por usuários sem privilégios e ao exigir Tokens JWT em rotas essenciais. Simultaneamente métricas **M2.1** e **M2.2** resguardam a **Autenticidade**, exigindo uso de e-mails acadêmicos oficiais e etapas adicionais de validação de identidade.
+As métricas implementadas diminuem riscos diretos de Segurança da Informação. As medições **M1.1** e **M1.2** asseguram a **Integridade** ao bloquear alterações nos dados por usuários sem privilégios e ao exigir Tokens JWT em rotas essenciais. Simultaneamente métricas **M2.1** e **M2.2** resguardam a **Autenticidade**, exigindo uso de e-mails acadêmicos oficiais e etapas adicionais de validação de identidade. Complementarmente, **M3** reforça a **Integridade** ao medir a neutralização de conteúdo malicioso injetado pelo *pipeline* de _scraping_ na renderização do *frontend*, e **M4** sustenta a **Autenticidade** ao quantificar a procedência verificável dos registros a partir de seus canais oficiais, cobrindo os vetores de risco reais da arquitetura _serverless_ do Mural UnB.
 
 ## 10. Glossário
 
@@ -215,6 +217,7 @@ O glossário abaixo foi incluído para auxiliar na compreensão dos termos técn
 |:--:|:---------|:------|:----:|
 | 01 | Criação da página da fase 2 | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2025 |
 | 02 | Incremento do GQM de Segurança com questões, hipóteses e métricas| Isaac | 11/06/2026 |
+| 03 | Ajuste do critério de M3 (TNCM): julgamento pelo padrão da falha (auto-XSS em texto) em vez do percentual bruto | Isaac | 12/06/2026 |
 
 ## Declaração do uso de ia
 
