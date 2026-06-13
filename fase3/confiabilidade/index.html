@@ -762,6 +762,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#coleta-de-m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coleta de M3.1 (Percentual de Prevenção de Falhas de Acordo com os Testes Existentes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coleta-de-m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coleta de M3.2 (Percentual de Prevenção de Falhas de Acordo com o GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1055,6 +1077,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#coleta-de-m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coleta de M3.1 (Percentual de Prevenção de Falhas de Acordo com os Testes Existentes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coleta-de-m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coleta de M3.2 (Percentual de Prevenção de Falhas de Acordo com o GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1156,6 +1200,12 @@
 <td>Yogi</td>
 <td>12/06/2026</td>
 </tr>
+<tr>
+<td>1.3</td>
+<td>Adição da metodologia referente as métricas de tolerância a falhas</td>
+<td>Guilherme Flyan</td>
+<td>12/06/2026</td>
+</tr>
 </tbody>
 </table>
 <h2 id="introducao">Introdução</h2>
@@ -1224,6 +1274,22 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <li>Observar a reação do script Python e verificar se o sistema interrompe a gravação antes de corromper o arquivo principal.</li>
 <li>Analisar o arquivo .json resultante para verificar a preservação e aplicar na fórmula.</li>
 </ol>
+<h4 id="coleta-de-m31-percentual-de-prevencao-de-falhas-de-acordo-com-os-testes-existentes">Coleta de M3.1 (Percentual de Prevenção de Falhas de Acordo com os Testes Existentes)</h4>
+<ol>
+<li>Clonar o repositório do Mural UnB existente no GitHub.</li>
+<li>Realizar a instalação das dependências especificadas de acordo com o README do repositório.</li>
+<li>Executar o script  <code>pytest -v</code>.</li>
+<li>Contabilizar testes coletados e denominá-los de B.</li>
+<li>Contabilizar testes que passaram e denominá-los de A.</li>
+<li>Obter a métrica através da razão A/B * 100.</li>
+</ol>
+<h4 id="coleta-de-m32-percentual-de-prevencao-de-falhas-de-acordo-com-o-github-actions">Coleta de M3.2 (Percentual de Prevenção de Falhas de Acordo com o GitHub Actions)</h4>
+<ol>
+<li>Acessar a aba Actions do repositório do Mural UnB no GitHub.</li>
+<li>Contabilizar a quantidade de Actions fixos agendados (caracterizados como <code>scheduled</code>) existentes e denominá-los B.</li>
+<li>Contabilizar a quantidade de Actions fixos agendados (caracterizados como <code>scheduled</code>) existentes que foram bem sucedidos de acordo com a sua última execução e denominá-los A.</li>
+<li>Obter a métrica através da razão A/B * 100.</li>
+</ol>
 <h2 id="2-especificacao-dos-recursos-e-do-ambiente-de-avaliacao">2. Especificação dos Recursos e do Ambiente de Avaliação</h2>
 <ul>
 <li><strong>Sistema Operacional:</strong> Fedora Linux 42.</li>
@@ -1290,7 +1356,7 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 </tbody>
 </table>
 <h2 id="4-consistencia-com-a-fase-2">4. Consistência com a Fase 2</h2>
-<p>Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via <em>fork</em> e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original.</p>
+<p>Este Plano de Avaliação mantém rastreabilidade e coerência estrita com o modelo GQM definido na Fase 2. A escolha de ferramentas externas (UptimeRobot, Locust) foi especificada para extrair exatamente os dados necessários para o cálculo das métricas de Disponibilidade (M1.1, M1.2 e M1.3). Da mesma forma, o isolamento do ambiente via <em>fork</em> e a exigência da massa de dados corrompidos garantem a repetibilidade das métricas de Recuperabilidade (M2.1, M2.2 e M2.3) estipuladas nos níveis de julgamento, sem risco de corromper o banco de dados da produção original. Por fim a execução dos testes existentes no repositório referentes ao componente "Pipeline" juntamente ao monitoramento dos logs de execução de Actions no Github garantém a repetibilidade e consistência das métricas de Tolerância a Falhas (M3.1 e M3.2). </p>
 <h2 id="5-declaracao-de-uso-de-ia">5. Declaração de Uso de IA</h2>
 <p><strong>Tabela: Declaração Formal de Uso de IA</strong></p>
 <table>
