@@ -51,16 +51,15 @@ O método consiste na execução de testes controlados de injeção de falhas em
 
 #### Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)
 
-1. Acesse o repositório *fork* do projeto no GitHub.
-2. Navegue até o arquivo do script Python responsável pelo ETL e clique no ícone de lápis para editar.
-3. Insira um erro de código intencional na primeira linha (ex: `import erro_proposital_teste`) e clique em **Commit changes** para salvar na *branch* principal.
-4. Vá para a aba **Actions**, selecione o *workflow* correspondente ao script (ex: `1_ejs_extrair_dados.yml`) e clique em **Run workflow**.
-5. Aguarde até que a execução seja interrompida e apresente o status de falha (ícone de 'X' vermelho).
-6. Volte à aba **Code** e navegue até o diretório onde o arquivo `.json` de produção fica armazenado (ex: pasta `data/`).
-7. Inspecione o conteúdo atual do arquivo `.json` e o seu histórico de *commits*:
-  * **Sucesso (Integridade mantida):** O script falhou antes de salvar. O arquivo manteve os dados antigos perfeitamente intactos e não houve sobrescrita.
-  * **Falha (Corrupção de dados):** O script sobrescreveu o arquivo antes de quebrar. O `.json` foi apagado, substituído por um arquivo vazio com zero bytes, ou contém apenas marcações vazias (como `[]` ou `{}`).
-8. Registre a contagem de sucessos/falhas e aplique na fórmula de M2.1.
+1. Acesse o repositório clonado (*fork*) no GitHub.
+2. Navegue até a pasta `scripts/`, abra o arquivo `extrair_empresas_juniores.py` e clique no ícone de lápis para editar.
+3. Insira o código `import erro_proposital_teste` na primeira linha e faça o *commit* diretamente na *branch* principal (`main`).
+4. Clique na aba **Actions**, selecione o *workflow* `1_ejs_extrair_dados.yml` que é o `Processar Empresas Juniores` na barra lateral e clique em **Run workflow** para iniciar a execução.
+5. Aguarde a conclusão de todas as etapas do *job*, independentemente do status final indicado pelo GitHub Actions (verde ou vermelho).
+6. Volte à aba **Code**, navegue até a pasta `data/EJs/` e abra o arquivo `empresas_juniores_consolidadas.json`.
+7. Inspecione o conteúdo do arquivo e determine o resultado da métrica:
+* **Sucesso (100%):** O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.
+* **Falha (0%):** O erro foi ignorado ou causou um efeito colateral que sobrescreveu o arquivo anterior, deixando-o vazio, corrompido ou apenas com dados parciais/inválidos.
 
 #### Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)
 
