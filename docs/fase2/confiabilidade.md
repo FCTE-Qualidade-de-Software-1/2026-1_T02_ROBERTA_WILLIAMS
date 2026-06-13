@@ -9,6 +9,7 @@
 | 1.3    | Reorganização lógica, ajuste de rastreabilidade e refinamento das hipóteses.                          | Yogi   | 07/06/2026 |
 | 1.4    | Inserção de perguntas, hipóteses e métricas para o GQM                                                | Carlos | 09/06/2026 |
 | 1.5    | Inserção de glossário, remoção do plano de coleta (vai para fase 3), melhora parte de rastreabilidade | Yogi   | 11/06/2026 |
+| 1.6 | Adição de novos objetivos ao GQM | Guilherme Flyan | 12/06/2026
 
 ## 1. Nível Conceitual: Objetivo de Medição (GQM)
 
@@ -20,11 +21,11 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 | ---------------------- | -------------------------------------------------------------------- |
 | **Analisar**           | O sistema Mural UnB (frontend estático e pipeline de dados).         |
 | **Com o propósito de** | Avaliar e diagnosticar falhas arquiteturais e interrupções de fluxo. |
-| **Em relação à**       | Confiabilidade (Disponibilidade e Recuperabilidade).                 |
+| **Em relação à**       | Confiabilidade (Disponibilidade, Recuperabilidade e Tolerância a Falhas).                 |
 | **Do ponto de vista**  | Da equipe avaliadora externa e dos usuários finais.                  |
 | **No contexto do**     | Projeto da disciplina de Qualidade de Software 1 (FGA0315).          |
 
-**Objetivo Explícito:** Avaliar a confiabilidade do produto de software para diagnosticar a disponibilidade da interface web e a recuperabilidade do pipeline de dados, do ponto de vista de avaliadores externos e usuários, no contexto da disciplina de Qualidade de Software 1.
+**Objetivo Explícito:** Avaliar a confiabilidade do produto de software para diagnosticar a disponibilidade da interface web, a recuperabilidade do pipeline de dados e a tolerância a falhas ao realizar web crawling ou chamadas a serviços externos como a API do Gemini, do ponto de vista de avaliadores externos e usuários, no contexto da disciplina de Qualidade de Software 1.
 
 ## 2. Nível Operacional: Questões e Hipóteses
 
