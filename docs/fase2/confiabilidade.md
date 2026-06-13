@@ -9,8 +9,9 @@
 | 1.3    | Reorganização lógica, ajuste de rastreabilidade e refinamento das hipóteses.                          | Yogi   | 07/06/2026 |
 | 1.4    | Inserção de perguntas, hipóteses e métricas para o GQM                                                | Carlos | 09/06/2026 |
 | 1.5    | Inserção de glossário, remoção do plano de coleta (vai para fase 3), melhora parte de rastreabilidade | Yogi   | 11/06/2026 |
-| 1.6 | Adição de novos objetivos ao GQM | Guilherme Flyan | 12/06/2026
-| 1.7 | Adição de Question e Metric sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
+| 1.6 | Adição do objetivo de avaliação de Tolerância a Falhas ao GQM | Guilherme Flyan | 12/06/2026
+| 1.7 | Adição das questões e hipóteses sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
+| 1.8 | Adição das métricas sobre a Tolerância a Falhas | Guilherme Flyan | 12/06/2026
 
 ## 1. Nível Conceitual: Objetivo de Medição (GQM)
 
@@ -82,6 +83,22 @@ O objetivo de medição orienta o foco da avaliação para a arquitetura _server
 
 - **M2.3 - Taxa de Persistência Pós-Falha:** Avalia a integridade e preservação dos registros públicos após restauração do sistema.
 - **Fórmula:** `Persistencia = (Total de registros íntegros após recuperação / Total de registros antes da falha) * 100`
+
+### 3.3. Tolerância a Falhas
+
+- **M3.1 - Percentual de Prevenção de Falhas de Acordo com os Testes Existentes:** Representa o percentual de execução bem sucedida da suíte de testes existentes.
+- **Fórmula:** `Prevenção de Falhas = (A / B) * 100`.
+
+- **M3.2 - Percentual de Prevenção de Falhas de Acordo com o GitHub Actions:** Representa o percentual de execução bem sucedida das Actions do GitHub.
+- **Fórmula:** `Prevenção de Falhas = (A / B) * 100`.
+
+Onde em ambas as métricas:
+
+`A = Número de ocorrências de falhas críticas e graves evitadas em relação aos casos de teste de padrão de falha`.
+
+`B = Número de casos de teste de padrão de falha executados (quase causando falha) durante os testes`.
+
+
 
 ## 4. Hierarquia GQM
 
