@@ -8,26 +8,74 @@ As medições foram executadas seguindo o Plano de Avaliação estabelecido na F
 
 #### M1.1 - Disponibilidade do Domínio (UptimeRobot)
 
+
+*Descrição: Painel do UptimeRobot comprovando a disponibilidade contínua do domínio `muralunb.com.br`, com 100% de uptime registrado nas últimas 24 horas.*
+
+![M1.1 Screenshot](../imagem/m1.1.png)
+
 #### M1.2 - Teste de Carga e Estabilidade (Locust)
 
-*(Substituir pelo arquivo correspondente do disparo do Locust)*
+
+*Descrição: Interface do Locust exibindo 15.539 requisições totais durante o teste de estresse. Observa-se a falha integral (100%) no endpoint `/data/vagas.json` e bloqueios parciais na rota raiz `/`.*
+
+![M1.2 Screenshot](../imagem/m1.2.png)
+
 
 #### M1.3 - Resiliência do Frontend (Chrome DevTools)
 
+
+*Descrição: Teste de bloqueio de rede via DevTools. A requisição de `oportunidades.json` foi bloqueada manualmente. A interface não colapsou em tela branca, renderizando o estado vazio ("Nenhuma oportunidade encontrada").*
+
+![M1.3 Screenshot](../imagem/m1.3.png)
+
+
 #### M2.1 - Injeção de Erro de Sintaxe no Pipeline
+
+
+*Descrição: Injeção do código `import erro_proposital_teste` no script `extrair_empresas_juniores.py` diretamente no repositório para forçar a quebra da execução do ETL.*
+
+![M2.1 Screenshot 1](../imagem/m2.1(erro).png)
+
 
 #### M2.1 - Status dos Workflows após Injeção
 
+
+*Descrição: Registro do GitHub Actions mostrando o fluxo "Processar Empresas Juniores" finalizando com status de sucesso verde ("Successful in 17s"), mascarando o erro real do Python devido à má configuração do arquivo `.yml`.*
+
+![M2.1 Screenshot 3](../imagem/m2.1(workflows).png)
+
 #### M2.1 - Integridade do Repositório pós-falha
+
+*Descrição: Comprovação da preservação dos dados de produção. Os arquivos `.json` na pasta `data/EJs/` não sofreram commits recentes (mantidos há 7 meses), confirmando que a falha não corrompeu os arquivos existentes.*
+
+![M2.1 Screenshot 2](../imagem/m2.1(sucesso).png)
+
 
 #### M2.2 - Histórico Geral de Execuções (Gargalo de Manutenção)
 
+
+*Descrição: Visão geral das Actions, evidenciando o padrão cronológico de execuções com sucesso intercaladas com falhas sistemáticas no fluxo de laboratórios.*
+
+![M2.2 Screenshot](../imagem/m2.2.png)
+
+
 #### M2.2 - Histórico Filtrado de Falhas Crônicas
+
+
+*Descrição: Filtro `is:failure` destacando falhas contínuas e não resolvidas do script "Atualizar Tags dos Laboratórios" ao longo de vários meses, impedindo o cálculo do MTTR e evidenciando abandono de manutenção.*
+
+![M2.2 Screenshot 2](../imagem/m2.2(falhas).png)
+
 
 #### M2.3 - Teste de Persistência com Dados Corrompidos
 
 
-*(Substituir pelo arquivo correspondente da execução dos mocks)*
+
+*Descrição: Comprovação da inserção da exceção intencional (`raise Exception("Erro forçado...")`) no script de consolidação e a consequente falha correta do workflow no Actions (exit code 1), garantindo que os 83 registros previamente estabelecidos não fossem apagados.*
+
+![M2.3 Screenshot 1](../imagem/m2.3.png)
+
+![M2.3 Screenshot 2](../imagem/m2.3(2).png)
 
 ---
 
