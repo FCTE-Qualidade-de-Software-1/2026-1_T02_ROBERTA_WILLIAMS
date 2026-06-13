@@ -1166,10 +1166,10 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <h3 id="instrucoes-passo-a-passo-para-o-avaliador">Instruções Passo a Passo para o Avaliador</h3>
 <h4 id="coleta-de-m11-uptime-do-github-pages">Coleta de M1.1 (Uptime do GitHub Pages)</h4>
 <ol>
-<li>Acesse a ferramenta de monitoramento configurada (UptimeRobot).</li>
-<li>Defina o filtro de visualização para as últimas 24 horas.</li>
-<li>Extraia o percentual de tempo em que o servidor respondeu com status HTTP 200.</li>
-<li>Aplique o valor diretamente na fórmula de M1.1.</li>
+<li>Acesse a ferramenta de monitoramento UptimeRobot <a href="https://dashboard.uptimerobot.com/monitors">https://dashboard.uptimerobot.com/monitors</a>.</li>
+<li>Clique em New para adicionar um monitoramento.</li>
+<li>Insira o URL <a href="https://muralunb.com.br/">https://muralunb.com.br/</a>.</li>
+<li>Anote o valor de porcentagem de uptime das últimas 24 horas, este é o resultado da métrica M1.1.</li>
 </ol>
 <h4 id="coleta-de-m12-taxa-de-sucesso-de-requisicoes">Coleta de M1.2 (Taxa de Sucesso de Requisições)</h4>
 <ol>
@@ -1180,28 +1180,42 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 </ol>
 <h4 id="coleta-de-m13-taxa-de-resiliencia-da-interface-front-end">Coleta de M1.3 (Taxa de Resiliência da Interface Front-end)</h4>
 <ol>
-<li>Abra o navegador Google Chrome e acesse a URL pública do painel do Mural UnB.</li>
-<li>Pressione <code>F12</code> para abrir o <em>DevTools</em> e selecione a aba <strong>Network</strong> (Rede).</li>
-<li>No campo de controle de banda (Throttling), altere de <em>No throttling</em> para <strong>Offline</strong>.</li>
-<li>Recarregue a página (<code>F5</code>).</li>
-<li>Observe o comportamento da interface: registre "Sucesso" se o React renderizou uma mensagem amigável de erro/carregamento falho; registre "Falha" se a tela apresentar um travamento completo (tela branca/quebra de DOM).</li>
-<li>Repita o teste 5 vezes e aplique a fórmula de M1.3.</li>
+<li>Abra o site <a href="https://muralunb.com.br/">https://muralunb.com.br/</a> no Chrome.</li>
+<li>Aperte <code>F12</code> e clique na aba <strong>Network</strong> (Rede).</li>
+<li>Na barra de opções da aba Network, marque a caixa <strong>Disable cache</strong> (Desativar cache) e clique no filtro <strong>Fetch/XHR</strong>.</li>
+<li><strong>Recarregue a página (F5)</strong> com o F12 aberto. Isso fará a lista de arquivos carregados aparecer.</li>
+<li>Na coluna "Name", procure pelo arquivo de dados (geralmente com final <code>.json</code>, como <code>oportunidades.json</code>).</li>
+<li>Clique com o <strong>botão direito</strong> no nome desse arquivo e selecione <strong>Block request URL</strong> (Bloquear URL da requisição). Uma gaveta inferior abrirá confirmando o bloqueio.</li>
+<li><strong>Recarregue a página novamente (F5)</strong>. A requisição do <code>.json</code> aparecerá em vermelho (status <code>(blocked:devtools)</code>).</li>
+<li>Abra a localização onde os dados desse arquivo são renderizados. Como os dados do <code>oportunidades.json</code> aparece em <a href="https://muralunb.com.br/feed">https://muralunb.com.br/feed</a>, vá para essa página.</li>
+<li>Olhe para a tela do site:</li>
+<li>Tela totalmente em branca ou elementos sobrepostos/quebrados = Falha (0%).</li>
+<li>Aviso legível informando que os dados não puderam ser carregados, mantendo o menu e o cabeçalho intactos = Sucesso (100%).</li>
+<li>Para limpar o teste, vá na gaveta inferior "Network request blocking", clique com o botão direito no link bloqueado e escolha "Remove", ou desmarque a caixa "Enable network request blocking".</li>
 </ol>
 <h4 id="coleta-de-m21-taxa-de-integridade-pos-falha-do-pipeline">Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)</h4>
 <ol>
 <li>Acesse o repositório <em>fork</em> do projeto no GitHub.</li>
-<li>Navegue até o script Python responsável pelo processo de ETL.</li>
-<li>Insira um erro de sintaxe intencional na primeira linha do arquivo (ex: <code>import erro_propositado</code>). Faça o commit diretamente na branch principal do <em>fork</em>.</li>
-<li>Vá até a aba <strong>Actions</strong>, selecione o workflow correspondente (ex: <code>1_ejs_extrair_dados.yml</code>) e clique em <strong>Run workflow</strong> para forçar a execução.</li>
-<li>Aguarde o pipeline falhar.</li>
-<li>Acesse o diretório onde o arquivo JSON de produção fica armazenado. Verifique se o arquivo foi mantido intacto com os dados anteriores ou se foi limpo/corrompido. Registre o resultado para o cálculo.</li>
+<li>Navegue até o arquivo do script Python responsável pelo ETL e clique no ícone de lápis para editar.</li>
+<li>Insira um erro de código intencional na primeira linha (ex: <code>import erro_proposital_teste</code>) e clique em <strong>Commit changes</strong> para salvar na <em>branch</em> principal.</li>
+<li>Vá para a aba <strong>Actions</strong>, selecione o <em>workflow</em> correspondente ao script (ex: <code>1_ejs_extrair_dados.yml</code>) e clique em <strong>Run workflow</strong>.</li>
+<li>Aguarde até que a execução seja interrompida e apresente o status de falha (ícone de 'X' vermelho).</li>
+<li>Volte à aba <strong>Code</strong> e navegue até o diretório onde o arquivo <code>.json</code> de produção fica armazenado (ex: pasta <code>data/</code>).</li>
+<li>Inspecione o conteúdo atual do arquivo <code>.json</code> e o seu histórico de <em>commits</em>:</li>
+<li><strong>Sucesso (Integridade mantida):</strong> O script falhou antes de salvar. O arquivo manteve os dados antigos perfeitamente intactos e não houve sobrescrita.</li>
+<li><strong>Falha (Corrupção de dados):</strong> O script sobrescreveu o arquivo antes de quebrar. O <code>.json</code> foi apagado, substituído por um arquivo vazio com zero bytes, ou contém apenas marcações vazias (como <code>[]</code> ou <code>{}</code>).</li>
+<li>Registre a contagem de sucessos/falhas e aplique na fórmula de M2.1.</li>
 </ol>
 <h4 id="coleta-de-m22-tempo-medio-de-recuperacao-mttr">Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)</h4>
 <ol>
-<li>No repositório principal do GitHub, acesse a aba <strong>Actions</strong>.</li>
-<li>Filtre o histórico pelas execuções que falharam nos últimos 3 meses.</li>
-<li>Para cada falha encontrada: subtraia o carimbo de data/hora do primeiro disparo falho do carimbo de data/hora do commit que aplicou a correção definitiva.</li>
-<li>Some todos os intervalos em horas e divida pelo número total de quebras para obter o MTTR.</li>
+<li>Acesse o repositório Mural UnB no GitHub e abra o separador <strong>Actions</strong>.</li>
+<li>No campo "Filter workflow runs", escreva <code>is:failure</code> para listar apenas as execuções que falharam.</li>
+<li>Identifique uma falha ocorrida nos últimos 3 meses. Anote a data e hora exata do erro.</li>
+<li>Volte à lista, remova o filtro <code>is:failure</code> e localize a primeira execução bem-sucedida (ícone verde) do mesmo <em>workflow</em> ocorrida <em>após</em> a falha identificada.</li>
+<li>Se encontrar a execução de sucesso: Anote a data e hora exata, e subtraia a data/hora da falha da data/hora do sucesso para obter o tempo de recuperação (em horas).</li>
+<li>Se não encontrar uma execução de sucesso (falha não corrigida): registre o tempo como incalculável e classifique a métrica diretamente como Inadequado (&gt; 48h).</li>
+<li>Repita os passos 3 a 6 para todas as falhas registadas no período de 3 meses.</li>
+<li>Some todos os tempos de recuperação válidos e divida pelo número total de quebras corrigidas para obter o MTTR.</li>
 </ol>
 <h4 id="coleta-de-m23-taxa-de-persistencia-pos-falha">Coleta de M2.3 (Taxa de Persistência Pós-Falha)</h4>
 <ol>
@@ -1290,7 +1304,7 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 </thead>
 <tbody>
 <tr>
-<td>**Gemini 3.1 Pro **</td>
+<td><strong>Gemini 3.1 Pro</strong></td>
 <td>Mesclagem de versões redundantes, formatação da tabela cronograma e checagem com consistência da fase 2.</td>
 <td>A equipe orientou a simplificação do documento, validou as dicas dadas e aprovou as alterações estruturais.</td>
 </tr>
