@@ -593,6 +593,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#23-foco-em-tolerancia-a-falhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Foco em Tolerância a Falhas
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -999,6 +1010,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#23-foco-em-tolerancia-a-falhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Foco em Tolerância a Falhas
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1174,6 +1196,12 @@
 <td>Guilherme Flyan</td>
 <td>12/06/2026</td>
 </tr>
+<tr>
+<td>1.7</td>
+<td>Adição de Question e Metric sobre a Tolerância a Falhas</td>
+<td>Guilherme Flyan</td>
+<td>12/06/2026</td>
+</tr>
 </tbody>
 </table>
 <h2 id="1-nivel-conceitual-objetivo-de-medicao-gqm">1. Nível Conceitual: Objetivo de Medição (GQM)</h2>
@@ -1234,6 +1262,21 @@
 <p><strong>Questão (Q4):</strong> O sistema é capaz de restaurar suas funções e consistência de dados automaticamente ou com intervenção mínima após uma falha ou interrupção no serviço?</p>
 </li>
 <li><strong>Hipótese (H4):</strong> Espera-se que, em caso de queda do servidor ou erro crítico no banco de dados, o sistema consiga retomar as operações sem perda de dados significativos das oportunidades publicadas, e que o tempo necessário para o serviço voltar a ficar online seja reduzido</li>
+</ul>
+<h3 id="23-foco-em-tolerancia-a-falhas">2.3. Foco em Tolerância a Falhas</h3>
+<ul>
+<li>
+<p><strong>Questão (Q5):</strong> Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com os testes já existentes?</p>
+</li>
+<li>
+<p><strong>Hipótese (H5):</strong> Devido o Mural UnB ser uma aplicação que depende majoritariamente que seus dados estejam o máximo atualizados é necessário constância na extração de dados para que o sistema esteja atualizado regularmente, espera-se que os testes já estabelecidos encontrem falhas críticas e graves que inviabilizem o software de cumprir com seu o propósito.  </p>
+</li>
+<li>
+<p><strong>Questão (Q6):</strong> Qual é a eficácia do sistema (pipeline de dados) em tratar e controlar falhas críticas e graves de acordo com a esteira CI/CD do projeto estabelecida através do Github Actions?</p>
+</li>
+<li>
+<p><strong>Hipótese (H6):</strong> Espera-se encontrar falhas nos logs do GitHub Actions que envidenciem a contradição da cobertura de testes já estabelecidos com o real cenário da aplicação que é apresentado ao realizar o ETL do pipeline através das Actions do GitHub.</p>
+</li>
 </ul>
 <h2 id="3-nivel-quantitativo-selecao-de-metricas">3. Nível Quantitativo: Seleção de Métricas</h2>
 <h3 id="31-metricas-de-disponibilidade">3.1. Métricas de Disponibilidade</h3>
