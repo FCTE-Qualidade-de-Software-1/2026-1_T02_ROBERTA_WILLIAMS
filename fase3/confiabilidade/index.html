@@ -1195,16 +1195,15 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 </ol>
 <h4 id="coleta-de-m21-taxa-de-integridade-pos-falha-do-pipeline">Coleta de M2.1 (Taxa de Integridade Pós-Falha do Pipeline)</h4>
 <ol>
-<li>Acesse o repositório <em>fork</em> do projeto no GitHub.</li>
-<li>Navegue até o arquivo do script Python responsável pelo ETL e clique no ícone de lápis para editar.</li>
-<li>Insira um erro de código intencional na primeira linha (ex: <code>import erro_proposital_teste</code>) e clique em <strong>Commit changes</strong> para salvar na <em>branch</em> principal.</li>
-<li>Vá para a aba <strong>Actions</strong>, selecione o <em>workflow</em> correspondente ao script (ex: <code>1_ejs_extrair_dados.yml</code>) e clique em <strong>Run workflow</strong>.</li>
-<li>Aguarde até que a execução seja interrompida e apresente o status de falha (ícone de 'X' vermelho).</li>
-<li>Volte à aba <strong>Code</strong> e navegue até o diretório onde o arquivo <code>.json</code> de produção fica armazenado (ex: pasta <code>data/</code>).</li>
-<li>Inspecione o conteúdo atual do arquivo <code>.json</code> e o seu histórico de <em>commits</em>:</li>
-<li><strong>Sucesso (Integridade mantida):</strong> O script falhou antes de salvar. O arquivo manteve os dados antigos perfeitamente intactos e não houve sobrescrita.</li>
-<li><strong>Falha (Corrupção de dados):</strong> O script sobrescreveu o arquivo antes de quebrar. O <code>.json</code> foi apagado, substituído por um arquivo vazio com zero bytes, ou contém apenas marcações vazias (como <code>[]</code> ou <code>{}</code>).</li>
-<li>Registre a contagem de sucessos/falhas e aplique na fórmula de M2.1.</li>
+<li>Acesse o repositório clonado (<em>fork</em>) no GitHub.</li>
+<li>Navegue até a pasta <code>scripts/</code>, abra o arquivo <code>extrair_empresas_juniores.py</code> e clique no ícone de lápis para editar.</li>
+<li>Insira o código <code>import erro_proposital_teste</code> na primeira linha e faça o <em>commit</em> diretamente na <em>branch</em> principal (<code>main</code>).</li>
+<li>Clique na aba <strong>Actions</strong>, selecione o <em>workflow</em> <code>1_ejs_extrair_dados.yml</code> que é o <code>Processar Empresas Juniores</code> na barra lateral e clique em <strong>Run workflow</strong> para iniciar a execução.</li>
+<li>Aguarde a conclusão de todas as etapas do <em>job</em>, independentemente do status final indicado pelo GitHub Actions (verde ou vermelho).</li>
+<li>Volte à aba <strong>Code</strong>, navegue até a pasta <code>data/EJs/</code> e abra o arquivo <code>empresas_juniores_consolidadas.json</code>.</li>
+<li>Inspecione o conteúdo do arquivo e determine o resultado da métrica:</li>
+<li><strong>Sucesso (100%):</strong> O pipeline foi interrompido antes de realizar alterações destrutivas. Os dados antigos foram integralmente preservados no repositório.</li>
+<li><strong>Falha (0%):</strong> O erro foi ignorado ou causou um efeito colateral que sobrescreveu o arquivo anterior, deixando-o vazio, corrompido ou apenas com dados parciais/inválidos.</li>
 </ol>
 <h4 id="coleta-de-m22-tempo-medio-de-recuperacao-mttr">Coleta de M2.2 (Tempo Médio de Recuperação - MTTR)</h4>
 <ol>
