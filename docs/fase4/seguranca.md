@@ -11,7 +11,7 @@ As informações levantadas têm o intuito de viabilizar a meta estipulada na Fa
 
 ## 2. Processamento e Transformação de Dados em Métricas
 
-Com efeito, seguindo os Passos 1 a 4 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida (testes dinâmicos de API via Postman e auditoria estática via cliente DBeaver).
+Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via Postman e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do `oportunidades.json` na camada frontend/_serverless_ (detalhados na Seção 2.3).
 
 ### 2.1. Medição 1: Segurança - Integridade (Q1)
 
@@ -35,6 +35,31 @@ Para mitigar vulnerabilidades, a autenticidade certifica a identidade institucio
 
 **Análise:** Na execução do **Passo 3**, o envio de *payloads* de cadastro de publicadores contendo e-mails @[gmail.com](http://gmail.com/) e @[outlook.com](http://outlook.com/) retornou consistentemente o erro 422 Unprocessable Entity (validação Regex funcional). Contudo, a execução do **Passo 4** via *Query* SQL revelou que nenhuma das contas com privilégio de publicação (role='publisher') possuía a camada de segurança is\_2fa\_enabled=true ativa, o que representa uma vulnerabilidade crítica de autenticação em contas sensíveis.
 
+### 2.3. Medição 3: Segurança - Camada Frontend/Serverless (Q3 e Q4)
+
+As métricas **M3** e **M4** avaliam a camada efetivamente em produção do Mural UnB - a SPA estática (React 19 + Vite, servida por GitHub Pages) alimentada pelo `data/oportunidades.json` produzido pelo *pipeline* de _scraping_. Por não dependerem de _backend_, foram medidas por análise estática do código-fonte do `site/` (M3) e pela execução de um *script* de procedência sobre os dados reais (M4 — 83 registros: 34 laboratórios + 49 empresas juniores).
+
+| **ID** | **Métrica (Descrição)** | **Fórmula / Método** | **Resultado Obtido** | **Limiar de Julgamento (Fase 2)** | **Status** |
+| --- | --- | --- | --- | --- | --- |
+| **M3** | **Taxa de Neutralização de Conteúdo Malicioso (TNCM)** | Análise estática da renderização (componentes React) com payloads de teste | Texto: **100% neutralizado** · Canal (`href`): vetor `javascript:` ativo | Aceitável: falha restrita ao `href` (sem auto-XSS em texto) | **ACEITÁVEL (c/ ressalva)** 🟡 |
+| **M4** | **Taxa de Procedência Verificável (TPV)** | (71 verificáveis / 83 registros) × 100 | **85,5%** (EJs 49/49; labs 22/34 com `@unb.br`) | 80% a 94% $\implies$ Satisfatório | **SATISFATÓRIO** 🟡 |
+
+**Análise (M3):** A inspeção do `site/src/` confirmou **ausência total de `dangerouslySetInnerHTML`**: todo conteúdo textual (`Nome`, `descricao`, `Sobre`, `Missão`, `Visão`, `Valores`, `Serviços`) é renderizado via expressões JSX (`OpportunityHeader.tsx`, `DescriptionSection.tsx`) e, portanto, **escapado automaticamente** - os payloads `<script>`, `<img onerror>` e `<b>` aparecem como texto inerte. A exceção é o componente `SocialFooter.tsx`, que insere `Site`/`Instagram` diretamente em `href={website}` / `href={instagram}` **sem validar o esquema da URL**, mantendo vivo um vetor `javascript:` acionável por clique. Não há execução automática (auto-XSS) em nenhum campo de texto.
+
+**Análise (M4):** O *script* de procedência (`docs/evidencias_fase4/m4_procedencia.py`) sobre o `oportunidades.json` real apurou **85,5%** de procedência verificável: as **49 empresas juniores** possuem canal oficial (`Site`/`Instagram`) em 100% dos casos, enquanto **12 dos 34 laboratórios (≈35%)** registram `contato` em domínio externo (`@gmail.com`), reduzindo a taxa global. O resultado confirma a estimativa preliminar e a *Hipótese H4*.
+
+**Julgamento das Questões (GQM) - Q3 e Q4:**
+
+* **Q3: O sistema impede que conteúdo malicioso das fontes raspadas seja injetado e renderizado de forma ativa?**
+    + **Resposta: Parcialmente.** O escape automático do React neutraliza **100%** dos payloads em campos de texto, mas o `SocialFooter` deixa um vetor `javascript:` nos campos de canal (`href`), que exige clique do usuário. A *Hipótese H3* foi **confirmada** (previu exatamente esse padrão de falha restrita ao `href`).
+* **Q4: É possível verificar que toda oportunidade tem origem em fonte oficial autorizada?**
+    + **Resposta: Majoritariamente sim.** **85,5%** dos registros têm procedência verificável; a lacuna concentra-se em laboratórios com contato pessoal `@gmail.com`. A *Hipótese H4* foi **confirmada**.
+
+**Ações recomendadas (M3 e M4):**
+
+1. **M3 -** Validar o esquema da URL no `SocialFooter.tsx`, aceitando apenas `http`/`https` antes de atribuir a `href` (bloquear/normalizar `javascript:` e `data:`).
+2. **M4 -** Padronizar o `contato` dos laboratórios para o domínio institucional `@unb.br` e, no *pipeline* de _scraping_ (ETL), registrar um campo explícito de `fonte`/`url_origem` por oportunidade.
+
 ## 3. Rastreabilidade e Evidências Documentadas (Arquivos de Coleta)
 
 A transparência da execução desta avaliação é garantida pela disponibilização integral dos dados brutos e sua correlação direta com as métricas apresentadas. Todos os artefatos estão versionados e organizados no repositório GitHub do projeto sob o diretório **docs/evidencias\_fase4/**.
@@ -49,6 +74,8 @@ A transparência da execução desta avaliação é garantida pela disponibiliza
      + M1.2\_EndpointVulneravel\_Bloqueado.png: Captura da aba *Headers* vazia (sem JWT) e a recusa imediata da API (401 Unauthorized).
      + M2.1\_Erro\_Dominio\_Invalido.png: Print da resposta da API rejeitando o cadastro com domínio não institucional.
      + M2.2\_Query\_2FA.png: Print do console DBeaver evidenciando o código da consulta SQL e a contagem nula (0) no retorno do banco de dados.
+  5. **m4\_procedencia.py** e **m4\_resultado.txt**: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o `oportunidades.json` real.
+  6. **m3\_analise\_estatica.md**: Evidência de M3 por análise estática de código, com citações `arquivo:linha` de `SocialFooter.tsx` e `DescriptionSection.tsx` e a confirmação da ausência de `dangerouslySetInnerHTML`.
 
 **Vídeo de Execução Contínua**
 
@@ -64,6 +91,10 @@ A presente seção mobiliza as métricas computadas com intuído de responder à
      + **Resposta:** **Sim.** Comprovado pelas métricas M1.1 e M1.2 (ambas em nível **Excelente**). Os middlewares de autorização do sistema interceptaram perfeitamente os *tokens* de baixo privilégio e as requisições anônimas. A *Hipótese H1* foi completamente validada.
   2. **Q2: O sistema comprova de forma robusta a identidade do usuário no momento do login e cadastro?**
      + **Resposta:** **Parcialmente.** Embora o sistema possua uma trava eficiente de *Regex* que restringe cadastros apenas para domínios @[unb.br](http://unb.br/) ou @[aluno.unb.br](http://aluno.unb.br/) (validando M2.1), a barreira falha gravemente no critério de Autenticação em Duas Etapas (M2.2 = 0%), reprovando a expectativa da *Hipótese H2* de que contas de alto escalão tivessem mecanismos de defesa complexos contra roubo de senhas ou força-bruta.
+  3. **Q3: O sistema impede que conteúdo malicioso das fontes raspadas seja injetado e renderizado de forma ativa?**
+     + **Resposta:** **Parcialmente.** O escape automático do React neutraliza 100% dos payloads em campos de texto; resta o vetor `javascript:` no `href` dos campos de canal (`SocialFooter`), que exige clique do usuário. M3 = **Aceitável**; a *Hipótese H3* foi **confirmada** (ver Seção 2.3).
+  4. **Q4: É possível verificar que toda oportunidade publicada tem origem em fonte oficial autorizada?**
+     + **Resposta:** **Majoritariamente sim.** A Taxa de Procedência Verificável é de **85,5%** (M4 = **Satisfatório**); a lacuna concentra-se em 12 laboratórios com `contato` em `@gmail.com`. A *Hipótese H4* foi **confirmada** (ver Seção 2.3).
 
 **Julgamento do Objetivo GQM:** O escopo de avaliação de *vulnerabilidades de Integridade e Autenticidade* foi **alcançado metodologicamente**. O sistema provou possuir uma **base sólida de Integridade** contra manipulação de dados, porém apresentou uma lacuna arquitetural severa no que tange aos mecanismos de **Autenticidade.**
 
@@ -78,6 +109,8 @@ Apoiadas na matriz de avaliação, as conclusões apontam para as seguintes **a
 * 1. **Implementar feature de Autenticação em Duas Etapas (2FA):** Criar um mecanismo de autenticação de dois fatores (2FA) com a *role* de publicador/administrador. O fluxo obrigará o envio de um código de segurança via e-mail do servidor oficial (SMTP UnB), no primeiro acesso realizado a partir de um novo dispositivo. Esta ação é necessária para corrigir a falha na M2.2.
   2. **Manter e Documentar a Validação Regex:** A validação que barra domínios externos (M2.1) está funcionando perfeitamente. Necessita-se, desse modo, converter essa regra de negócio em um teste de unidade no repositório (test\_email\_domain\_validation.py), para proteger o código contra regressões futuras.
   3. **Automatizar a inspeção de Headers JWT:** Integrar o artefato gerado na avaliação (postman\_collection\_mural\_unb.json) ao *Pipeline* de CI/CD do GitHub Actions. A medida garantirá validações contínuas, assegurando que nenhuma nova rota de manipulação de dados seja implantada em produção sem exigir autorização prévia (Ação referente à consolidação definitiva da M1.2).
+  4. **Sanitizar o esquema de URL no `SocialFooter` (Ação referente à M3):** validar os campos `Site`/`Instagram` para aceitar apenas `http`/`https` antes de atribuí-los ao `href`, bloqueando o vetor `javascript:` identificado na renderização.
+  5. **Padronizar a procedência dos registros (Ação referente à M4):** migrar o `contato` dos 12 laboratórios externos para o domínio institucional `@unb.br` e registrar um campo explícito de `fonte`/`url_origem` por oportunidade no *pipeline* ETL.
 
 ## 6. Cronograma Realizado
 
@@ -99,7 +132,7 @@ A passagem do planejamento para a prática decorreu exatamente dentro da janela 
 | Guilherme Flyan | Auditoria estática de Banco de Dados para verificação de chaves e métrica M2.2. | 16.66% |
 | Carlos Henrique | Configuração do ambiente local (Docker) e injeção do script de *seed*. | 16.66% |
 | Yogi Nam | Elaboração do Relatório Final (análise GQM, coerência com a Fase 1 e plano de ação). | 16.66% |
-| Isaac Batista | Execução dos ataques controlados na API (M1.1 e M1.2), capturas de tela e gravação. | 16.66% |
+| Isaac Batista | Medição da camada frontend/_serverless_: M3 (injeção de payloads/XSS na renderização) e M4 (análise de procedência), evidências em `docs/evidencias_fase4/` e respostas GQM de Q3/Q4. | 16.66% |
 
 ## 8. Histórico de Versão
 
@@ -107,6 +140,9 @@ A passagem do planejamento para a prática decorreu exatamente dentro da janela 
 | --- | --- | --- | --- | --- |
 | 1.0 | 20/06/2026 | Criação do documento Fase 4 contendo a transformação dos dados, respostas ao GQM e definição do Plano de Ação para os desenvolvedores. | Yogi Nam | Carlos Henrique |
 | 1.1 | 24/06/2026 | Consolidação final e checagem de rastreabilidade (diretório evidencias\_fase4). | Isaac Batista | Lucas Ricarte |
+| 1.2 | 12/06/2026 | Inclusão das medições M3 (TNCM) e M4 (TPV) da camada frontend/_serverless_ (Seção 2.3), respostas GQM de Q3/Q4 e evidências em `docs/evidencias_fase4/`. | Isaac Batista | - |
+| 1.3 | 12/06/2026 | Alinhamento do limiar de M3 ao critério revisado (julgamento pelo padrão da falha). | Isaac Batista | - |
+| 1.4 | 12/06/2026 | Amarração de M3/M4 nas seções consolidadas: §2 (Passos 1–6), §3 (evidências), §4 (GQM Q3/Q4), §5 (plano de ação) e §7 (contribuição). | Isaac Batista | - |
 
 ## Declaração do uso de ia
 
