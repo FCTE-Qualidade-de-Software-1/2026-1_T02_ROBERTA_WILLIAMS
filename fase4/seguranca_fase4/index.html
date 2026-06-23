@@ -1962,6 +1962,9 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <h3 id="24-avaliacao-da-camada-de-producao-m5-e-m6-e-avaliacao-frontend-m3-e-m4">2.4. Avaliação da Camada de Produção (M5 e M6) e Avaliação Frontend (M3 e M4)</h3>
 <p>A avaliação da característica foi conduzida com base no modelo GQM previamente definido para o Mural UnB. O objetivo desta etapa consistiu em verificar se a arquitetura da aplicação atende aos requisitos relacionados à Confidencialidade, Integridade, Não-repúdio, Responsabilidade e Autenticidade, com foco especial nas hipóteses associadas ao controle de acesso e à proteção criptográfica dos dados.</p>
 <p>Durante a execução dos testes, observou-se que a arquitetura do Mural UnB é integralmente baseada em recursos estáticos hospedados no GitHub Pages. A aplicação não possui autenticação de usuários, banco de dados transacional ou serviços de backend executando operações de escrita. Em razão dessas características, parte das métricas definidas inicialmente precisou ser analisada sob a ótica da aplicabilidade arquitetural, uma vez que determinados cenários de teste pressupõem a existência de componentes inexistentes no sistema avaliado.</p>
+<blockquote>
+<p><img alt="Terminal M1/M2 - Test-NetConnection" src="../M1_M2_TestNetConnection.png" /></p>
+</blockquote>
 <p><strong>PASSO 1 – Avaliação da controlabilidade de acesso na interface (Métrica M5.1)</strong></p>
 <p>A primeira etapa buscou verificar se usuários comuns conseguiriam acessar funcionalidades administrativas ou telas restritas por meio da manipulação direta da interface ou das URLs da aplicação.</p>
 <table>
@@ -1995,6 +1998,11 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tbody>
 </table>
 <p>A partir dos testes realizados, verificou-se que todas as tentativas de acesso indevido foram interceptadas. Dessa forma, a métrica M5.1 atingiu o valor de 100%, corroborando a Hipótese 5 para a camada de apresentação.</p>
+<blockquote>
+<p><img alt="Terminal M5.1 - Rota Admin" src="../M5_1_RotaAdmin.png" />
+<img alt="Terminal M5.1 - Rota Login" src="../M5_1_RotaLogin.png" />
+<img alt="Terminal M5.1 - Rota Dashboard" src="../M5_1_RotaDashboard.png" /></p>
+</blockquote>
 <p><strong>PASSO 2 – Avaliação da controlabilidade de acesso na API (Métrica M5.2)</strong></p>
 <p>Em seguida, foi realizada uma análise estrutural da comunicação entre cliente e servidor para identificar possíveis endpoints protegidos e verificar a viabilidade da execução dos testes previstos para a métrica M5.2.</p>
 <table>
@@ -2022,6 +2030,9 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tbody>
 </table>
 <p>Embora a hipótese previsse a medição da taxa de rejeição de requisições não autorizadas, a inexistência de uma API protegida impossibilitou a execução do teste. Portanto, a métrica foi considerada não aplicável para a arquitetura atual do sistema em produção.</p>
+<blockquote>
+<p><img alt="DevTools M5.2 - Bloqueio POST" src="../M5_2_NetworkPOST.png" /></p>
+</blockquote>
 <p><strong>PASSO 3 – Avaliação da Proteção de Dados em Trânsito (Métrica M6.1)</strong></p>
 <p>A avaliação da proteção criptográfica em trânsito teve como objetivo verificar se as informações trafegam por canais seguros e protegidos contra interceptação.</p>
 <table>
@@ -2055,6 +2066,9 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tbody>
 </table>
 <p>Os resultados demonstram que todas as comunicações observadas durante a avaliação ocorreram por meio de canais criptografados, resultando em conformidade integral com a métrica M6.1.</p>
+<blockquote>
+<p><img alt="Terminal M6.1 - Redirecionamento HTTPS" src="../M6_1_CurlHTTPS.png" /></p>
+</blockquote>
 <p><strong>PASSO 4 – Avaliação da proteção de dados em repouso (Métrica M6.2)</strong></p>
 <p>Por fim, foi realizada uma auditoria dos dados persistidos e dos mecanismos de armazenamento utilizados pelo sistema.</p>
 <table>
@@ -2082,6 +2096,9 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tbody>
 </table>
 <p>A métrica M6.2 foi parcialmente aplicável. Embora não existam registros de usuários, senhas ou informações pessoais armazenadas, foi possível verificar que os segredos de infraestrutura estão protegidos adequadamente. As chaves da API não estão expostas.</p>
+<blockquote>
+<p><img alt="GitHub M6.2 - Secrets" src="../M6_2_GitHubSecrets.png" /></p>
+</blockquote>
 <p><strong>PASSO 5 - Avaliação da neutralização de conteúdo malicioso (Métrica M3)</strong></p>
 <p>Como a aplicação renderiza dados oriundos de um pipeline de scraping, avaliou-se se conteúdo malicioso injetado nos arquivos JSON é neutralizado pela interface React. A coleta combinou injeção de payloads em ambiente local (<code>npm run dev</code>) e análise estática do código-fonte do <code>site/</code>.</p>
 <table>
@@ -2103,12 +2120,16 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <tr>
 <td style="text-align: left;">Injeção em campos de canal (<code>Site</code>, <code>Instagram</code>)</td>
 <td style="text-align: left;"><code>javascript:alert('xss')</code> renderizado pelo <code>SocialFooter</code></td>
-<td style="text-align: left;">Inserido literalmente em <code>href={...}</code> sem validar o esquema da URL; executa no clique do link.</td>
-<td style="text-align: left;">Ativo (no clique)</td>
+<td style="text-align: left;"><strong>Achado:</strong> O código prefixa <code>https://</code> automaticamente, transformando o vetor em <code>https://javascript:alert(...)</code>, o que resulta em <code>about:blank#blocked</code>.</td>
+<td style="text-align: left;">Neutralizado (por sanitização implícita)</td>
 </tr>
 </tbody>
 </table>
-<p>Os campos de texto apresentaram 100% de neutralização, sem execução automática (auto-XSS). O único vetor residual é o <code>href</code> dos campos de canal, que exige interação do usuário. A métrica M3 foi julgada Aceitável (com ressalva) e a Hipótese 3 foi confirmada.</p>
+<p>Os campos de texto apresentaram 100% de neutralização, sem execução automática (auto-XSS). O vetor residual via <code>href</code> também foi neutralizado pela sanitização implícita de protocolo do frontend. A métrica M3 foi julgada Aceitável (com achado positivo) e a Hipótese 3 foi confirmada de forma mais favorável.</p>
+<blockquote>
+<p><img alt="Navegador M3 - Texto Neutralizado" src="../M3_TextoNeutralizado.png" />
+<img alt="Navegador M3 - Aba about:blank" src="../M3_HrefBloqueado.png" /></p>
+</blockquote>
 <p><strong>PASSO 6 - Avaliação da procedência verificável (Métrica M4)</strong></p>
 <p>Avaliou-se se cada oportunidade tem origem rastreável a uma fonte oficial, executando um script de procedência sobre o <code>oportunidades.json</code> de produção (83 registros) e uma verificação amostral.</p>
 <table>
@@ -2142,6 +2163,9 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tbody>
 </table>
 <p>A taxa de procedência verificável foi de 85,5%, situando a métrica M4 no nível Satisfatório e confirmando a Hipótese 4: a lacuna concentra-se em laboratórios com contato pessoal fora do domínio institucional.</p>
+<blockquote>
+<p><img alt="Terminal M4 - Script Procedência" src="../M4_ProcedenciaScript.png" /></p>
+</blockquote>
 <h2 id="3-achados-e-resultados-consolidados">3. Achados e Resultados Consolidados</h2>
 <h3 id="31-sintese-das-metricas">3.1 Síntese das Métricas</h3>
 <table>
@@ -2427,6 +2451,13 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <td>12/06/2026</td>
 <td>Amarração de M3/M4 nas seções consolidadas: §2 (Passos 1–6), §3 (evidências), §4 (GQM Q3/Q4), §5 (plano de ação) e §7 (contribuição).</td>
 <td>Isaac Batista</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>23/06/2026</td>
+<td>Revisão de coerência com a Fase 3 (alinhamento de métricas, fórmulas, limiares e ambientes de teste no §1), inserção de evidências visuais (prints de terminal e navegador) rastreáveis nos Passos 1–6 do §2.4, e limpeza de instruções de execução redundantes nos blocos de evidência.</td>
+<td>Caio Soares</td>
 <td>-</td>
 </tr>
 </tbody>
