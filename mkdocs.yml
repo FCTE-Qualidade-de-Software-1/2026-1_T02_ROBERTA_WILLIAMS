@@ -1,4 +1,6 @@
 site_name: Avaliação de Qualidade
+repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-1_T02_ROBERTA_WILLIAMS
+repo_name: FCTE-Qualidade-de-Software-1/2026-1_T02_ROBERTA_WILLIAMS
 
 theme:
   name: material
@@ -27,15 +29,36 @@ theme:
 
 nav:
   - Início: index.md
-  - Fase 1: fase1/index.md
+  - Fase 1: 
+      - Requisitante e Partes Interessada: fase1/1-Requisitantes.md
+      - Propósito da Avaliação e Uso Pretendido: fase1/2-Proposito.md
+      - Descrição Estruturada do Software: fase1/3-Descricao.md
+      - Modelo de Qualidade: fase1/4-ModeloQualidade.md
+      - Seleção de Características: fase1/5-Selecao.md
+      - Escopo da Avaliação e Limites de Validade: fase1/6-Escopo.md
+      - Sustentabilidade (ODS e metas): fase1/7-Sustentabilidade.md
+      - Cronograma de Atividades: fase1/8-Cronograma.md
+      - Referências de Rastreabilidade: fase1/9-Rastreabilidade.md
+      - Tabela de Contribuição da Equipe: fase1/10-Contribuicao.md
+      - Histórico de Versões: fase1/11-Historico.md
+      - Declaração de Uso de IA: fase1/12-Declaracao.md
   - Fase 2:
-      - Segurança: fase2/index.md
-      - Confiabilidade: fase2/confiabilidade.md
+      - Nível Conceitual: fase2/1-NivelConceitual.md
+      - Nível Operacional: fase2/2-NivelOperacional.md
+      - Nível Quantitativo: fase2/3-NivelQuantitativo.md
+      - Hierarquia GQM (Diagramas) e Tabela de Estrutura Hierárquica GQM: fase2/4-Hierarquia.md
+      - Níveis de Pontuação e Critérios de Julgamento: fase2/5-Niveis.md
+      - Rastreabilidade (Fases 1, 2 e 3): fase2/6-Rastreabilidade.md
+      - Alinhamento com Indicadores ODS: fase2/7-Alinhamento.md
+      - Cronograma de Avaliação: fase2/8-Cronograma.md
+      - Notas Arquiteturais e Glossário: fase2/9-Notas.md
+      - Histórico de Versões: fase2/10-Historico.md
+      - Declaração do uso de ia: fase2/11-Declaracao.md
   - Fase 3:
-    - Segurança: fase3/seguranca.md
+    - Segurança: fase3/seguranca_fase3.md
     - Confiabilidade: fase3/confiabilidade.md
   - Fase 4:
-    - Segurança: fase4/seguranca.md
+    - Segurança: fase4/seguranca_fase4.md
     - Confiabilidade: fase4/confiabilidade.md
 
 markdown_extensions:
@@ -46,6 +69,9 @@ markdown_extensions:
           - name: mermaid
             class: mermaid
             format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/mathjax.js

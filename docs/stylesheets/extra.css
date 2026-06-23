@@ -1,0 +1,14 @@
+/* Estilização para tornar os diagramas Mermaid maiores e mais legíveis */
+.mermaid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.mermaid svg {
+  min-width: 700px; /* Impede que o diagrama encolha excessivamente */
+  max-width: 100% !important;
+  height: auto !important;
+}
