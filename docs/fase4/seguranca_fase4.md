@@ -204,11 +204,6 @@ A transparência da execução desta avaliação é garantida pela disponibiliza
   4. **m4\_procedencia.py** e **m4\_resultado.txt**: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o `oportunidades.json` real.
   5. **m3\_analise\_estatica.md**: Evidência de M3 por análise estática de código, com citações `arquivo:linha` de `SocialFooter.tsx` e `DescriptionSection.tsx` e a confirmação da ausência de `dangerouslySetInnerHTML`.
 
-**Vídeo de Execução Contínua**
-
-Para fins de validação e auditoria, o procedimento de testes foi registrado em formato contínuo por meio do OBS Studio, sem pausas.
-
-* 1. **Link da Execução Prática (Não Listado):** [Link do YouTube (Placeholder: [https://youtu.be/MuralUnB\_TestesFase4](https://www.google.com/search?q=https://youtu.be/MuralUnB_TestesFase4))]
 
 ## 5. Considerações Finais e Recomendações
 
