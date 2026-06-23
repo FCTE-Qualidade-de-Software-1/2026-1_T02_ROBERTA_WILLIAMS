@@ -2298,15 +2298,6 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <li><strong>m4_procedencia.py</strong> e <strong>m4_resultado.txt</strong>: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o <code>oportunidades.json</code> real.</li>
 <li><strong>m3_analise_estatica.md</strong>: Evidência de M3 por análise estática de código, com citações <code>arquivo:linha</code> de <code>SocialFooter.tsx</code> e <code>DescriptionSection.tsx</code> e a confirmação da ausência de <code>dangerouslySetInnerHTML</code>.</li>
 </ul>
-<p><strong>Vídeo de Execução Contínua</strong></p>
-<p>Para fins de validação e auditoria, o procedimento de testes foi registrado em formato contínuo por meio do OBS Studio, sem pausas.</p>
-<ul>
-<li>
-<ol>
-<li><strong>Link da Execução Prática (Não Listado):</strong> [Link do YouTube (Placeholder: <a href="https://www.google.com/search?q=https://youtu.be/MuralUnB_TestesFase4">https://youtu.be/MuralUnB_TestesFase4</a>)]</li>
-</ol>
-</li>
-</ul>
 <h2 id="5-consideracoes-finais-e-recomendacoes">5. Considerações Finais e Recomendações</h2>
 <p>Os resultados obtidos indicam que o Mural UnB apresenta um perfil de segurança compatível com sua proposta arquitetural. A adoção de uma arquitetura estática reduz significativamente a superfície de ataque do sistema, eliminando riscos associados a autenticação, gerenciamento de sessões e processamento de requisições no servidor. O cerne da informação está adequadamente protegido contra injeções de perfil comum.</p>
 <p>Por outro lado, essa mesma característica limitou a execução de algumas métricas originalmente definidas no GQM. Em especial, não foi possível realizar testes completos relacionados à controlabilidade de acesso no backend de produção e à proteção criptográfica de registros persistidos, uma vez que tais componentes não fazem parte da solução atual. Dessa forma, os resultados devem ser interpretados considerando o contexto arquitetural do sistema. A ausência de determinadas vulnerabilidades decorre não apenas da existência de mecanismos de proteção, mas também da inexistência dos componentes tradicionalmente associados a esses riscos.</p>
