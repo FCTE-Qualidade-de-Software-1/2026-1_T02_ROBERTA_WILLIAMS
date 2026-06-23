@@ -70,6 +70,8 @@ A avaliação da característica foi conduzida com base no modelo GQM previament
 
 Durante a execução dos testes, observou-se que a arquitetura do Mural UnB é integralmente baseada em recursos estáticos hospedados no GitHub Pages. A aplicação não possui autenticação de usuários, banco de dados transacional ou serviços de backend executando operações de escrita. Em razão dessas características, parte das métricas definidas inicialmente precisou ser analisada sob a ótica da aplicabilidade arquitetural, uma vez que determinados cenários de teste pressupõem a existência de componentes inexistentes no sistema avaliado.
 
+> ![Terminal M1/M2 - Test-NetConnection](M1_M2_TestNetConnection.png)
+
 **PASSO 1 – Avaliação da controlabilidade de acesso na interface (Métrica M5.1)**
 
 A primeira etapa buscou verificar se usuários comuns conseguiriam acessar funcionalidades administrativas ou telas restritas por meio da manipulação direta da interface ou das URLs da aplicação.
@@ -82,6 +84,10 @@ A primeira etapa buscou verificar se usuários comuns conseguiriam acessar funci
 
 A partir dos testes realizados, verificou-se que todas as tentativas de acesso indevido foram interceptadas. Dessa forma, a métrica M5.1 atingiu o valor de 100%, corroborando a Hipótese 5 para a camada de apresentação.
 
+> ![Terminal M5.1 - Rota Admin](M5_1_RotaAdmin.png)
+> ![Terminal M5.1 - Rota Login](M5_1_RotaLogin.png)
+> ![Terminal M5.1 - Rota Dashboard](M5_1_RotaDashboard.png)
+
 **PASSO 2 – Avaliação da controlabilidade de acesso na API (Métrica M5.2)**
 
 Em seguida, foi realizada uma análise estrutural da comunicação entre cliente e servidor para identificar possíveis endpoints protegidos e verificar a viabilidade da execução dos testes previstos para a métrica M5.2.
@@ -92,6 +98,8 @@ Em seguida, foi realizada uma análise estrutural da comunicação entre cliente
 | Pentest em endpoints protegidos | Simulação de requisições utilizando Postman. | Não foram encontrados endpoints privados ou operações protegidas por autenticação. | Não aplicável |
 
 Embora a hipótese previsse a medição da taxa de rejeição de requisições não autorizadas, a inexistência de uma API protegida impossibilitou a execução do teste. Portanto, a métrica foi considerada não aplicável para a arquitetura atual do sistema em produção.
+
+> ![DevTools M5.2 - Bloqueio POST](M5_2_NetworkPOST.png)
 
 **PASSO 3 – Avaliação da Proteção de Dados em Trânsito (Métrica M6.1)**
 
@@ -105,6 +113,8 @@ A avaliação da proteção criptográfica em trânsito teve como objetivo verif
 
 Os resultados demonstram que todas as comunicações observadas durante a avaliação ocorreram por meio de canais criptografados, resultando em conformidade integral com a métrica M6.1.
 
+> ![Terminal M6.1 - Redirecionamento HTTPS](M6_1_CurlHTTPS.png)
+
 **PASSO 4 – Avaliação da proteção de dados em repouso (Métrica M6.2)**
 
 Por fim, foi realizada uma auditoria dos dados persistidos e dos mecanismos de armazenamento utilizados pelo sistema.
@@ -116,6 +126,8 @@ Por fim, foi realizada uma auditoria dos dados persistidos e dos mecanismos de a
 
 A métrica M6.2 foi parcialmente aplicável. Embora não existam registros de usuários, senhas ou informações pessoais armazenadas, foi possível verificar que os segredos de infraestrutura estão protegidos adequadamente. As chaves da API não estão expostas.
 
+> ![GitHub M6.2 - Secrets](M6_2_GitHubSecrets.png)
+
 **PASSO 5 - Avaliação da neutralização de conteúdo malicioso (Métrica M3)**
 
 Como a aplicação renderiza dados oriundos de um pipeline de scraping, avaliou-se se conteúdo malicioso injetado nos arquivos JSON é neutralizado pela interface React. A coleta combinou injeção de payloads em ambiente local (`npm run dev`) e análise estática do código-fonte do `site/`.
@@ -123,9 +135,12 @@ Como a aplicação renderiza dados oriundos de um pipeline de scraping, avaliou-
 | Tarefa Executada | Ação no Sistema | Observações / Evidência | Julgamento |
 | :--- | :--- | :--- | :--- |
 | Injeção em campos de texto (`Nome`, `descricao`, `Sobre`...) | `<script>`, `<img onerror>`, `<b>` no JSON, renderizados via JSX | Escape automático do React; payloads exibidos como texto inerte. Nenhum `dangerouslySetInnerHTML` em `site/src/`. | Neutralizado |
-| Injeção em campos de canal (`Site`, `Instagram`) | `javascript:alert('xss')` renderizado pelo `SocialFooter` | Inserido literalmente em `href={...}` sem validar o esquema da URL; executa no clique do link. | Ativo (no clique) |
+| Injeção em campos de canal (`Site`, `Instagram`) | `javascript:alert('xss')` renderizado pelo `SocialFooter` | **Achado:** O código prefixa `https://` automaticamente, transformando o vetor em `https://javascript:alert(...)`, o que resulta em `about:blank#blocked`. | Neutralizado (por sanitização implícita) |
 
-Os campos de texto apresentaram 100% de neutralização, sem execução automática (auto-XSS). O único vetor residual é o `href` dos campos de canal, que exige interação do usuário. A métrica M3 foi julgada Aceitável (com ressalva) e a Hipótese 3 foi confirmada.
+Os campos de texto apresentaram 100% de neutralização, sem execução automática (auto-XSS). O vetor residual via `href` também foi neutralizado pela sanitização implícita de protocolo do frontend. A métrica M3 foi julgada Aceitável (com achado positivo) e a Hipótese 3 foi confirmada de forma mais favorável.
+
+> ![Navegador M3 - Texto Neutralizado](M3_TextoNeutralizado.png)
+> ![Navegador M3 - Aba about:blank](M3_HrefBloqueado.png)
 
 **PASSO 6 - Avaliação da procedência verificável (Métrica M4)**
 
@@ -138,6 +153,8 @@ Avaliou-se se cada oportunidade tem origem rastreável a uma fonte oficial, exec
 | Procedência global | `TPV = 71/83 × 100` | 85,5% de registros com procedência verificável. | - |
 
 A taxa de procedência verificável foi de 85,5%, situando a métrica M4 no nível Satisfatório e confirmando a Hipótese 4: a lacuna concentra-se em laboratórios com contato pessoal fora do domínio institucional.
+
+> ![Terminal M4 - Script Procedência](M4_ProcedenciaScript.png)
 
 ## 3. Achados e Resultados Consolidados
 
@@ -242,6 +259,7 @@ A passagem do planejamento para a prática decorreu exatamente dentro da janela 
 | 1.2 | 12/06/2026 | Inclusão das medições M3 (TNCM) e M4 (TPV) da camada frontend/_serverless_ (Seção 2.3), respostas GQM de Q3/Q4 e evidências em `docs/evidencias_fase4/`. | Isaac Batista | - |
 | 1.3 | 12/06/2026 | Alinhamento do limiar de M3 ao critério revisado (julgamento pelo padrão da falha). | Isaac Batista | - |
 | 1.4 | 12/06/2026 | Amarração de M3/M4 nas seções consolidadas: §2 (Passos 1–6), §3 (evidências), §4 (GQM Q3/Q4), §5 (plano de ação) e §7 (contribuição). | Isaac Batista | - |
+| 1.5 | 23/06/2026 | Revisão de coerência com a Fase 3 (alinhamento de métricas, fórmulas, limiares e ambientes de teste no §1), inserção de evidências visuais (prints de terminal e navegador) rastreáveis nos Passos 1–6 do §2.4, e limpeza de instruções de execução redundantes nos blocos de evidência. | Caio Soares | - |
 
 ## Declaração do uso de ia
 
