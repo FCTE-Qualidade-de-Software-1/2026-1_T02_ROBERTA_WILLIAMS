@@ -1842,7 +1842,7 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <li><strong>Período de Execução:</strong> 17/06/2026 a 20/06/2026.</li>
 </ul>
 <h2 id="2-processamento-e-transformacao-de-dados-em-metricas">2. Processamento e Transformação de Dados em Métricas</h2>
-<p>Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via Postman e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do <code>oportunidades.json</code> na camada frontend/<em>serverless</em> (detalhados na Seção 2.3).</p>
+<p>Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via cURL no PowerShell e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do <code>oportunidades.json</code> na camada frontend/<em>serverless</em> (detalhados na Seção 2.3).</p>
 <h3 id="21-medicao-1-seguranca-integridade-q1">2.1. Medição 1: Segurança - Integridade (Q1)</h3>
 <p>A integridade avalia se o sistema previne modificações de editais, de vagas e de oportunidades por usuários sem os devidos privilégios.</p>
 <table>
@@ -2023,7 +2023,7 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </tr>
 <tr>
 <td style="text-align: left;">Pentest em endpoints protegidos</td>
-<td style="text-align: left;">Simulação de requisições utilizando Postman.</td>
+<td style="text-align: left;">Simulação de requisições utilizando comandos cURL.</td>
 <td style="text-align: left;">Não foram encontrados endpoints privados ou operações protegidas por autenticação.</td>
 <td style="text-align: left;">Não aplicável</td>
 </tr>
@@ -2287,8 +2287,7 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <li><strong>tabela_resultados_mural_unb.xlsx</strong>: Planilha contendo o registro de todos os disparos, os status HTTP retornados e o processamento matemático das métricas M1.1 a M2.2.</li>
 </ol>
 </li>
-<li><strong>postman_collection_mural_unb.json</strong>: Arquivo de exportação contendo a coleção estruturada (Headers, Body e Rotas) utilizada nos testes dinâmicos da API para permitir a auditoria de reprodutibilidade.</li>
-<li><strong>postman_collection_results.csv</strong>: Log gerado pelo Postman Runner, registrando o <em>timestamp</em>, a latência e o status final de cada requisição automatizada.</li>
+<li><strong>Comandos cURL (PowerShell)</strong>: A estruturação dos testes dinâmicos da API (Headers, Body e Rotas) e a reprodutibilidade foram garantidas pela execução explícita via terminal.</li>
 <li><strong>Pasta de Screenshots Rastreáveis:</strong><ul>
 <li>M1.1_TentativaDelete_UserB.png: Captura de tela evidenciando o retorno 403 Forbidden no bloqueio do payload de deleção.</li>
 <li>M1.2_EndpointVulneravel_Bloqueado.png: Captura da aba <em>Headers</em> vazia (sem JWT) e a recusa imediata da API (401 Unauthorized).</li>
@@ -2319,7 +2318,7 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 </ol>
 </li>
 <li><strong>Manter e Documentar a Validação Regex:</strong> A validação que barra domínios externos (M2.1) deve ser convertida em um teste de unidade no repositório (<code>test_email_domain_validation.py</code>).</li>
-<li><strong>Automatizar a inspeção de Headers JWT:</strong> Integrar a coleção Postman ao <em>Pipeline</em> de CI/CD do GitHub Actions, assegurando que nenhuma nova rota de manipulação de dados seja implantada sem exigir autorização prévia.</li>
+<li><strong>Automatizar a inspeção de Headers JWT:</strong> Integrar os testes de API (scripts cURL ou equivalentes) ao <em>Pipeline</em> de CI/CD do GitHub Actions, assegurando que nenhuma nova rota de manipulação de dados seja implantada sem exigir autorização prévia.</li>
 <li><strong>Sanitizar o esquema de URL no <code>SocialFooter</code> (Ação M3):</strong> Validar os campos <code>Site</code>/<code>Instagram</code> para aceitar apenas <code>http</code>/<code>https</code> antes de atribuí-los ao <code>href</code>, bloqueando o vetor <code>javascript:</code>.</li>
 <li><strong>Padronizar a procedência dos registros (Ação M4):</strong> Migrar o <code>contato</code> dos 12 laboratórios externos para o domínio institucional <code>@unb.br</code> e registrar um campo explícito de <code>fonte</code>/<code>url_origem</code> no <em>pipeline</em> ETL.</li>
 <li><strong>Reduzir a exposição de e-mails:</strong> Minimizar a exposição de e-mails nos arquivos públicos para evitar <em>scraping</em> automatizado, e remover logs de depuração do código de produção.</li>
@@ -2376,7 +2375,7 @@ O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em 
 <tbody>
 <tr>
 <td>Lucas Ricarte</td>
-<td>Execução dos testes dinâmicos (Postman) para métrica M2.1.</td>
+<td>Execução dos testes dinâmicos (cURL/PowerShell) para métrica M2.1.</td>
 <td>16.66%</td>
 </tr>
 <tr>
