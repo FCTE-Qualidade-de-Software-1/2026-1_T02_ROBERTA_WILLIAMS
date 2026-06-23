@@ -15,7 +15,7 @@ As informações levantadas têm o intuito de viabilizar a meta estipulada na Fa
 
 ## 2. Processamento e Transformação de Dados em Métricas
 
-Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via Postman e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do `oportunidades.json` na camada frontend/_serverless_ (detalhados na Seção 2.3).
+Com efeito, seguindo os Passos 1 a 6 do Plano de Avaliação (Fase 3), as medidas foram extraídas de forma híbrida: os Passos 1 a 4 (M1/M2) por testes dinâmicos de API via cURL no PowerShell e auditoria via cliente DBeaver, e os Passos 5 e 6 (M3/M4) por injeção na renderização e análise do `oportunidades.json` na camada frontend/_serverless_ (detalhados na Seção 2.3).
 
 ### 2.1. Medição 1: Segurança - Integridade (Q1)
 
@@ -95,7 +95,7 @@ Em seguida, foi realizada uma análise estrutural da comunicação entre cliente
 | Tarefa executada | Ação no sistema | Observações / Evidência | Julgamento |
 | :--- | :--- | :--- | :--- |
 | Mapeamento de endpoints | Busca por chamadas HTTP no código. | Foram identificadas exclusivamente requisições GET para arquivos JSON públicos. | Não aplicável |
-| Pentest em endpoints protegidos | Simulação de requisições utilizando Postman. | Não foram encontrados endpoints privados ou operações protegidas por autenticação. | Não aplicável |
+| Pentest em endpoints protegidos | Simulação de requisições utilizando comandos cURL. | Não foram encontrados endpoints privados ou operações protegidas por autenticação. | Não aplicável |
 
 Embora a hipótese previsse a medição da taxa de rejeição de requisições não autorizadas, a inexistência de uma API protegida impossibilitou a execução do teste. Portanto, a métrica foi considerada não aplicável para a arquitetura atual do sistema em produção.
 
@@ -195,15 +195,14 @@ A transparência da execução desta avaliação é garantida pela disponibiliza
 **Conteúdo do Diretório de Evidências**
 
 * 1. **tabela\_resultados\_mural\_unb.xlsx**: Planilha contendo o registro de todos os disparos, os status HTTP retornados e o processamento matemático das métricas M1.1 a M2.2.
-  2. **postman\_collection\_mural\_unb.json**: Arquivo de exportação contendo a coleção estruturada (Headers, Body e Rotas) utilizada nos testes dinâmicos da API para permitir a auditoria de reprodutibilidade.
-  3. **postman\_collection\_results.csv**: Log gerado pelo Postman Runner, registrando o *timestamp*, a latência e o status final de cada requisição automatizada.
-  4. **Pasta de Screenshots Rastreáveis:**
+  2. **Comandos cURL (PowerShell)**: A estruturação dos testes dinâmicos da API (Headers, Body e Rotas) e a reprodutibilidade foram garantidas pela execução explícita via terminal.
+  3. **Pasta de Screenshots Rastreáveis:**
      + M1.1\_TentativaDelete\_UserB.png: Captura de tela evidenciando o retorno 403 Forbidden no bloqueio do payload de deleção.
      + M1.2\_EndpointVulneravel\_Bloqueado.png: Captura da aba *Headers* vazia (sem JWT) e a recusa imediata da API (401 Unauthorized).
      + M2.1\_Erro\_Dominio\_Invalido.png: Print da resposta da API rejeitando o cadastro com domínio não institucional.
      + M2.2\_Query\_2FA.png: Print do console DBeaver evidenciando o código da consulta SQL e a contagem nula (0) no retorno do banco de dados.
-  5. **m4\_procedencia.py** e **m4\_resultado.txt**: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o `oportunidades.json` real.
-  6. **m3\_analise\_estatica.md**: Evidência de M3 por análise estática de código, com citações `arquivo:linha` de `SocialFooter.tsx` e `DescriptionSection.tsx` e a confirmação da ausência de `dangerouslySetInnerHTML`.
+  4. **m4\_procedencia.py** e **m4\_resultado.txt**: Script reproduzível da métrica M4 (TPV) e sua saída (85,5%), executado sobre o `oportunidades.json` real.
+  5. **m3\_analise\_estatica.md**: Evidência de M3 por análise estática de código, com citações `arquivo:linha` de `SocialFooter.tsx` e `DescriptionSection.tsx` e a confirmação da ausência de `dangerouslySetInnerHTML`.
 
 **Vídeo de Execução Contínua**
 
@@ -221,7 +220,7 @@ Apoiadas na matriz de avaliação, as conclusões apontam para as seguintes **re
 
 * 1. **Implementar feature de Autenticação em Duas Etapas (2FA):** Criar um mecanismo de autenticação de dois fatores com a *role* de publicador/administrador (caso a API venha a ser implantada no futuro), exigindo envio de código via SMTP UnB no primeiro acesso.
   2. **Manter e Documentar a Validação Regex:** A validação que barra domínios externos (M2.1) deve ser convertida em um teste de unidade no repositório (`test_email_domain_validation.py`).
-  3. **Automatizar a inspeção de Headers JWT:** Integrar a coleção Postman ao *Pipeline* de CI/CD do GitHub Actions, assegurando que nenhuma nova rota de manipulação de dados seja implantada sem exigir autorização prévia.
+  3. **Automatizar a inspeção de Headers JWT:** Integrar os testes de API (scripts cURL ou equivalentes) ao *Pipeline* de CI/CD do GitHub Actions, assegurando que nenhuma nova rota de manipulação de dados seja implantada sem exigir autorização prévia.
   4. **Sanitizar o esquema de URL no `SocialFooter` (Ação M3):** Validar os campos `Site`/`Instagram` para aceitar apenas `http`/`https` antes de atribuí-los ao `href`, bloqueando o vetor `javascript:`.
   5. **Padronizar a procedência dos registros (Ação M4):** Migrar o `contato` dos 12 laboratórios externos para o domínio institucional `@unb.br` e registrar um campo explícito de `fonte`/`url_origem` no *pipeline* ETL.
   6. **Reduzir a exposição de e-mails:** Minimizar a exposição de e-mails nos arquivos públicos para evitar *scraping* automatizado, e remover logs de depuração do código de produção.
@@ -243,7 +242,7 @@ A passagem do planejamento para a prática decorreu exatamente dentro da janela 
 
 | **Nome do Integrante** | **Papel / Atividades Realizadas na Fase 4** | **Esforço/Participação (%)** |
 | --- | --- | --- |
-| Lucas Ricarte | Execução dos testes dinâmicos (Postman) para métrica M2.1. | 16.66% |
+| Lucas Ricarte | Execução dos testes dinâmicos (cURL/PowerShell) para métrica M2.1. | 16.66% |
 | Caio Soares | Adição das questões e métricas (Q5, Q6, M5, M6); consolidação dos resultados (M5/M6) na Fase 3; e avaliação da camada de produção via terminal na Fase 4. | 16.66% |
 | Guilherme Flyan | Auditoria estática de Banco de Dados para verificação de chaves e métrica M2.2. | 16.66% |
 | Carlos Henrique | Configuração do ambiente local (Docker) e injeção do script de *seed*. | 16.66% |
