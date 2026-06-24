@@ -37,6 +37,10 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
       <img src="https://github.com/Carlos-UCH.png?size=100" width=100><br>
       <b><a href="https://github.com/Carlos-UCH">Carlos Henrique Brasil de Souza</a></b><br>
     </td>
+  <td align="center">
+      <img src="https://github.com/isaacbatista26.png?size=100" width=100><br>
+      <b><a href="https://github.com/isaacbatista26">Isaac Batista</a></b><br>
+  </td>
   </tr>
 </table>
 
@@ -47,3 +51,4 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
 | 01 | Reformulação da página inicial | [Lucas Ricarte](https://github.com/Lucas-Ricarte) | 21/05/2026 |
 | 02 | Adiciona integrante | [Yogi](https://github.com/oyogi) | 21/05/2026 |
 | 03 | Adiciona integrante e fases| [Carlos](https://github.com/Carlos-UCH) | 12/06/2026 |
+| 04 | Adiciona integrante e fases| [Isaac](https://github.com/isaacbatista26) | 23/06/2026 |
