@@ -188,6 +188,14 @@ A taxa de procedência verificável foi de 85,5%, situando a métrica M4 no nív
 * **Q4: É possível verificar que toda oportunidade publicada tem origem em uma fonte oficial autorizada?**
     + **Resposta: Majoritariamente atendida.** A Taxa de Procedência Verificável foi de 85,5%: as 49 empresas juniores possuem canal oficial em 100% dos registros, enquanto 12 dos 34 laboratórios registram contato em domínio externo (`@gmail.com`), reduzindo a taxa global. A *Hipótese 4* foi confirmada, e a lacuna aponta a ação corretiva de padronizar o contato institucional dos laboratórios.
 
+### 3.3 Alinhamento com Objetivos de Desenvolvimento Sustentável (ODS)
+
+Conforme delimitado na Fase 1, a garantia de Integridade, Autenticidade e Confidencialidade não serve apenas a propósitos técnicos, mas sustenta o alinhamento estratégico do Mural UnB às metas globais de sustentabilidade:
+
+* **ODS 4 (Educação de Qualidade):** A métrica de procedência verificável (M4) atua diretamente na submeta 4.3 ao garantir que as oportunidades educacionais exibidas provêm de fontes acadêmicas e oficiais, protegendo os estudantes contra desinformação e assegurando o acesso a conteúdo real de alta qualidade.
+* **ODS 8 (Trabalho Decente):** A integridade assegurada contra modificações não autorizadas (M1.1 e M5.1) preserva a credibilidade das vagas profissionais divulgadas, suportando a meta de inserção produtiva de jovens (submeta 8.6) ao mitigar o risco de vagas forjadas ou manipuladas.
+* **ODS 9 (Inovação e Infraestrutura Resiliente):** As métricas de proteção de dados (M6.1, M6.2) e de neutralização de conteúdo malicioso em interface (M3) materializam as submetas de infraestrutura segura (9.5 e 9.b), atestando a construção de um ecossistema tecnológico resiliente e imune a ataques comuns, propício à inovação e difusão científica.
+
 ## 4. Rastreabilidade e Evidências Documentadas (Arquivos de Coleta)
 
 A transparência da execução desta avaliação é garantida pela disponibilização integral dos dados brutos e sua correlação direta com as métricas apresentadas. Todos os artefatos estão versionados e organizados no repositório GitHub do projeto sob o diretório **docs/evidencias\_fase4/**.
