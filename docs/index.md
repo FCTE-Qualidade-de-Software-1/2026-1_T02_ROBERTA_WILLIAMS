@@ -45,6 +45,10 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
       <img src="https://github.com/GFlyan.png?size=100" width=100><br>
       <b><a href="https://github.com/GFlyan">Guilherme Flyan Araujo</a></b><br>
   </td>
+  <td align="center">
+      <img src="https://github.com/CaioSoandrd.png?size=100" width=100><br>
+      <b><a href="https://github.com/CaioSoandrd">Caio Soares</a></b><br>
+  </td>
   </tr>
 </table>
 
@@ -57,3 +61,4 @@ Para acessar o detalhamento de cada etapa, clique nos links abaixo ou utilize a 
 | 03 | Adiciona integrante e fases| [Carlos](https://github.com/Carlos-UCH) | 12/06/2026 |
 | 04 | Adiciona integrante e fases| [Isaac](https://github.com/isaacbatista26) | 23/06/2026 |
 | 05 | Adiciona integrante | [Guilherme Flyan](https://github.com/GFlyan) | 23/06/2026 |
+| 06 | Adiciona integrante | [Caio Soares](https://github.com/CaioSoandrd) | 23/06/2026 |
