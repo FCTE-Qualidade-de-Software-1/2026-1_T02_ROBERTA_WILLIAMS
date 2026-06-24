@@ -1307,17 +1307,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#introducao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Introdução
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-metodologia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1650,17 +1639,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#introducao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Introdução
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-metodologia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1882,11 +1860,22 @@
 <td>Guilherme Flyan</td>
 <td>12/06/2026</td>
 </tr>
+<tr>
+<td>1.4</td>
+<td>Refatoração conforme feedbacks</td>
+<td>Guilherme Flyan</td>
+<td>23/06/2026</td>
+</tr>
+<tr>
+<td>## Introdução</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h2 id="introducao">Introdução</h2>
 <p>Nesta etapa do projeto, vamos especificar como iremos implementar e executar as métricas definidas na metodologia Goal-Question-Metric (GQM) da Fase 2 para avaliar objetivamente a Confiabilidade da arquitetura serverless do Mural UnB.
-O processo de coleta e análise utilizará o próprio ambiente de hospedagem e automação do projeto (GitHub Pages e GitHub Actions) em conjunto com ferramentas externas de monitoramento e carga (como UptimeRobot e k6/Locust). A execução envolverá a aplicação de testes simulados de falha, incluindo a interrupção proposital do carregamento de arquivos JSON na interface React (via DevTools) e a injeção intencional de erros nos workflows do pipeline ETL, além da análise do histórico do repositório. O processo contará com capturas de tela e extração de logs do GitHub para evidenciar os cenários testados. Por fim, serão realizados os cálculos das fórmulas definidas anteriormente para analisar os dados gerados, garantindo a rastreabilidade e a reprodutibilidade dos resultados obtidos.</p>
+O processo de coleta e análise utilizará o próprio ambiente de hospedagem localizado no GitHub Pages e o sistema de automação do projeto viabilizado pelo GitHub Actions em conjunto com ferramentas externas de monitoramento e carga como UptimeRobot e k6/Locust. A execução envolverá a aplicação de testes simulados de falha, incluindo a interrupção proposital do carregamento de arquivos JSON na interface React via DevTools e a injeção intencional de erros nos workflows do pipeline ETL, além da análise do histórico do repositório. O processo contará com capturas de tela e extração de logs do GitHub para evidenciar os cenários testados. Por fim, serão realizados os cálculos das fórmulas definidas anteriormente para analisar os dados gerados, garantindo a rastreabilidade e a reprodutibilidade dos resultados obtidos.</p>
 <h2 id="1-metodologia">1. Metodologia</h2>
 <p>O método consiste na execução de testes controlados de injeção de falhas em ambiente clonado (<em>fork</em>), análise retroativa de logs e monitoramento externo sintético. O processo garante repetibilidade sem exigir conhecimento interno profundo do código do Mural UnB.</p>
 <h3 id="instrucoes-passo-a-passo-para-o-avaliador">Instruções Passo a Passo para o Avaliador</h3>
@@ -1908,8 +1897,10 @@ O processo de coleta e análise utilizará o próprio ambiente de hospedagem e a
 <ol>
 <li>Abra o site <a href="https://muralunb.com.br/">https://muralunb.com.br/</a> no Chrome.</li>
 <li>Aperte <code>F12</code> e clique na aba <strong>Network</strong> (Rede).</li>
-<li>Na barra de opções da aba Network, marque a caixa <strong>Disable cache</strong> (Desativar cache) e clique no filtro <strong>Fetch/XHR</strong>.</li>
+<li>Na barra de opções da aba Network, marque a caixa <strong>Disable cache</strong> (Desativar cache) e clique no filtro <strong>Fetch/XHR</strong>.<ol>
 <li><strong>Recarregue a página (F5)</strong> com o F12 aberto. Isso fará a lista de arquivos carregados aparecer.</li>
+</ol>
+</li>
 <li>Na coluna "Name", procure pelo arquivo de dados (geralmente com final <code>.json</code>, como <code>oportunidades.json</code>).</li>
 <li>Clique com o <strong>botão direito</strong> no nome desse arquivo e selecione <strong>Block request URL</strong> (Bloquear URL da requisição). Uma gaveta inferior abrirá confirmando o bloqueio.</li>
 <li><strong>Recarregue a página novamente (F5)</strong>. A requisição do <code>.json</code> aparecerá em vermelho (status <code>(blocked:devtools)</code>).</li>
