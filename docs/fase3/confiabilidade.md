@@ -8,11 +8,11 @@
 | 1.1    | Inserção das métricas complementares de teste de carga (M1.2) e persistência pós-falha (M2.3).                                                                | Carlos          | 11/06/2026 |
 | 1.2    | Refinamento para os critérios de excelência: simplificação do texto, preenchimento do cronograma de avaliação e adição da seção de consistência com a Fase 2. | Yogi            | 12/06/2026 |
 | 1.3    | Adição da metodologia referente as métricas de tolerância a falhas                                                                                            | Guilherme Flyan | 12/06/2026 |
-
+| 1.4 | Refatoração conforme feedbacks | Guilherme Flyan | 23/06/2026
 ## Introdução
 
 Nesta etapa do projeto, vamos especificar como iremos implementar e executar as métricas definidas na metodologia Goal-Question-Metric (GQM) da Fase 2 para avaliar objetivamente a Confiabilidade da arquitetura serverless do Mural UnB.
-O processo de coleta e análise utilizará o próprio ambiente de hospedagem e automação do projeto (GitHub Pages e GitHub Actions) em conjunto com ferramentas externas de monitoramento e carga (como UptimeRobot e k6/Locust). A execução envolverá a aplicação de testes simulados de falha, incluindo a interrupção proposital do carregamento de arquivos JSON na interface React (via DevTools) e a injeção intencional de erros nos workflows do pipeline ETL, além da análise do histórico do repositório. O processo contará com capturas de tela e extração de logs do GitHub para evidenciar os cenários testados. Por fim, serão realizados os cálculos das fórmulas definidas anteriormente para analisar os dados gerados, garantindo a rastreabilidade e a reprodutibilidade dos resultados obtidos.
+O processo de coleta e análise utilizará o próprio ambiente de hospedagem localizado no GitHub Pages e o sistema de automação do projeto viabilizado pelo GitHub Actions em conjunto com ferramentas externas de monitoramento e carga como UptimeRobot e k6/Locust. A execução envolverá a aplicação de testes simulados de falha, incluindo a interrupção proposital do carregamento de arquivos JSON na interface React via DevTools e a injeção intencional de erros nos workflows do pipeline ETL, além da análise do histórico do repositório. O processo contará com capturas de tela e extração de logs do GitHub para evidenciar os cenários testados. Por fim, serão realizados os cálculos das fórmulas definidas anteriormente para analisar os dados gerados, garantindo a rastreabilidade e a reprodutibilidade dos resultados obtidos.
 
 ## 1. Metodologia
 
@@ -39,7 +39,7 @@ O método consiste na execução de testes controlados de injeção de falhas em
 1. Abra o site [https://muralunb.com.br/](https://muralunb.com.br/) no Chrome.
 2. Aperte `F12` e clique na aba **Network** (Rede).
 3. Na barra de opções da aba Network, marque a caixa **Disable cache** (Desativar cache) e clique no filtro **Fetch/XHR**.
-4. **Recarregue a página (F5)** com o F12 aberto. Isso fará a lista de arquivos carregados aparecer.
+    4. **Recarregue a página (F5)** com o F12 aberto. Isso fará a lista de arquivos carregados aparecer.
 5. Na coluna "Name", procure pelo arquivo de dados (geralmente com final `.json`, como `oportunidades.json`).
 6. Clique com o **botão direito** no nome desse arquivo e selecione **Block request URL** (Bloquear URL da requisição). Uma gaveta inferior abrirá confirmando o bloqueio.
 7. **Recarregue a página novamente (F5)**. A requisição do `.json` aparecerá em vermelho (status `(blocked:devtools)`).
