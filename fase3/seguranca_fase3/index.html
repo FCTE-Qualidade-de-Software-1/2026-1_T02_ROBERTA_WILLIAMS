@@ -1271,7 +1271,7 @@
   <a href="#1-objetivo-deste-plano" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Objetivo deste Plano**
+        1. Objetivo deste Plano
       
     </span>
   </a>
@@ -1282,12 +1282,12 @@
   <a href="#2-rastreabilidade-e-consistencia-fase-2-fase-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**
+        2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**">
+    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1454,7 +1454,7 @@
   <a href="#declaracao-do-uso-de-ia" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declaração do uso de ia
+        Declaração do Uso de IA
       
     </span>
   </a>
@@ -1648,7 +1648,7 @@
   <a href="#1-objetivo-deste-plano" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Objetivo deste Plano**
+        1. Objetivo deste Plano
       
     </span>
   </a>
@@ -1659,12 +1659,12 @@
   <a href="#2-rastreabilidade-e-consistencia-fase-2-fase-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**
+        2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**">
+    <nav class="md-nav" aria-label="2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1831,7 +1831,7 @@
   <a href="#declaracao-do-uso-de-ia" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declaração do uso de ia
+        Declaração do Uso de IA
       
     </span>
   </a>
@@ -1859,25 +1859,25 @@
 
 
 <h1 id="fase-3-projetar-a-avaliacao-plano-de-avaliacao">Fase 3 - Projetar a Avaliação (Plano de Avaliação)</h1>
-<h2 id="1-objetivo-deste-plano">1. Objetivo deste Plano**</h2>
-<p>O projeto de avaliação do <strong>Mural UnB</strong>, na Fase 1 definiu "o que" avaliar (Confiabilidade e Segurança) e na Fase 2 estabeleceu "como medir" (por meio do framework GQM focando em Integridade e Autenticidade). Nesta fase, o objetivo é estruturar o Plano de Avaliação, servindo como a ponte definitiva entre as métricas e as hipóteses levantadas na Fase 2 (Especificar a Avaliação) e a execução prática na Fase 4 (Executar a Avaliação).</p>
-<p>Outrossim, o <strong>Plano de Avaliação</strong> tem como objetivo detalhar metodologicamente a execução dos testes, bem como definir os métodos de coleta, os recursos tecnológicos, o ambiente isolado de testes e o fluxo de procedimentos para auditar a <strong>Segurança (Integridade e Autenticidade)</strong> do Mural UnB. Ele define os recursos de hardware e software necessários, a massa de dados para simulação, e o roteiro passo a passo (scripts de teste) para que qualquer avaliador externo consiga reproduzir as medições de forma consistente, objetiva e auditável na Fase 4.</p>
+<h2 id="1-objetivo-deste-plano">1. Objetivo deste Plano</h2>
+<p>O projeto de avaliação do <strong>Mural UnB</strong> definiu, na Fase 1, "o que" avaliar (Confiabilidade e Segurança) e, na Fase 2, estabeleceu "como medir" (por meio do framework GQM, com foco em Integridade e Autenticidade). Nesta fase, o objetivo é estruturar o Plano de Avaliação, que serve como ponte definitiva entre as métricas e as hipóteses levantadas na Fase 2 (Especificar a Avaliação) e a execução prática na Fase 4 (Executar a Avaliação).</p>
+<p>Além disso, o <strong>Plano de Avaliação</strong> tem como objetivo detalhar metodologicamente a execução dos testes, bem como definir os métodos de coleta, os recursos tecnológicos, o ambiente isolado de testes e o fluxo de procedimentos para auditar a <strong>Segurança (Integridade e Autenticidade)</strong> do Mural UnB. Ele define os recursos de hardware e software necessários, a massa de dados para simulação e o roteiro passo a passo (scripts de teste) para que qualquer avaliador externo consiga reproduzir as medições de forma consistente, objetiva e auditável na Fase 4.</p>
 <blockquote>
-<p><strong>Nota Arquitetural — Escopo Dual de Avaliação</strong></p>
-<p>O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em produção: o frontend é uma SPA React (Vite + TypeScript) hospedada no GitHub Pages, alimentada por arquivos <code>.json</code> gerados offline por um <em>pipeline</em> de <em>scraping</em> via GitHub Actions. <strong>Não existe servidor de aplicação ativo (Node.js, Django, etc.), banco de dados acessível em tempo real, sistema de autenticação por JWT ou endpoints <code>POST</code>/<code>PUT</code>/<code>DELETE</code></strong> na camada de produção atual.</p>
-<p>Em face dessa arquitetura, este Plano de Avaliação cobre dois escopos complementares:</p>
+<p><strong>Nota Arquitetural: Escopo Dual de Avaliação</strong></p>
+<p>O Mural UnB adota uma <strong>arquitetura 100% Estática (Jamstack)</strong> em produção: o frontend é uma SPA React (Vite + TypeScript) hospedada no GitHub Pages, alimentada por arquivos <code>.json</code> gerados offline por um pipeline de scraping via GitHub Actions. <strong>Não existem servidor de aplicação ativo (Node.js, Django, etc.), banco de dados acessível em tempo real, sistema de autenticação por JWT ou endpoints <code>POST</code>/<code>PUT</code>/<code>DELETE</code></strong> na camada de produção atual.</p>
+<p>Diante dessa arquitetura, este Plano de Avaliação cobre dois escopos complementares:</p>
 <ul>
-<li><strong>Escopos M1.1, M1.2, M2.1 e M2.2 (Passos 1–4):</strong> Testam os controles de acesso e autenticação do <em>backend</em> da versão de referência (Repositório 2025-2), executado localmente via Docker. Trata-se do modelo de avaliação planejado para um sistema com API dinâmica. A medida <strong>M1.2 (QEC-V)</strong> é formalmente <strong>Não Aplicável (N/A)</strong> na camada de produção atual — não há endpoints privados para atacar em um servidor de arquivos estáticos, sendo válida apenas no ambiente Docker local.</li>
-<li><strong>Escopos M3 (TNCM) e M4 (TPV) (Passos 5–6):</strong> Avaliam a camada efetivamente em produção — a SPA estática — por análise de renderização React e procedência dos dados no <code>oportunidades.json</code>.</li>
+<li><strong>Escopos M1.1, M1.2, M2.1 e M2.2 (Passos 1–4):</strong> Testam os controles de acesso e autenticação do backend da versão de referência (Repositório 2025-2), executado localmente via Docker. Trata-se do modelo de avaliação planejado para um sistema com API dinâmica. A medida <strong>M1.2 (QEC-V)</strong> é formalmente <strong>Não Aplicável (N/A)</strong> na camada de produção atual, pois não há endpoints privados para atacar em um servidor de arquivos estáticos; ela é válida apenas no ambiente Docker local.</li>
+<li><strong>Escopos M3 (TNCM) e M4 (TPV) (Passos 5–6):</strong> Avaliam a camada efetivamente em produção (a SPA estática) por análise de renderização React e procedência dos dados no <code>oportunidades.json</code>.</li>
 </ul>
 </blockquote>
-<p><strong>Resumo da Coleta:</strong> O fluxo de testes adotará uma estratégia <strong>híbrida (automatizada e manual).</strong> A coleta das métricas de integridade (M1/M2) será realizada via API em ambiente Docker local. As métricas de camada frontend (M3/M4) serão coletadas por injeção de <em>payloads</em> e análise estática do código-fonte. Os dados consolidados serão armazenados em uma <strong>"Ficha de Registro (Google Sheets)",</strong> enquanto as evidências de execução serão documentadas por relatórios nos formatos <em>.json</em> e <em>.csv</em>, além de capturas de tela.</p>
+<p><strong>Resumo da Coleta:</strong> O fluxo de testes adotará uma estratégia <strong>híbrida</strong> (automatizada e manual). A coleta das métricas de integridade (M1/M2) será realizada via API em ambiente Docker local. As métricas de camada frontend (M3/M4) serão coletadas por injeção de payloads e análise estática do código-fonte. Os dados consolidados serão armazenados em uma Ficha de Registro (Google Sheets), enquanto as evidências de execução serão documentadas por relatórios nos formatos <code>.json</code> e <code>.csv</code>, além de capturas de tela.</p>
 <ul>
-<li><strong>Produto Alvo:</strong> Mural UnB — camada backend (Repositório Oficial 2025-2, via Docker) para M1/M2; camada frontend/serverless (produção GitHub Pages) para M3/M4.</li>
+<li><strong>Produto Alvo:</strong> Mural UnB, nas camadas backend (Repositório Oficial 2025-2, via Docker) para M1/M2 e frontend/serverless (produção GitHub Pages) para M3/M4.</li>
 <li><strong>Foco da avaliação:</strong> Segurança da Informação (Integridade de Endpoints e Autenticidade de Usuários).</li>
 </ul>
-<h2 id="2-rastreabilidade-e-consistencia-fase-2-fase-3">2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)**</h2>
-<p>Para assegurar a rastreabilidade exigida pelo processo formal de avaliação e explicitar a consistência do plano de avaliação com as métricas e critérios de julgamento estabelecidos na Fase 2. Além disso, este plano descreve métodos e recursos estritamente coerentes com o modelo GQM definido na Fase 2. A tabela abaixo mapeia como cada métrica será operacionalizada neste plano.</p>
+<h2 id="2-rastreabilidade-e-consistencia-fase-2-fase-3">2. Rastreabilidade e Consistência (Fase 2 ➔ Fase 3)</h2>
+<p>Para assegurar a rastreabilidade exigida pelo processo formal de avaliação e explicitar a consistência do plano com as métricas e os critérios de julgamento estabelecidos na Fase 2, este plano descreve métodos e recursos estritamente coerentes com o modelo GQM ali definido. A tabela abaixo mapeia como cada métrica será operacionalizada neste plano.</p>
 <table>
 <thead>
 <tr>
@@ -1891,37 +1891,37 @@
 <tr>
 <td><strong>M1.1 (TBM-NAut)</strong></td>
 <td>Integridade</td>
-<td>Testes de <em>Payload</em> de API com interceptação de <em>Tokens</em> JWT.</td>
+<td>Testes de <em>Payload</em> de API com interceptação de <em>Tokens</em> JWT.</td>
 <td>Avalia diretamente se a API bloqueia ações (PUT/DELETE) feitas por usuários sem o privilégio adequado, garantindo o Nível de Pontuação de 100% de bloqueios exigido.</td>
 </tr>
 <tr>
 <td><strong>M1.2 (QEC-V)</strong></td>
 <td>Integridade</td>
-<td>Inspeção sistemática de rotas e injeção de requisições sem cabeçalho Authorization (ambiente Docker). <strong>⚠️ N/A na camada de produção</strong> — o GitHub Pages serve arquivos estáticos; não há endpoints privados para atacar.</td>
+<td>Inspeção sistemática de rotas e injeção de requisições sem cabeçalho Authorization (ambiente Docker). <strong>⚠️ N/A na camada de produção</strong>: o GitHub Pages serve arquivos estáticos; não há endpoints privados para atacar.</td>
 <td>Garante a verificação binária (0 endpoints vulneráveis) para rotas de manipulação de dados no backend de referência (2025-2).</td>
 </tr>
 <tr>
 <td><strong>M2.1 (EVD-Inst)</strong></td>
 <td>Autenticidade</td>
-<td>Automação de tentativas de cadastro via API com domínios <em>Regex</em> falhos.</td>
+<td>Automação de tentativas de cadastro via API com domínios <em>Regex</em> falhos.</td>
 <td>Permite quantificar a Taxa de Rejeição de Acessos Inválidos simulando e-mails não institucionais (@gmail, @outlook).</td>
 </tr>
 <tr>
 <td><strong>M2.2 (P-2FA)</strong></td>
 <td>Autenticidade</td>
 <td>Consulta SQL direta no Banco de Dados (Ambiente de Teste).</td>
-<td>Mede empiricamente a adoção da dupla autenticação pelos administradores, acessando a base de dados onde a flag is_2fa_enabled fica armazenada.</td>
+<td>Mede empiricamente a adoção da dupla autenticação pelos administradores, acessando a base de dados onde a flag <code>is_2fa_enabled</code> fica armazenada.</td>
 </tr>
 <tr>
 <td><strong>M3 (TNCM)</strong></td>
 <td>Integridade</td>
-<td>Teste de injeção de <em>payloads</em> na renderização React, em cópia local do <code>oportunidades.json</code> executada com Vite (<code>npm run dev</code>).</td>
-<td>Mede diretamente se o escape automático do React neutraliza o conteúdo malicioso vindo do <em>pipeline</em> de <em>scraping</em>, atendendo ao critério de neutralização (nenhum vetor ativo, julgado pelo padrão da falha) definido na Fase 2.</td>
+<td>Teste de injeção de payloads na renderização React, em cópia local do <code>oportunidades.json</code> executada com Vite (<code>npm run dev</code>).</td>
+<td>Mede diretamente se o escape automático do React neutraliza o conteúdo malicioso vindo do pipeline de scraping, atendendo ao critério de neutralização (nenhum vetor ativo, julgado pelo padrão da falha) definido na Fase 2.</td>
 </tr>
 <tr>
 <td><strong>M4 (TPV)</strong></td>
 <td>Autenticidade</td>
-<td>Análise estática (<em>script</em>) do <code>oportunidades.json</code> somada à verificação amostral manual dos canais oficiais.</td>
+<td>Análise estática (script) do <code>oportunidades.json</code> somada à verificação amostral manual dos canais oficiais.</td>
 <td>Quantifica a proporção de registros rastreáveis a uma fonte oficial verificável, atendendo ao limiar de ≥ 95% (Excelente) definido na Fase 2.</td>
 </tr>
 <tr>
@@ -1951,18 +1951,19 @@
 </tbody>
 </table>
 <ul>
-<li>As ferramentas de injeção de <em>payloads</em> (Passo 2 do fluxo) respondem diretamente às métricas <strong>M1.1 (TBM-NAut)</strong> e <strong>M1.2 (QEC-V)</strong>.</li>
-<li>A validação de formulários de registro e consultas ao banco de dados (Passo 3 do fluxo) fornecem os dados exatos exigidos pelas métricas <strong>M2.1 (EVD-Inst)</strong> e <strong>M2.2 (P-2FA)</strong>.</li>
-<li>O teste de injeção de conteúdo na renderização (Passo 5 do fluxo) responde diretamente à métrica <strong>M3 (TNCM)</strong>.</li>
-<li>A análise de procedência e verificação amostral de canais oficiais (Passo 6 do fluxo) responde diretamente à métrica <strong>M4 (TPV)</strong>.</li>
+<li>O <strong>Passo 1</strong> responde à métrica <strong>M1.1 (TBM-NAut)</strong> e o <strong>Passo 2</strong> à métrica <strong>M1.2 (QEC-V)</strong>, ambos por injeção de payloads de API.</li>
+<li>O <strong>Passo 3</strong> fornece os dados exigidos pela métrica <strong>M2.1 (EVD-Inst)</strong> (validação de domínio no cadastro) e o <strong>Passo 4</strong> os da métrica <strong>M2.2 (P-2FA)</strong> (consulta direta ao banco de dados).</li>
+<li>O <strong>Passo 5</strong> (injeção de conteúdo na renderização React) responde diretamente à métrica <strong>M3 (TNCM)</strong>.</li>
+<li>O <strong>Passo 6</strong> (análise de procedência e verificação amostral de canais oficiais) responde diretamente à métrica <strong>M4 (TPV)</strong>.</li>
+<li>O <strong>Passo 7</strong> (auditoria da camada de produção via terminal e rede) responde às métricas <strong>M5.1 e M5.2 (Controle de Acesso)</strong> e <strong>M6.1 e M6.2 (Criptografia)</strong>.</li>
 </ul>
 <h3 id="niveis-de-pontuacao-e-criterios-de-julgamento-m3-e-m4">Níveis de Pontuação e Critérios de Julgamento (M3 e M4)</h3>
-<p>Da mesma forma que M1.1, M1.2, M2.1 e M2.2 herdam da Fase 2 seus níveis de pontuação, <strong>M3</strong> e <strong>M4</strong> reaproveitam os critérios já definidos no GQM. Os limiares abaixo são idênticos aos da Fase 2 e orientam o julgamento na Fase 4.</p>
+<p>Da mesma forma que M1.1, M1.2, M2.1, M2.2, M5.1, M5.2, M6.1 e M6.2 herdam da Fase 2 seus níveis de pontuação e critérios de julgamento, <strong>M3</strong> e <strong>M4</strong> reaproveitam os critérios já definidos no GQM. Todas as métricas operacionalizadas neste plano, incluindo as de produção (M5 e M6), constam no GQM da Fase 2; nenhuma métrica nova é criada nesta fase, o que garante rastreabilidade total da Fase 2 para a Fase 3. Os limiares abaixo são idênticos aos da Fase 2 e orientam o julgamento na Fase 4.</p>
 <p><strong>Métrica 3 (M3) - Taxa de Neutralização de Conteúdo Malicioso (TNCM)</strong></p>
 <ul>
 <li><strong>Fórmula:</strong> <code>TNCM = (Nº de payloads neutralizados na renderização / Nº total de payloads injetados no JSON de teste) x 100</code></li>
 <li><strong>Referência:</strong> <a href="#ref-1">[1]</a>, <a href="#ref-2">[2]</a></li>
-<li><strong>Critérios de julgamento</strong> (pelo padrão da falha; a TNCM é indicador informativo)<strong>:</strong><ul>
+<li><strong>Critérios de julgamento</strong> (pelo padrão da falha; a TNCM é indicador informativo):<ul>
 <li><strong>Excelente (H3 confirmada):</strong> nenhum vetor ativo. Todos os payloads, em texto e <code>href</code>, são neutralizados.</li>
 <li><strong>Aceitável:</strong> falha restrita ao <code>href</code> dos campos de canal (exige clique do usuário), sem execução automática em campo de texto.</li>
 <li><strong>Insatisfatório (H3 refutada):</strong> qualquer execução automática (auto-XSS) em campo de texto.</li>
@@ -1983,86 +1984,86 @@
 </ul>
 <hr />
 <h2 id="3-recursos-e-ambiente-de-avaliacao">3. Recursos e Ambiente de Avaliação</h2>
-<p>Para que a avaliação não afete os usuários reais da UnB e mantenha total isolamento e segurança, a coleta de dados ocorrerá em um <strong>Ambiente Local (Localhost)</strong> replicando a arquitetura de produção do repositório oficial do Mural UnB. Desse modo, a fim de garantir o rigor técnico e isolar as variáveis de teste, os recursos de avaliação e a configuração do ambiente estão detalhados abaixo.</p>
+<p>Para que a avaliação não afete os usuários reais da UnB e mantenha total isolamento e segurança, a coleta de dados ocorrerá em um <strong>Ambiente Local (Localhost)</strong> que replica a arquitetura de produção do repositório oficial do Mural UnB. Para garantir o rigor técnico e isolar as variáveis de teste, os recursos de avaliação e a configuração do ambiente estão detalhados abaixo.</p>
 <h3 id="31-recursos-de-hardware">3.1 Recursos de Hardware</h3>
 <ul>
-<li><strong>Computador do Avaliador:</strong> Computador/Notebook padrão (Processador equivalente a Intel Core i5/Ryzen 5, mínimo de 8GB de RAM), para suportar a conteinerização do banco de dados e da API simultaneamente.</li>
-<li><strong>Armazenamento:</strong> 20GB livres para conteinerização (Docker) e logs, garantindo ausência de <em>swap</em> durante as requisições de carga moderada.</li>
+<li><strong>Computador do Avaliador:</strong> Computador/Notebook padrão (Processador equivalente a Intel Core i5/Ryzen 5, mínimo de 8 GB de RAM), para suportar a conteinerização do banco de dados e da API simultaneamente.</li>
+<li><strong>Armazenamento:</strong> 20 GB livres para conteinerização (Docker) e logs, garantindo ausência de swap durante as requisições de carga moderada.</li>
 </ul>
 <h3 id="32-recursos-de-software">3.2 Recursos de Software</h3>
 <ul>
 <li><strong>Sistema Operacional:</strong> Distribuição Linux (como Fedora ou Ubuntu) com kernel atualizado, ou Windows com WSL2 configurado.</li>
 <li><strong>Ambiente de Execução:</strong> Docker e Docker Compose instalados para inicializar a aplicação (para subir a API e o Banco de Dados do Mural UnB localmente de forma padronizada).</li>
-<li><strong>Ferramenta de Teste de API:</strong> <strong>Postman</strong> ou <strong>Insomnia</strong>. Utilizados para montar as requisições (GET, POST, PUT, DELETE), manipular <em>Headers</em> (JWT) e injetar <em>payloads</em>, bem como para estruturação e disparo das requisições HTTP (M1.1, M1.2, M2.1).</li>
-<li><strong>Cliente de Banco de Dados:</strong> DBeaver ou PgAdmin ou interface SQLite (para visualizar as tabelas locais e para auditoria direta no banco de dados M2.2).</li>
+<li><strong>Ferramenta de Teste de API:</strong> <strong>Postman</strong> ou <strong>Insomnia</strong>. Utilizados para montar as requisições (GET, POST, PUT, DELETE), manipular Headers (JWT) e injetar payloads, bem como para estruturação e disparo das requisições HTTP (M1.1, M1.2, M2.1).</li>
+<li><strong>Cliente de Banco de Dados:</strong> DBeaver, PgAdmin ou interface SQLite (para visualizar as tabelas locais e para auditoria direta no banco de dados M2.2).</li>
 <li><strong>Captura de Evidências:</strong> OBS Studio (para gravação do fluxo de testes) e ferramenta de captura de tela nativa do SO.</li>
 <li><strong>Planilha de Registro:</strong> Google Sheets (para consolidação dos logs de sucesso/falha).</li>
-<li><strong>Ambiente Frontend (para M3 e M4):</strong> Node.js (v18+) e npm para executar o site localmente; Python 3 para o <em>script</em> de procedência; navegador web atualizado (Google Chrome ou Mozilla Firefox) com ferramentas de desenvolvedor nativas.</li>
+<li><strong>Ambiente Frontend (para M3 e M4):</strong> Node.js (v18+) e npm para executar o site localmente; Python 3 para o script de procedência; navegador web atualizado (Google Chrome ou Mozilla Firefox) com ferramentas de desenvolvedor nativas.</li>
 </ul>
 <h3 id="33-massa-de-dados-preparacao-critica">3.3 Massa de Dados (Preparação Crítica)</h3>
-<p><strong>Justificativa:</strong> Avaliar o controle de acesso e a segurança de uma API sem um estado prévio não produz resultados reais. É estritamente pertinente e <strong>obrigatório</strong> o uso de uma massa de dados (via <em>seeders</em> ou script .sql) para agilizar a avaliação. Testar em um banco de dados vazio impossibilita a métrica M1.1 (pois não haveria oportunidades para tentar modificar) e a M2.2 (não haveria publicadores para checar o 2FA).</p>
+<p><strong>Justificativa:</strong> Avaliar o controle de acesso e a segurança de uma API sem um estado prévio não produz resultados reais. É estritamente pertinente e <strong>obrigatório</strong> o uso de uma massa de dados (via seeders ou script <code>.sql</code>) para agilizar a avaliação. Testar em um banco de dados vazio impossibilita a métrica M1.1 (pois não haveria oportunidades para tentar modificar) e a M2.2 (não haveria publicadores para checar o 2FA).</p>
 <ul>
 <li>A massa deverá conter, obrigatoriamente:</li>
 <li>3 usuários administradores.</li>
-<li>10 usuários com privilégio padrão (e-mails @<a href="http://aluno.unb.br/">aluno.unb.br</a>).</li>
-<li>5 usuários simulando invasores (e-mails externos como @<a href="http://gmail.com/">gmail.com</a> ou @<a href="http://outlook.com/">outlook.com</a>).</li>
+<li>10 usuários com privilégio padrão (e-mails @aluno.unb.br).</li>
+<li>5 usuários simulando invasores (e-mails externos como @gmail.com ou @outlook.com).</li>
 <li>20 publicações/oportunidades pré-cadastradas associadas aos administradores.</li>
 </ul>
-<p>Antes de iniciar a sessão, o script de <em>seed</em> do banco de dados local deverá criar:</p>
+<p>Antes de iniciar a sessão, o script de seed do banco de dados local deverá criar:</p>
 <ol>
-<li><strong>Usuário A (Publicador/Admin):</strong> E-mail admin@unb.br. (Dono das postagens).</li>
-<li><strong>Usuário B (Estudante Comum):</strong> E-mail aluno@aluno.unb.br. (Sem privilégios de edição).</li>
-<li><strong>Oportunidades:</strong> 5 registros simulados de vagas/eventos (IDs de 1 a 5), atrelados ao Usuário A.</li>
+<li><strong>Usuário A (Publicador/Admin):</strong> E-mail admin@unb.br (dono das postagens).</li>
+<li><strong>Usuário B (Estudante Comum):</strong> E-mail aluno@aluno.unb.br (sem privilégios de edição).</li>
+<li><strong>Oportunidades:</strong> 5 registros simulados de vagas/eventos (IDs de 1 a 5), atrelados ao Usuário A.</li>
 </ol>
 <h3 id="34-recursos-humanos">3.4 Recursos Humanos</h3>
 <ul>
-<li><strong>Avaliadores:</strong> Pelo menos 2 membros da equipe (um executando as requisições via API e outro registrando/auditando o banco de dados).</li>
+<li><strong>Avaliadores:</strong> Pelo menos 2 membros da equipe (um executando as requisições via API e outro registrando/auditando o banco de dados).</li>
 </ul>
 <h2 id="4-metodo-de-avaliacao-e-instrucoes-de-coleta-passo-a-passo">4. Método de Avaliação e Instruções de Coleta (Passo a Passo)</h2>
 <p>O método de avaliação é baseado em testes dinâmicos de API e auditoria estática de banco de dados. As instruções a seguir garantem a reprodutibilidade técnica. O avaliador deve executar as etapas na ordem especificada e registrar o resultado qualitativo (Sucesso/Falha) e quantitativo na planilha.</p>
 <h3 id="41-preparacao-da-sessao-de-teste-setup">4.1 Preparação da Sessão de Teste (Setup)</h3>
 <ol>
-<li><strong>Clonar e inicializar:</strong> Iniciar o backend local via terminal executando docker-compose up -d para subir a API e o banco de dados em instâncias isoladas.</li>
-<li><strong>Injeção da Massa de Dados:</strong> Rodar o script de seed de dados, no terminal, para popular o banco de dados conforme especificados na Sessão 3.3 (Usuário A, Usuário B e Vagas 1 a 5).</li>
-<li><strong>Setup das Ferramentas:</strong> Iniciar gravação de tela com OBS Studio capturando a janela do Postman e do DBeaver. Abrir o Postman, importar a coleção de testes Mural_UnB_Security_Tests.json e abrir a Ficha de Registro no navegador.</li>
+<li><strong>Clonar e inicializar:</strong> Iniciar o backend local via terminal executando <code>docker-compose up -d</code> para subir a API e o banco de dados em instâncias isoladas.</li>
+<li><strong>Injeção da Massa de Dados:</strong> Rodar o script de seed de dados, no terminal, para popular o banco de dados conforme especificado na Seção 3.3 (Usuário A, Usuário B e Vagas 1 a 5).</li>
+<li><strong>Setup das Ferramentas:</strong> Iniciar gravação de tela com OBS Studio capturando a janela do Postman e do DBeaver. Abrir o Postman, importar a coleção de testes <code>Mural_UnB_Security_Tests.json</code> e abrir a Ficha de Registro no navegador.</li>
 </ol>
 <h3 id="42-fluxo-de-execucao-e-instrucoes-de-coleta">4.2 Fluxo de Execução e Instruções de Coleta</h3>
 <p><strong>Passo 1: Teste de Bloqueio de Modificação (Métrica M1.1 - Integridade) da API</strong></p>
 <ul>
-<li><strong>Objetivo:</strong> Verificar se o Usuário B (Estudante) consegue alterar dados do Usuário A.</li>
+<li><strong>Objetivo:</strong> Verificar se o Usuário B (Estudante) consegue alterar dados do Usuário A.</li>
 <li><strong>Ação:</strong></li>
-<li>No Postman, realizar uma requisição POST /login com credenciais do <strong>Usuário B</strong> e copiar o <em>Token</em> JWT gerado. Em seguida, disparar 10 requisições do tipo PUT e DELETE direcionadas às IDs das 20 publicações criadas pelos administradores.</li>
-<li>Criar uma requisição PUT /oportunidades/1 (tentando alterar o título da vaga 1).</li>
-<li>Inserir o <em>Token</em> do Usuário B no <em>Header</em> de Autorização.</li>
+<li>No Postman, realizar uma requisição POST /login com credenciais do <strong>Usuário B</strong> e copiar o Token JWT gerado. Em seguida, disparar 10 requisições do tipo PUT e DELETE direcionadas aos IDs das 20 publicações criadas pelos administradores.</li>
+<li>Criar uma requisição PUT /oportunidades/1 (tentando alterar o título da vaga 1).</li>
+<li>Inserir o Token do Usuário B no Header de Autorização.</li>
 <li>Enviar a requisição.</li>
 <li><strong>Coleta de Evidência:</strong></li>
-<li>Registrar se a resposta HTTP foi 403 Forbidden ou 401 Unauthorized (Sucesso no bloqueio) ou 200 OK (Falha crítica). Registrar na planilha.</li>
+<li>Registrar se a resposta HTTP foi 403 Forbidden ou 401 Unauthorized (Sucesso no bloqueio) ou 200 OK (Falha crítica). Registrar na planilha.</li>
 <li>Tirar print do Postman mostrando o código da resposta e o corpo.</li>
-<li>Repetir o teste com requisição DELETE /oportunidades/1.</li>
-<li><em>Evidência:</em> Exportar o relatório de resultados do Postman em formato .csv e salvar no repositório.</li>
+<li>Repetir o teste com requisição DELETE /oportunidades/1.</li>
+<li><strong>Evidência:</strong> Exportar o relatório de resultados do Postman em formato <code>.csv</code> e salvar no repositório.</li>
 </ul>
 <p><strong>Passo 2: Inspeção de Endpoints Vulneráveis (Métrica M1.2 - Integridade)</strong></p>
 <ul>
-<li><strong>Objetivo:</strong> Garantir que 0 rotas críticas funcionem sem JWT.</li>
+<li><strong>Objetivo:</strong> Garantir que 0 rotas críticas funcionem sem JWT.</li>
 <li><strong>Ação:</strong></li>
-<li>No Postman, limpar completamente a aba <em>Headers</em> (remover qualquer Token do cabeçalho) da requisição.</li>
-<li>Realizar disparos contra os <em>endpoints</em> críticos previamente mapeados na Fase 1: POST /oportunidades, PUT /oportunidades/{id}, DELETE /oportunidades/{id}, POST /admin/config.</li>
+<li>No Postman, limpar completamente a aba Headers (remover qualquer Token do cabeçalho) da requisição.</li>
+<li>Realizar disparos contra os endpoints críticos previamente mapeados na Fase 1: POST /oportunidades, PUT /oportunidades/{id}, DELETE /oportunidades/{id}, POST /admin/config.</li>
 <li><strong>Coleta de Evidência:</strong></li>
-<li>Para cada rota testada, documentar o retorno.  Contabilizar quantos endpoints retornaram sucesso (200 OK ou 201 Created) na ausência do Token. Registrar <strong>"1 endpoint vulnerável"</strong> na planilha. A meta é que todos retornem bloqueio.</li>
-<li><em>Evidência:</em> Exportar o relatório de resultados do Postman em formato .csv e salvar no repositório.</li>
+<li>Para cada rota testada, documentar o retorno. Contabilizar quantos endpoints retornaram sucesso (200 OK ou 201 Created) na ausência do Token. Registrar <strong>"1 endpoint vulnerável"</strong> na planilha. A meta é que todos retornem bloqueio.</li>
+<li><strong>Evidência:</strong> Exportar o relatório de resultados do Postman em formato <code>.csv</code> e salvar no repositório.</li>
 </ul>
 <p><strong>Passo 3: Verificação de Domínio Institucional (Métrica M2.1 - Autenticidade)</strong></p>
 <ul>
-<li><strong>Objetivo:</strong> Garantir que cadastros de entidades utilizem e-mails da universidade.</li>
+<li><strong>Objetivo:</strong> Garantir que cadastros de entidades utilizem e-mails da universidade.</li>
 <li><strong>Ação:</strong></li>
 <li>No Postman, utilizar a rota de criação de contas de publicadores (POST /cadastro/publicador).</li>
-<li>No <em>Body</em> (JSON), enviar um payload com email: entidade@gmail.com. Registrar a resposta (Espera-se erro/validação Regex).</li>
-<li>Repetir alterando o payload para entidade@outlook.com.</li>
-<li>Repetir alterando o payload para entidade@unb.br. (Espera-se sucesso 201).</li>
+<li>No Body (JSON), enviar um payload com email: entidade@gmail.com. Registrar a resposta (Espera-se erro/validação Regex).</li>
+<li>Repetir alterando o payload para entidade@outlook.com.</li>
+<li>Repetir alterando o payload para entidade@unb.br. (Espera-se sucesso 201).</li>
 <li><strong>Coleta de Evidência:</strong></li>
 <li>Registrar a proporção: Total de domínios falsos rejeitados / Total de tentativas com domínios falsos. O esperado para excelência é 100%.</li>
-<li>Para <strong>M2.1 (EVD-Inst)</strong>: Verificar o código de resposta HTTP de cada requisição. Contabilizar quantas tentativas foram rejeitadas com erro de validação (ex: 422 Unprocessable Entity ou 400 Bad Request).</li>
-<li><em>Evidência:</em> Print da tela do Postman exibindo a mensagem de erro da API rejeitando o domínio não institucional.</li>
+<li>Para <strong>M2.1 (EVD-Inst)</strong>: Verificar o código de resposta HTTP de cada requisição. Contabilizar quantas tentativas foram rejeitadas com erro de validação (ex: 422 Unprocessable Entity ou 400 Bad Request).</li>
+<li><strong>Evidência:</strong> Print da tela do Postman exibindo a mensagem de erro da API rejeitando o domínio não institucional.</li>
 </ul>
 <p><strong>Passo 4: Proporção de 2FA para Publicadores (Métrica M2.2 - Autenticidade)</strong></p>
 <ul>
@@ -2081,7 +2082,7 @@
 <ul>
 <li><strong>Objetivo:</strong> Verificar se o React neutraliza payloads XSS injetados no <code>oportunidades.json</code>.</li>
 <li><strong>Ação:</strong></li>
-<li>Clone (ou <em>fork</em>) o repositório do Mural UnB. Na pasta <code>site/</code>, execute <code>npm install</code> para instalar as dependências (React 19 + Vite).</li>
+<li>Clone (ou faça um fork) o repositório do Mural UnB. Na pasta <code>site/</code>, execute <code>npm install</code> para instalar as dependências (React 19 + Vite).</li>
 <li>Crie uma cópia de teste do arquivo <code>data/oportunidades.json</code>. Em registros selecionados, injete um conjunto controlado de payloads, distribuídos por tipo de campo, e registre o total injetado (denominador):<ul>
 <li><strong>Campos de texto</strong> (<code>descricao</code>, <code>Sobre</code>, <code>Nome</code>): <code>&lt;script&gt;alert('xss')&lt;/script&gt;</code>, <code>&lt;img src=x onerror=alert('xss')&gt;</code> e <code>&lt;b&gt;conteudo-injetado&lt;/b&gt;</code>.</li>
 <li><strong>Campos de canal</strong> (<code>Site</code>, <code>Instagram</code>): <code>javascript:alert('xss')</code>.</li>
@@ -2089,15 +2090,15 @@
 </li>
 <li>Inicie a aplicação com <code>npm run dev</code> e abra no navegador as oportunidades modificadas.</li>
 <li>Para cada payload, observe a renderização e classifique:<ul>
-<li><strong>Neutralizado:</strong> o conteúdo aparece como texto literal na tela, ou o <em>link</em> não executa código.</li>
-<li><strong>Ativo:</strong> o <em>script</em> executa (o <code>alert</code> dispara), o HTML é injetado no DOM, ou o clique no <em>link</em> <code>javascript:</code> executa código.
+<li><strong>Neutralizado:</strong> o conteúdo aparece como texto literal na tela, ou o link não executa código.</li>
+<li><strong>Ativo:</strong> o script executa (o <code>alert</code> dispara), o HTML é injetado no DOM, ou o clique no link <code>javascript:</code> executa código.
   Registre o resultado da classificação de cada payload.</li>
 </ul>
 </li>
 <li><strong>Coleta de Evidência:</strong></li>
 <li>Conte os payloads neutralizados (numerador) e aplique a fórmula: <code>TNCM = (neutralizados / total injetado) * 100</code>.</li>
 <li>Compare com os critérios de julgamento classificando pelo <strong>padrão da falha</strong>: Excelente = nenhum vetor ativo; Aceitável = falha restrita ao <code>href</code> de canal (exige clique), sem auto-XSS em campo de texto; Insatisfatório = qualquer execução automática em campo de texto. A TNCM é reportada como indicador.</li>
-<li><em>Evidência:</em> registro da classificação dos payloads e a análise estática do código-fonte (<code>docs/evidencias_fase4/m3_analise_estatica.md</code>).</li>
+<li><strong>Evidência:</strong> registro da classificação dos payloads e a análise estática do código-fonte (<code>docs/evidencias_fase4/m3_analise_estatica.md</code>).</li>
 </ul>
 <p><strong>Passo 6: Análise de Procedência (Métrica M4 - Autenticidade/Frontend)</strong></p>
 <ul>
@@ -2105,7 +2106,7 @@
 <li><strong>Ação:</strong></li>
 <li>Obtenha o arquivo <code>data/oportunidades.json</code> do repositório.</li>
 <li>
-<p>Execute um <em>script</em> que percorra os registros e conte os que possuem canal/fonte oficial verificável: empresas juniores com <code>Site</code> ou <code>Instagram</code> preenchido; laboratórios com <code>contato</code> em domínio institucional <code>@unb.br</code>. Exemplo:</p>
+<p>Execute um script que percorra os registros e conte os que possuem canal/fonte oficial verificável: empresas juniores com <code>Site</code> ou <code>Instagram</code> preenchido; laboratórios com <code>contato</code> em domínio institucional <code>@unb.br</code>. Exemplo:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">re</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/oportunidades.json&#39;</span><span class="p">))</span>
 <span class="n">labs</span><span class="p">,</span> <span class="n">ejs</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;laboratorios&#39;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;empresas_juniores&#39;</span><span class="p">]</span>
@@ -2125,32 +2126,32 @@
 <li><strong>Coleta de Evidência:</strong></li>
 <li>Aplique a fórmula: <code>TPV = (registros com procedência verificável / total de registros) * 100</code>.</li>
 <li>Compare com os critérios de julgamento (Excelente ≥ 95%; Satisfatório 80% a 94%; Insatisfatório &lt; 80%).</li>
-<li><em>Evidência:</em> Saída do <em>script</em> e registros da verificação amostral.</li>
+<li><strong>Evidência:</strong> Saída do script e registros da verificação amostral.</li>
 </ul>
 <p><strong>Passo 7: Avaliação da Camada de Produção via Terminal e Rede (Métricas M5 e M6)</strong></p>
-<p>Este passo é exclusivo para o ambiente estático efetivamente publicado (o site no GitHub Pages), não se aplicando à API local executada via Docker. Ele compreende a auditoria de acesso (M5) e da criptografia (M6).</p>
+<p>Este passo é exclusivo para o ambiente estático efetivamente publicado (o site no GitHub Pages) e não se aplica à API local executada via Docker. Ele compreende a auditoria do acesso (M5) e da criptografia (M6).</p>
 <ul>
-<li><strong>Objetivo:</strong> Comprovar a segurança de tráfego, ausência de rotas vulneráveis e blindagem dos dados sensíveis armazenados na camada de produção do Mural-UnB.</li>
+<li><strong>Objetivo:</strong> Comprovar a segurança do tráfego, a ausência de rotas vulneráveis e a blindagem dos dados sensíveis armazenados na camada de produção do Mural UnB.</li>
 <li><strong>Ação e Coleta de Evidências:</strong></li>
-<li><strong>M5.1 (Acesso Interface):</strong> Tentar acessar via navegador rotas administrativas comuns (ex: <code>https://muralunb.com.br/admin</code> ou <code>/dashboard</code>). Registrar se retornam <em>404 Not Found</em>. Inspecionar o código-fonte (DOM) e <em>localStorage</em> por dados vazados.</li>
-<li><strong>M5.2 (Pentest Endpoints):</strong> Realizar mapeamento de todas as chamadas via <code>fetch</code> no <em>frontend</em>. Registrar e apresentar evidência de que não existem métodos HTTP ativos para injeção (ex: <code>POST</code>, <code>PUT</code>), ou seja, constatar que a API produtiva "não existe" no formato tradicional vulnerável.</li>
-<li><strong>M6.1 (Criptografia Rede):</strong> No PowerShell (ou Terminal), executar <code>Invoke-WebRequest -Uri http://muralunb.com.br -MaximumRedirection 0</code>. Coletar o código <code>301 Moved Permanently</code> para provar o redirecionamento. Averiguar os cabeçalhos de resposta HTTP atrás do <code>Strict-Transport-Security</code> (HSTS) e da configuração de TLS.</li>
+<li><strong>M5.1 (Acesso Interface):</strong> Tentar acessar via navegador rotas administrativas comuns (ex: <code>https://muralunb.com.br/admin</code> ou <code>/dashboard</code>). Registrar se retornam <code>404 Not Found</code>. Inspecionar o código-fonte (DOM) e o <code>localStorage</code> em busca de dados vazados.</li>
+<li><strong>M5.2 (Pentest Endpoints):</strong> Realizar mapeamento de todas as chamadas via <code>fetch</code> no frontend. Registrar e apresentar evidência de que não existem métodos HTTP ativos para injeção (ex: <code>POST</code>, <code>PUT</code>), ou seja, constatar que a API produtiva "não existe" no formato tradicional vulnerável.</li>
+<li><strong>M6.1 (Criptografia Rede):</strong> No PowerShell (ou Terminal), executar <code>Invoke-WebRequest -Uri http://muralunb.com.br -MaximumRedirection 0</code>. Coletar o código <code>301 Moved Permanently</code> para provar o redirecionamento. Averiguar, nos cabeçalhos de resposta HTTP, a presença do <code>Strict-Transport-Security</code> (HSTS) e a configuração de TLS.</li>
 <li><strong>M6.2 (Proteção Repouso):</strong> Auditar a configuração dos "Secrets" no GitHub Actions (ex: verificação da proteção da variável <code>GEMINI_API_KEY</code>). Checar se não existem dados como CPF/Senhas (PII) salvos em texto plano nos JSONs. Registrar conformidade na proteção dos segredos do repositório.</li>
 </ul>
 <h2 id="5-armazenamento-e-estrutura-dos-dados-evidencias">5. Armazenamento e Estrutura dos Dados (Evidências)</h2>
 <ul>
 <li><strong>Ficha de Registro (Google Sheets):</strong> Todos os dados numéricos brutos (contagem de requisições, status codes, percentuais) serão lançados na planilha padronizada criada na Fase 2.</li>
-<li><strong>Gestão de Evidências:</strong> A pasta /evidencias_fase4/ no repositório GitHub deverá conter:</li>
-<li>O arquivo postman_collection_results.csv.</li>
-<li>Os prints de tela nomeados de forma rastreável (ex: M2.1_Erro_Dominio_Invalido.png, M2.2_Query_2FA.png).</li>
-<li>Evidência de M3 por análise estática do código (<code>m3\_analise\_estatica.md</code>).</li>
-<li>Saída do <em>script</em> de procedência M4 e registros da verificação amostral.</li>
+<li><strong>Gestão de Evidências:</strong> A pasta <code>/evidencias_fase4/</code> no repositório GitHub deverá conter:</li>
+<li>O arquivo <code>postman_collection_results.csv</code>.</li>
+<li>Os prints de tela nomeados de forma rastreável (ex: <code>M2.1_Erro_Dominio_Invalido.png</code>, <code>M2.2_Query_2FA.png</code>).</li>
+<li>Evidência de M3 por análise estática do código (<code>m3_analise_estatica.md</code>).</li>
+<li>Saída do script de procedência M4 e registros da verificação amostral.</li>
 </ul>
-<p>Todos os artefatos resultantes deverão ser comitados no repositório GitHub do projeto sob o diretório docs/evidencias_fase4/:</p>
+<p>Todos os artefatos resultantes deverão ser versionados no repositório GitHub do projeto, sob o diretório <code>docs/evidencias_fase4/</code>:</p>
 <ul>
-<li>tabela_resultados_mural_unb.xlsx (Contendo os cálculos de M1.1 a M4).</li>
-<li>postman_collection_mural_unb.json (Exportação com as requisições exatas feitas para que a professora possa auditar a reprodutibilidade).</li>
-<li>Pasta de <em>Screenshots</em> rotulados claramente (ex: M1.1_TentativaDelete_UserB.png).</li>
+<li><code>tabela_resultados_mural_unb.xlsx</code> (contendo os cálculos de M1.1 a M4).</li>
+<li><code>postman_collection_mural_unb.json</code> (exportação com as requisições exatas feitas para que a professora possa auditar a reprodutibilidade).</li>
+<li>Pasta de capturas de tela rotuladas claramente (ex: <code>M1.1_TentativaDelete_UserB.png</code>).</li>
 <li>O link do vídeo (não listado no YouTube) demonstrando a execução contínua dos testes será fixado no relatório final da Fase 4.</li>
 </ul>
 <h2 id="6-cronograma-das-acoes-realista-e-alinhado">6. Cronograma das Ações (Realista e Alinhado)</h2>
@@ -2169,16 +2170,16 @@
 <tr>
 <td><strong>12/06/2026</strong></td>
 <td>Fase 3</td>
-<td>Configuração do ambiente local (Docker) e script de <em>seed</em> (Massa de Dados).</td>
+<td>Configuração do ambiente local (Docker) e script de seed (Massa de Dados).</td>
 <td>Equipe (Desenvolvedores)</td>
 <td>Backend rodando localmente de forma isolada.</td>
 </tr>
 <tr>
 <td><strong>14/06/2026</strong></td>
 <td>Fase 3</td>
-<td>Criação e exportação da Collection do Postman com as rotas a serem avaliadas.</td>
+<td>Criação e exportação da Collection do Postman com as rotas a serem avaliadas.</td>
 <td>Lucas, Caio, Guilherme</td>
-<td>postman_collection_mural_unb.json.</td>
+<td><code>postman_collection_mural_unb.json</code>.</td>
 </tr>
 <tr>
 <td><strong>17/06/2026</strong></td>
@@ -2257,9 +2258,15 @@
 <td>Ajuste do critério de M3 (TNCM): julgamento pelo padrão da falha (auto-XSS em texto) em vez do percentual bruto, alinhado à Fase 2.</td>
 <td>Isaac</td>
 </tr>
+<tr>
+<td>2.3</td>
+<td>23/06/2026</td>
+<td>Correção da rastreabilidade Passo ➔ Métrica (Passos 1 a 7 mapeados às respectivas métricas) e reforço explícito da consistência Fase 2 ➔ Fase 3 (M5/M6 herdam critérios do GQM; nenhuma métrica nova criada). Ajustes em resposta à avaliação por pares (F3-C1 e F3-C8).</td>
+<td>Isaac</td>
+</tr>
 </tbody>
 </table>
-<h2 id="declaracao-do-uso-de-ia">Declaração do uso de ia</h2>
+<h2 id="declaracao-do-uso-de-ia">Declaração do Uso de IA</h2>
 <table>
 <thead>
 <tr>
@@ -2271,8 +2278,8 @@
 <tbody>
 <tr>
 <td style="text-align: center;">Gemini 1.5 Pro / Agentes IA</td>
-<td style="text-align: left;">Utilizada para classificar insights de confiabilidade e segurança, auxiliar na interpretação de dados, conduzir a estruturação dos testes práticos, e realizar a revisão e correção ortográfica do documento.</td>
-<td style="text-align: left;">O texto e as classificações geradas pela IA foram rigorosamente revisados, adaptados ao contexto do projeto e validados para garantir informações fidedignas e relevantes para o projeto Mural UnB.</td>
+<td style="text-align: left;">Utilizada para classificar insights de confiabilidade e segurança, auxiliar na interpretação de dados, conduzir a estruturação dos testes práticos e realizar a revisão e correção ortográfica do documento.</td>
+<td style="text-align: left;">O texto e as classificações geradas pela IA foram rigorosamente revisados, adaptados ao contexto do projeto e validados para garantir informações fidedignas e relevantes para o Mural UnB.</td>
 </tr>
 </tbody>
 </table>
